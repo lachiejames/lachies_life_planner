@@ -1,16 +1,12 @@
-# lachies_life_planner
+# Lachie's Sudoku Solver
 
-A new Flutter project.
+[![Build Status](https://dev.azure.com/lachiejames/lachies_life_planner/_apis/build/status/lachies_life_planner?branchName=master&jobName=Run_My_Pipeline)](https://dev.azure.com/lachiejames/lachies_life_planner/_build/latest?definitionId=9&branchName=master)
 
-## Getting Started
+To run the app:
+`flutter run`
 
-This project is a starting point for a Flutter application.
+To run unit & widget tests:
+`flutter test`
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run integration tests:
+`flutter drive --target=test_driver/app.dart`

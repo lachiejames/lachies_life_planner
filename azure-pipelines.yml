@@ -1,19 +1,26 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+name: $(Rev:r:)
 
-trigger:
-- master
+jobs:
+  - job: Run_My_Pipeline
+    timeoutInMinutes: 30
+    pool:
+      vmImage: macOS-latest
 
-pool:
-  vmImage: ubuntu-latest
+    steps:
+      - script: sudo chmod +x scripts/azure-pipelines.sh
+        displayName: Grant Shell Permissions
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+      - script: scripts/azure-pipelines.sh install_flutter
+        displayName: Install Flutter
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      - script: scripts/azure-pipelines.sh run_unit_tests
+        displayName: Run Unit Tests
+
+      - script: scripts/azure-pipelines.sh install_emulator
+        displayName: Install Emulator
+
+      - script: scripts/azure-pipelines.sh run_emulator
+        displayName: Run Emulator
+
+      - script: scripts/azure-pipelines.sh run_integration_tests
+        displayName: Run Integration Tests

@@ -1,0 +1,7 @@
+include: package:pedantic/analysis_options.yaml
+
+linter:
+  rules:
+    always_specify_types: true
+    avoid_annotating_with_dynamic: true
+    omit_local_variable_types: false
