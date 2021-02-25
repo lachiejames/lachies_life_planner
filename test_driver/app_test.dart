@@ -1,9 +1,8 @@
-// Imports the Flutter Driver API.
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('My group', () {
+  group('Counter App', () {
     FlutterDriver driver;
 
     setUpAll(() async {
@@ -16,8 +15,14 @@ void main() {
       }
     });
 
-    test('My first integration test', () async {
-      await driver.tap(find.text('made up text'));
+    test('starts at 0', () async {
+      await driver.waitFor(find.text('0'));
+    });
+
+    test('increments the counter', () async {
+      await driver.tap(find.byType('FloatingActionButton'));
+
+      await driver.waitFor(find.text('1'));
     });
   });
 }
