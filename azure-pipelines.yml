@@ -7,17 +7,20 @@ jobs:
       vmImage: macOS-latest
 
     steps:
-      - script: sudo chmod +x azure-pipelines-scripts.sh
+      - script: sudo chmod +x pipelines/scripts.sh
         displayName: Grant Shell Permissions
 
-      - script: azure-pipelines-scripts.sh install_flutter
+      - script: pipelines/scripts.sh install_flutter
         displayName: Install Flutter
 
-      - script: azure-pipelines-scripts.sh run_unit_tests
+      - script: pipelines/scripts.sh run_unit_tests
         displayName: Run Unit Tests
 
-      - script: azure-pipelines-scripts.sh setup_emulator
-        displayName: Setup Emulator
+      - script: pipelines/scripts.sh install_emulator
+        displayName: Install Emulator
 
-      - script: azure-pipelines-scripts.sh run_integration_tests
+      - script: pipelines/scripts.sh run_emulator
+        displayName: Run Emulator
+
+      - script: pipelines/scripts.sh run_integration_tests
         displayName: Run Integration Tests
