@@ -1,0 +1,23 @@
+# A list of screen capture tests
+tests:
+# Note: flutter driver expects a pair of files eg, main1.dart and main1_test.dart
+  - test_driver/app.dart 
+  - test_driver/app_test.dart 
+
+# Interim location of screenshots from tests
+staging: /Users/builder/exported_artefacts
+
+# A list of locales supported by the app
+locales:
+  - en-US
+  - de-DE
+
+# A map of devices to emulate
+devices:
+  ios:
+    iPhone XS Max:
+      frame: false
+      orientation: Portrait
+
+# Frame screenshots
+frame: true
