@@ -16,9 +16,6 @@ jobs:
       - script: scripts/azure-pipelines.sh run_unit_tests
         displayName: Run Unit Tests
 
-      - script: scripts/azure-pipelines.sh install_emulator
-        displayName: Install Emulator
-
       - script: scripts/azure-pipelines.sh run_integration_tests_android
         displayName: Integration Tests - Android
 
