@@ -16,8 +16,14 @@ jobs:
       - script: scripts/azure-pipelines.sh run_unit_tests
         displayName: Run Unit Tests
 
-      - script: scripts/azure-pipelines.sh run_integration_tests_android
-        displayName: Integration Tests - Android
+      - script: scripts/azure-pipelines.sh run_integration_tests_android_smartphone
+        displayName: Integration Tests - Android SmartPhone
 
-      - script: scripts/azure-pipelines.sh run_integration_tests_ios
-        displayName: Integration Tests - IOS
+      - script: scripts/azure-pipelines.sh run_integration_tests_android_tablet
+        displayName: Integration Tests - Android Tablet
+
+      - script: scripts/azure-pipelines.sh run_integration_tests_iphone
+        displayName: Integration Tests - IPhone
+
+      - script: scripts/azure-pipelines.sh run_integration_tests_ipad
+        displayName: Integration Tests - IPad
