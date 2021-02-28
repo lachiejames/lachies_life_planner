@@ -7,20 +7,17 @@ jobs:
       vmImage: macOS-latest
 
     steps:
-      - script: sudo chmod +x scripts/azure-pipelines.sh
-        displayName: Grant Shell Permissions
-
-      - script: scripts/azure-pipelines.sh install_flutter
-        displayName: Install Flutter
-
-      - script: scripts/azure-pipelines.sh run_unit_tests
-        displayName: Run Unit Tests
-
-      - script: scripts/azure-pipelines.sh install_emulator
-        displayName: Install Emulator
-
-      - script: scripts/azure-pipelines.sh run_emulator
-        displayName: Run Emulator
-
-      - script: scripts/azure-pipelines.sh run_integration_tests
-        displayName: Run Integration Tests
+      - script: |
+        echo "install xcode in command line"
+        xcode-select --install
+        echo "install home brew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo "install flutter using brew"
+        brew install --cask flutter
+        echo "starting up apple emulator"
+        flutter emulators --launch <apple_ios_simulator/android emulator>
+        echo "awaiting for emualator to load"
+        sleep 5
+        echo "starting integration tests"
+        flutter drive --target=test_driver/<yourtestfile>.dart
+      displayName: Integration test IOS
