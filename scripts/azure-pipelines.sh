@@ -30,7 +30,7 @@ run_integration_tests_android_smartphone() {
     $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-29;default;x86'
 
     echo "Creating Emulator"
-    $ANDROID_HOME/tools/bin/avdmanager create avd -n "Android SmartPhone" --device "Pixel" -k "system-images;android-29;default;x86"
+    $ANDROID_HOME/tools/bin/avdmanager create avd -n "AndroidSmartPhone" --device "Pixel" -k "system-images;android-29;default;x86"
 
     echo "Starting Emulator"
     $ANDROID_HOME/emulator/emulator -avd "pixel" -no-snapshot &
@@ -46,7 +46,7 @@ run_integration_tests_android_tablet() {
     $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-29;default;x86'
 
     echo "Creating Emulator"
-    $ANDROID_HOME/tools/bin/avdmanager create avd -n "Android Tablet" --device "Pixel_C" -k "system-images;android-29;default;x86"
+    $ANDROID_HOME/tools/bin/avdmanager create avd -n "AndroidTablet" --device "Pixel_C" -k "system-images;android-29;default;x86"
 
     echo "Starting Emulator"
     $ANDROID_HOME/emulator/emulator -avd "Pixel_C" -no-snapshot &
