@@ -30,10 +30,10 @@ run_integration_tests_android_smartphone() {
     $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-29;default;x86'
 
     echo "Creating Emulator"
-    $ANDROID_HOME/tools/bin/avdmanager create avd -n "AndroidSmartPhone" --device "Pixel" -k "system-images;android-29;default;x86"
+    $ANDROID_HOME/tools/bin/avdmanager create avd -n "pixel" --device "pixel" -k "system-images;android-29;default;x86"
 
     echo "Starting Emulator"
-    $ANDROID_HOME/emulator/emulator -avd "Pixel" -no-snapshot &
+    $ANDROID_HOME/emulator/emulator -avd "pixel" -no-snapshot &
     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
     echo "Emulator started"
 
@@ -46,10 +46,10 @@ run_integration_tests_android_tablet() {
     $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-29;default;x86'
 
     echo "Creating Emulator"
-    $ANDROID_HOME/tools/bin/avdmanager create avd -n "AndroidTablet" --device "Pixel_C" -k "system-images;android-29;default;x86"
+    $ANDROID_HOME/tools/bin/avdmanager create avd -n "pixel" --device "pixel" -k "system-images;android-29;default;x86"
 
     echo "Starting Emulator"
-    $ANDROID_HOME/emulator/emulator -avd "Pixel_C" -no-snapshot &
+    $ANDROID_HOME/emulator/emulator -avd "pixel" -no-snapshot &
     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
     echo "Emulator started"
 
