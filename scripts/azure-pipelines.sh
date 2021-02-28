@@ -65,7 +65,10 @@ run_integration_tests_iphone() {
 }
 
 run_integration_tests_ipad() {
-    
+    echo "Starting IOS emulator"
+    flutter emulators --launch ios 
+    echo "Running Integration Tests"
+    flutter drive --target=test_driver/app.dart
 }
 
 "$@"
