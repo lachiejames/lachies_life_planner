@@ -25,22 +25,25 @@ run_unit_tests() {
     flutter test --machine >tests.output
 }
 
-install_emulator() {
+run_integration_tests_android() {
     echo "Installing Emulator SDK"
     $ANDROID_HOME/tools/bin/sdkmanager --install 'system-images;android-29;default;x86'
 
     echo "Creating Emulator"
     $ANDROID_HOME/tools/bin/avdmanager create avd -n "pixel" --device "pixel" -k "system-images;android-29;default;x86"
-}
 
-run_emulator() {
     echo "Starting Emulator"
     $ANDROID_HOME/emulator/emulator -avd "pixel" -no-snapshot &
     $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
     echo "Emulator started"
+
+    echo "Running Integration Tests"
+    flutter drive --target=test_driver/app.dart
 }
 
-run_integration_tests() {
+run_integration_tests_ios() {
+    echo "Starting IOS emulator"
+    flutter emulators --launch ios 
     echo "Running Integration Tests"
     flutter drive --target=test_driver/app.dart
 }
