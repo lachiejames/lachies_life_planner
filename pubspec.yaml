@@ -8,6 +8,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  lachies_component_library:
+    path: ../lachies_component_library
 
 dev_dependencies:
   flutter_driver:
