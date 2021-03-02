@@ -9,7 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
   lachies_component_library:
-    path: ../lachies_component_library
+    git:
+      url: https://github.com/lachiejames/lachies_component_library
+      ref: master
+  # lachies_component_library:
+  #   path: ../lachies_component_library
 
 dev_dependencies:
   flutter_driver:

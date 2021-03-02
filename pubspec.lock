@@ -185,9 +185,11 @@ packages:
   lachies_component_library:
     dependency: "direct main"
     description:
-      path: "../lachies_component_library"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: "134c7ee1fecb8b7508841a328580fa36dc08b3e8"
+      url: "https://github.com/lachiejames/lachies_component_library"
+    source: git
     version: "1.0.0+1"
   logging:
     dependency: transitive
