@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "638853197516",
+    "project_id": "lachie-s-life-planner",
+    "storage_bucket": "lachie-s-life-planner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638853197516:android:99cccc62a90de785a95c69",
+        "android_client_info": {
+          "package_name": "com.lachie.lachies_life_planner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638853197516-etjmb63i4mk7i31jvhmfkbn0i49aaudt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUQIfvvoawMrdJWP2d3e8Atry24c_lmGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638853197516-etjmb63i4mk7i31jvhmfkbn0i49aaudt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
