@@ -10,22 +10,19 @@ class TextIconButton extends StatelessWidget {
 
   TextIconButton({
     @required this.onPressed,
-    this.text,
-    this.icon,
+    @required this.text,
+    @required this.icon,
     this.color,
     this.backgroundColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-
     return Container(
       color: backgroundColor ?? Colors.black,
-      padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 4),
-      margin: EdgeInsets.all(SizeConfig.blockSizeVertical * 4),
-      width: SizeConfig.blockSizeVertical * 16,
-      height: SizeConfig.blockSizeVertical * 16,
+      margin: EdgeInsets.all(SizeConfig.blockSizeVertical * 2),
+      width: SizeConfig.blockSizeVertical * 24,
+      height: SizeConfig.blockSizeVertical * 24,
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ElevatedButton(
@@ -34,20 +31,21 @@ class TextIconButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                text ?? 'Sample text',
+                text,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: color ?? Colors.white,
-                  fontSize: 32,
+                  fontSize: SizeConfig.blockSizeHorizontal * 6,
                 ),
               ),
               Container(
-                height: 16,
-                width: 16,
+                height: SizeConfig.blockSizeVertical * 4,
+                width: SizeConfig.blockSizeVertical * 4,
               ),
               Icon(
-                icon ?? Icons.assignment_turned_in_rounded,
+                icon,
                 color: color ?? Colors.white,
-                size: 32,
+                size: SizeConfig.blockSizeHorizontal * 8,
               ),
             ],
           ),

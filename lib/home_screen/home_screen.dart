@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
+import 'package:lachies_life_planner/shared/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Home'),
         ),
         body: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextIconButton(
                     onPressed: null,
@@ -28,10 +33,11 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextIconButton(
                     onPressed: null,
-                    text: 'Health & Fitness',
+                    text: 'Fitness',
                     icon: Icons.directions_run_outlined,
                   ),
                   TextIconButton(
@@ -42,16 +48,17 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextIconButton(
                     onPressed: null,
                     text: 'Finance',
-                    icon: Icons.monetization_on,
+                    icon: Icons.attach_money,
                   ),
                   TextIconButton(
                     onPressed: null,
                     text: 'Goals',
-                    icon: Icons.help_outlined,
+                    icon: Icons.lightbulb,
                   ),
                 ],
               )
