@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SizeConfig {
-  static MediaQueryData _mediaQueryData;
-  static double screenWidth;
-  static double screenHeight;
-  static double blockSizeHorizontal;
-  static double blockSizeVertical;
+/// Relative portion of the device's screen width.  Used to keep widget sizing adaptive
+/// Calculated by `screenWidth/100`
+double screenWidthUnit;
 
-  static double _safeAreaHorizontal;
-  static double _safeAreaVertical;
-  static double safeBlockHorizontal;
-  static double safeBlockVertical;
+/// Relative portion of the device's screen height.  Used to keep widget sizing adaptive
+/// Calculated by `screenHeight/100`
+double screenHeightUnit;
 
-  void init(BuildContext context) {
-    _mediaQueryData = MediaQuery.of(context);
-    screenWidth = _mediaQueryData.size.width;
-    screenHeight = _mediaQueryData.size.height;
-    blockSizeHorizontal = screenWidth / 100;
-    blockSizeVertical = screenHeight / 100;
-
-    _safeAreaHorizontal = _mediaQueryData.padding.left + _mediaQueryData.padding.right;
-    _safeAreaVertical = _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
-    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
-    safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
-  }
+/// IMPORTANT: must be called before building the UI,
+/// since nearly all widgets use `screenWidthUnit` and `screenHeightUnit`
+void initSizeConfigurations(BuildContext context) {
+  screenWidthUnit = MediaQuery.of(context).size.width / 100;
+  screenHeightUnit = MediaQuery.of(context).size.height / 100;
 }

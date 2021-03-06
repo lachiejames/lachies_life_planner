@@ -4,7 +4,7 @@ import 'package:lachies_life_planner/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(LachiesLifePlannerApp());
 
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);

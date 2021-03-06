@@ -20,9 +20,9 @@ class TextIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: backgroundColor ?? Colors.black,
-      margin: EdgeInsets.all(SizeConfig.blockSizeVertical * 2),
-      width: SizeConfig.blockSizeVertical * 24,
-      height: SizeConfig.blockSizeVertical * 24,
+      margin: EdgeInsets.all(screenHeightUnit * 2),
+      width: screenHeightUnit * 24,
+      height: screenHeightUnit * 24,
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ElevatedButton(
@@ -35,17 +35,16 @@ class TextIconButton extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: color ?? Colors.white,
-                  fontSize: SizeConfig.blockSizeHorizontal * 6,
+                  fontSize: screenWidthUnit * 6,
                 ),
               ),
               Container(
-                height: SizeConfig.blockSizeVertical * 4,
-                width: SizeConfig.blockSizeVertical * 4,
+                height: screenHeightUnit * 4,
               ),
               Icon(
                 icon,
                 color: color ?? Colors.white,
-                size: SizeConfig.blockSizeHorizontal * 8,
+                size: screenWidthUnit * 12,
               ),
             ],
           ),
