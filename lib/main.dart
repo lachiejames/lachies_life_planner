@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_component_library/component_library.dart';
+import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,8 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Flex(
-        direction: Axis.horizontal,
+      body: Wrap(
+        // We changed from Row to Wrap
+        direction: Axis.horizontal, // we need to specify the direction
         children: <Widget>[
           TextIconButton(
             onPressed: null,
