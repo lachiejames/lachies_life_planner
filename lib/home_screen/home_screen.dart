@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    initSizeConfigurations(context);
+    initSizeConfigurations(MediaQuery.of(context).size);
 
     return Scaffold(
         appBar: AppBar(

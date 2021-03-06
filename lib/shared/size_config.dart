@@ -10,7 +10,7 @@ double screenHeightUnit;
 
 /// IMPORTANT: must be called before building the UI,
 /// since nearly all widgets use `screenWidthUnit` and `screenHeightUnit`
-void initSizeConfigurations(BuildContext context) {
-  screenWidthUnit = MediaQuery.of(context).size.width / 100;
-  screenHeightUnit = MediaQuery.of(context).size.height / 100;
+void initSizeConfigurations(Size screenSize) {
+  screenWidthUnit = screenSize.width / 100;
+  screenHeightUnit = screenSize.height / 100;
 }
