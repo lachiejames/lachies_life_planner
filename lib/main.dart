@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lachies_component_library/component_library.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,24 +43,40 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Flex(
+        direction: Axis.horizontal,
+        children: <Widget>[
+          TextIconButton(
+            onPressed: null,
+            text: 'Tasks',
+            icon: Icons.check,
+          ),
+          TextIconButton(
+            onPressed: null,
+            text: 'Calendar',
+            icon: Icons.calendar_today,
+          ),
+          TextIconButton(
+            onPressed: null,
+            text: 'Health & Fitness',
+            icon: Icons.directions_run_outlined,
+          ),
+          TextIconButton(
+            onPressed: null,
+            text: 'Homework',
+            icon: Icons.menu_book_outlined,
+          ),
+          TextIconButton(
+            onPressed: null,
+            text: 'Finance',
+            icon: Icons.monetization_on,
+          ),
+          TextIconButton(
+            onPressed: null,
+            text: 'Goals',
+            icon: Icons.help_outlined,
+          ),
+        ],
       ),
     );
   }
