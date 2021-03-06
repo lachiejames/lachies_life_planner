@@ -22,4 +22,18 @@ void main() {
     expect(find.byIcon(Icons.check), findsOneWidget);
     expect(find.text('Tasks'), findsOneWidget);
   });
+
+  testWidgets('works on all device sizes', (WidgetTester tester) async {
+    for (Size size in allDeviceSizes) {
+      initSizeConfigurations(size);
+
+      await tester.pumpWidget(
+        TextIconButton(
+          onPressed: null,
+          text: 'Tasks',
+          icon: Icons.check,
+        ),
+      );
+    }
+  });
 }
