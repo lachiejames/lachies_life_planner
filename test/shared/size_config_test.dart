@@ -5,7 +5,7 @@ import '../utils/device_screen_sizes.dart';
 
 void main() {
   testWidgets('sets values for screenWidthUnit and screenHeightUnit', (WidgetTester tester) async {
-    initSizeConfigurations(Samsung_Galaxy_S9);
+    initSizeConfigurations(samsungGalaxyS9);
 
     expect(screenWidthUnit, 3.6);
     expect(screenHeightUnit, 7.4);

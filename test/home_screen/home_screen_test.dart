@@ -11,7 +11,7 @@ void main() {
       MaterialApp(
         home: MediaQuery(
           data: MediaQueryData(
-            size: Google_Pixel_4,
+            size: googlePixel4,
           ),
           child: HomeScreen(),
         ),

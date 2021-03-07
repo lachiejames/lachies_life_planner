@@ -7,7 +7,7 @@ import '../../utils/device_screen_sizes.dart';
 
 void main() {
   setUp(() {
-    initSizeConfigurations(Samsung_Galaxy_S9);
+    initSizeConfigurations(samsungGalaxyS9);
   });
 
   testWidgets('displays correct text and icon', (WidgetTester tester) async {
