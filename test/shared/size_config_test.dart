@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/shared/size_config.dart';
 
-import '../utils/mock_data.dart';
+import '../utils/device_screen_sizes.dart';
 
 void main() {
   setUp(() {
