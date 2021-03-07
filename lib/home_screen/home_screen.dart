@@ -24,14 +24,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<TasksScreen>(builder: (BuildContext context) => TasksScreen())),
+                  onPressed: () => _navigateTo(context, TasksScreen()),
                   text: 'Tasks',
                   icon: Icons.check,
                 ),
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<CalendarScreen>(builder: (BuildContext context) => CalendarScreen())),
+                  onPressed: () => _navigateTo(context, CalendarScreen()),
                   text: 'Calendar',
                   icon: Icons.calendar_today,
                 ),
@@ -40,14 +38,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<FitnessScreen>(builder: (BuildContext context) => FitnessScreen())),
+                  onPressed: () => _navigateTo(context, FitnessScreen()),
                   text: 'Fitness',
                   icon: Icons.directions_run_outlined,
                 ),
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<HomeworkScreen>(builder: (BuildContext context) => HomeworkScreen())),
+                  onPressed: () => _navigateTo(context, HomeworkScreen()),
                   text: 'Homework',
                   icon: Icons.menu_book_outlined,
                 ),
@@ -56,14 +52,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<FinanceScreen>(builder: (BuildContext context) => FinanceScreen())),
+                  onPressed: () => _navigateTo(context, FinanceScreen()),
                   text: 'Finance',
                   icon: Icons.attach_money,
                 ),
                 TextIconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute<GoalsScreen>(builder: (BuildContext context) => GoalsScreen())),
+                  onPressed: () => _navigateTo(context, GoalsScreen()),
                   text: 'Goals',
                   icon: Icons.lightbulb,
                 ),
@@ -74,6 +68,10 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<T> Function() _navigateTo<T extends Widget>(BuildContext context, T screen) {
+  return () => Navigator.push(context, MaterialPageRoute<T>(builder: (BuildContext context) => screen));
 }
 
 class _ExpandedRow extends StatelessWidget {
