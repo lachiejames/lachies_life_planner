@@ -70,8 +70,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-Future<T> Function() _navigateTo<T extends Widget>(BuildContext context, T screen) {
-  return () => Navigator.push(context, MaterialPageRoute<T>(builder: (BuildContext context) => screen));
+Future<T> _navigateTo<T extends Widget>(BuildContext context, T screen) {
+  return Navigator.push(context, MaterialPageRoute<T>(builder: (BuildContext context) => screen));
 }
 
 class _ExpandedRow extends StatelessWidget {
