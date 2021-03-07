@@ -5,9 +5,7 @@ import 'package:lachies_life_planner/shared/size_config.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (screenWidthUnit == null || screenHeightUnit == null) {
-      initSizeConfigurations(MediaQuery.of(context).size);
-    }
+    initSizeConfigurations(MediaQuery.of(context).size);
 
     return Scaffold(
       appBar: AppBar(
