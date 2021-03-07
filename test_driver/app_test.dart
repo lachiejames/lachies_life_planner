@@ -18,16 +18,15 @@ void main() {
       }
     });
 
-    test('starts at 0', () async {
-      await driver.waitFor(find.text('0'));
-      await screenshot(driver, config, 'test1');
-    }, timeout: Timeout(Duration(seconds: 60)));
+    test('home screen buttons appear', () async {
+      await driver.waitFor(find.text('Tasks'));
+      await driver.waitFor(find.text('Calendar'));
+      await driver.waitFor(find.text('Fitness'));
+      await driver.waitFor(find.text('Homework'));
+      await driver.waitFor(find.text('Finance'));
+      await driver.waitFor(find.text('Goals'));
 
-    test('increments the counter', () async {
-      await driver.tap(find.byType('FloatingActionButton'));
-
-      await driver.waitFor(find.text('1'));
-      await screenshot(driver, config, 'test2');
+      await screenshot(driver, config, 'home_screen');
     }, timeout: Timeout(Duration(seconds: 60)));
   });
 }
