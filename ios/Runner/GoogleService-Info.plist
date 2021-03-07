@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>627853225879-8185h8d0gal8ubf9cd3agv0uo8om1dm7.apps.googleusercontent.com</string>
+	<string>638853197516-bsusagui1pjcjm9ct0vrj9vqhoel50bm.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.627853225879-8185h8d0gal8ubf9cd3agv0uo8om1dm7</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>627853225879-v3t792kbtfntkslsm8c5qd7ik3kc7gs8.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.638853197516-bsusagui1pjcjm9ct0vrj9vqhoel50bm</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCLedyYw_20AEw4G6OfXUgWdHWfhxqXg0E</string>
+	<string>AIzaSyD06acgOYxTsFkoKfvJ-AHOdzaWjsQlZ1g</string>
 	<key>GCM_SENDER_ID</key>
-	<string>627853225879</string>
+	<string>638853197516</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lachie.sudokusolver2</string>
+	<string>com.lachie.lachies-life-planner</string>
 	<key>PROJECT_ID</key>
-	<string>sudoku-solver-2</string>
+	<string>lachie-s-life-planner</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sudoku-solver-2.appspot.com</string>
+	<string>lachie-s-life-planner.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:627853225879:ios:9839954fc6917fe6d91ed2</string>
-	<key>DATABASE_URL</key>
-	<string>https://sudoku-solver-2.firebaseio.com</string>
+	<string>1:638853197516:ios:aa22f034e79b6698a95c69</string>
 </dict>
 </plist>
