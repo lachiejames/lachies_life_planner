@@ -1,6 +1,6 @@
 name: lachies_life_planner
 description: All-in-1 personal planner
-version: 0.0.1+1
+version: 0.1.1+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
