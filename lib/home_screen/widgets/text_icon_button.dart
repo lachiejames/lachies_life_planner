@@ -21,13 +21,16 @@ class TextIconButton extends StatelessWidget {
     return Container(
       color: backgroundColor ?? Colors.black,
       margin: EdgeInsets.all(screenHeightUnit * 2),
-      padding: EdgeInsets.only(
-        top: screenHeightUnit * 4,
-        bottom: screenHeightUnit * 4,
-      ),
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.black,
+            padding: EdgeInsets.only(
+              top: screenHeightUnit * 4,
+              bottom: screenHeightUnit * 4,
+            ),
+          ),
           onPressed: onPressed,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

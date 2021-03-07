@@ -9,6 +9,7 @@ class LachiesLifePlannerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Lachie\'s Life Planner',
       home: HomeScreen(),
     );
