@@ -1,4 +1,4 @@
-# Lachie's Sudoku Solver
+# Lachie's Life Planner
 
 [![Codemagic build status](https://api.codemagic.io/apps/603b647b10cfd9539dc7e507/603baa07c9d4d753dd37e0ef/status_badge.svg)](https://codemagic.io/apps/603b647b10cfd9539dc7e507/603baa07c9d4d753dd37e0ef/latest_build) (Android)
 
