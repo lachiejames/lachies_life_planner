@@ -27,4 +27,30 @@ void main() {
 
     await screenshot(driver, config, 'home_screen');
   }, timeout: Timeout(Duration(seconds: 60)));
+
+  test('can navigate to each base screen', () async {
+    await driver.tap(find.text('Tasks'));
+    await screenshot(driver, config, 'tasks_screen');
+    await driver.tap(find.byType('BackButton'));
+
+    await driver.tap(find.text('Calendar'));
+    await screenshot(driver, config, 'calendar_screen');
+    await driver.tap(find.byType('BackButton'));
+
+    await driver.tap(find.text('Fitness'));
+    await screenshot(driver, config, 'fitness_screen');
+    await driver.tap(find.byType('BackButton'));
+
+    await driver.tap(find.text('Homework'));
+    await screenshot(driver, config, 'homework_screen');
+    await driver.tap(find.byType('BackButton'));
+
+    await driver.tap(find.text('Finance'));
+    await screenshot(driver, config, 'finance_screen');
+    await driver.tap(find.byType('BackButton'));
+
+    await driver.tap(find.text('Goals'));
+    await screenshot(driver, config, 'goals_screen');
+    await driver.tap(find.byType('BackButton'));
+  }, timeout: Timeout(Duration(seconds: 120)));
 }
