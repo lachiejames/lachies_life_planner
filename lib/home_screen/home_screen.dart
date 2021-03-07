@@ -17,55 +17,43 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             _ExpandedRow(
               children: <Widget>[
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Tasks',
-                    icon: Icons.check,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Tasks',
+                  icon: Icons.check,
                 ),
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Calendar',
-                    icon: Icons.calendar_today,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Calendar',
+                  icon: Icons.calendar_today,
                 ),
               ],
             ),
             _ExpandedRow(
               children: <Widget>[
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Fitness',
-                    icon: Icons.directions_run_outlined,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Fitness',
+                  icon: Icons.directions_run_outlined,
                 ),
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Homework',
-                    icon: Icons.menu_book_outlined,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Homework',
+                  icon: Icons.menu_book_outlined,
                 ),
               ],
             ),
             _ExpandedRow(
               children: <Widget>[
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Finance',
-                    icon: Icons.attach_money,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Finance',
+                  icon: Icons.attach_money,
                 ),
-                Expanded(
-                  child: TextIconButton(
-                    onPressed: null,
-                    text: 'Goals',
-                    icon: Icons.lightbulb,
-                  ),
+                TextIconButton(
+                  onPressed: null,
+                  text: 'Goals',
+                  icon: Icons.lightbulb,
                 ),
               ],
             ),
@@ -81,12 +69,22 @@ class _ExpandedRow extends StatelessWidget {
 
   _ExpandedRow({@required this.children});
 
+  List<Widget> _expandChildren(List<Widget> children) {
+    List<Widget> expandedChildren = <Widget>[];
+
+    for (Widget child in children) {
+      expandedChildren.add(Expanded(child: child));
+    }
+
+    return expandedChildren;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
+        children: _expandChildren(children),
       ),
     );
   }
