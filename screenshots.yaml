@@ -2,8 +2,8 @@ tests:
   - test_driver/app.dart
   - test_driver/app_test.dart
 
-# staging: ./test_driver/screenshots # local screenshots
-staging: /Users/builder/exported_artefacts # pipeline screenshots
+staging: ./test_driver/screenshots # local screenshots
+# staging: /Users/builder/exported_artefacts # pipeline screenshots
 
 locales:
   - en-US
