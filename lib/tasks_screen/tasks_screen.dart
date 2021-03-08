@@ -4,8 +4,10 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 class TasksScreen extends StatelessWidget {
+  final CollectionReference _tasks = FirebaseFirestore.instance.collection('tasks');
+
   Widget _streamBuilder(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) => (!snapshot.hasData)
-      ? CircularProgressIndicator()
+      ? Center(child: CircularProgressIndicator())
       : ListView(
           children: snapshot.data.docs
               .map(
@@ -16,11 +18,20 @@ class TasksScreen extends StatelessWidget {
               .toList(),
         );
 
+  Future<void> _addTask() => _tasks.add(Task(
+        name: 'howdy',
+        dateCreated: Timestamp.now(),
+        isComplete: false,
+      ).toJson());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tasks'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _addTask(),
       ),
       body: Container(
         child: StreamBuilder<QuerySnapshot>(

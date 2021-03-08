@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Task {
   final String name;
-  final String dateCreated;
+  final Timestamp dateCreated;
   final bool isComplete;
 
   Task({this.name, this.dateCreated, this.isComplete});
@@ -13,7 +15,7 @@ class Task {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'name': name,
-      'dateCreated': dateCreated.toString(),
+      'dateCreated': dateCreated,
       'isComplete': isComplete,
     };
   }
