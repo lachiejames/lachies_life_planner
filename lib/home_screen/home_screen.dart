@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/calendar_screen/calendar_screen.dart';
 import 'package:lachies_life_planner/finance_screen/finance_screen.dart';
@@ -9,35 +6,12 @@ import 'package:lachies_life_planner/goals_screen/goals_screen.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
 import 'package:lachies_life_planner/shared/size_config.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  Future<void> doFirebaseStuff() async {
-    CollectionReference tasks = FirebaseFirestore.instance.collection('tasks');
-    Task myTask = Task(
-      name: 'my task',
-      dateCreated: DateTime.now(),
-      schedule: Schedule(
-        enabled: true,
-        dueDate: DateTime.now(),
-      ),
-      alarm: Alarm(
-        enabled: true,
-        dueDate: DateTime.now(),
-      ),
-    );
-    await tasks
-        .add(jsonDecode(jsonEncode(myTask)))
-        .then((dynamic value) => print('Task Added'))
-        .catchError((dynamic error) => print('Failed to add task: $error'));
-  }
-
   @override
   Widget build(BuildContext context) {
     initSizeConfigurations(MediaQuery.of(context).size);
-
-    doFirebaseStuff();
 
     return Scaffold(
       appBar: AppBar(
