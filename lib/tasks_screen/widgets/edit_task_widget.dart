@@ -5,26 +5,30 @@ import 'package:lachies_life_planner/tasks_screen/models/task-database-operation
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 class EditTaskWidget extends StatefulWidget {
+  final Task task;
+
+  EditTaskWidget({this.task});
+
   @override
   _EditTaskWidgetState createState() => _EditTaskWidgetState();
 }
 
 class _EditTaskWidgetState extends State<EditTaskWidget> {
-  TextEditingController _noteController;
+  TextEditingController _taskEditingController;
 
   @override
   void initState() {
     super.initState();
-    _noteController = TextEditingController.fromValue(
+    _taskEditingController = TextEditingController.fromValue(
       TextEditingValue(
-        text: '',
+        text: widget.task?.name ?? '',
       ),
     );
   }
 
   @override
   void dispose() {
-    _noteController.dispose();
+    _taskEditingController.dispose();
     super.dispose();
   }
 
@@ -41,7 +45,7 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
               autofocus: true,
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              controller: _noteController,
+              controller: _taskEditingController,
             ),
           ),
           Row(
@@ -68,18 +72,22 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
                         foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () {
-                      addTask(
-                        Task(
-                          id: DateTime.now().millisecondsSinceEpoch.toString(),
-                          dateCreated: Timestamp.now(),
-                          name: _noteController.text,
-                          isComplete: false,
-                        ),
-                      );
+                      if (widget.task == null) {
+                        addTask(
+                          Task(
+                            id: DateTime.now().millisecondsSinceEpoch.toString(),
+                            dateCreated: Timestamp.now(),
+                            name: _taskEditingController.text,
+                            isComplete: false,
+                          ),
+                        );
+                      } else {
+                        updateTask(widget.task.copyWith(name: _taskEditingController.text));
+                      }
 
                       Navigator.pop(context);
                     },
-                    child: Text('Add'),
+                    child: Text(widget.task == null ? 'Add' : 'Update'),
                   ),
                 ),
               ),
