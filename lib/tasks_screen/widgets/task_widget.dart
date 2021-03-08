@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 class TaskWidget extends StatelessWidget {
@@ -12,8 +13,8 @@ class TaskWidget extends StatelessWidget {
       child: ListTile(
         title: Text(task.name),
         leading: Checkbox(
-          value: false,
-          onChanged: (bool value) => !value,
+          value: task.isComplete,
+          onChanged: (bool value) => updateTask(task.copyWith(isComplete: value)),
         ),
       ),
     );

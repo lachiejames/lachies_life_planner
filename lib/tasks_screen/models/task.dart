@@ -8,6 +8,11 @@ class Task {
 
   Task({this.id, this.name, this.dateCreated, this.isComplete});
 
+  @override
+  String toString() {
+    return 'Task(${toJson().toString()}';
+  }
+
   Task.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
@@ -21,5 +26,17 @@ class Task {
       'dateCreated': dateCreated,
       'isComplete': isComplete,
     };
+  }
+
+  Task copyWith({
+    String name,
+    bool isComplete,
+  }) {
+    return Task(
+      id: id,
+      dateCreated: dateCreated,
+      name: name ?? this.name,
+      isComplete: isComplete ?? this.isComplete,
+    );
   }
 }

@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 class TasksScreen extends StatelessWidget {
-  final CollectionReference _tasks = FirebaseFirestore.instance.collection('tasks');
-
   Widget _streamBuilder(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) => (!snapshot.hasData)
       ? Center(child: CircularProgressIndicator())
       : ListView(
@@ -18,12 +17,6 @@ class TasksScreen extends StatelessWidget {
               .toList(),
         );
 
-  Future<void> _addTask() => _tasks.add(Task(
-        name: 'howdy',
-        dateCreated: Timestamp.now(),
-        isComplete: false,
-      ).toJson());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +24,19 @@ class TasksScreen extends StatelessWidget {
         title: Text('Tasks'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addTask(),
+        onPressed: () => addTask(
+          Task(
+            id: DateTime.now().microsecondsSinceEpoch.toString(),
+            name: 'howdy',
+            dateCreated: Timestamp.now(),
+            isComplete: false,
+          ),
+        ),
+        child: Icon(Icons.add),
       ),
       body: Container(
         child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('tasks').snapshots(),
+          stream: getAllTasks(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) => _streamBuilder(context, snapshot),
         ),
       ),
