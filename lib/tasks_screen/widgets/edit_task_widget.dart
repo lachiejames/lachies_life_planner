@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/size_config.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class EditTaskWidget extends StatefulWidget {
   @override
@@ -28,7 +32,7 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeightUnit * 80,
+      height: screenHeightUnit * 65,
       child: Column(
         children: <Widget>[
           Padding(
@@ -50,7 +54,9 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
                         foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     child: Text('Cancel'),
                   ),
                 ),
@@ -63,7 +69,16 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
                         foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
                     onPressed: () {
-                      
+                      addTask(
+                        Task(
+                          id: DateTime.now().millisecondsSinceEpoch.toString(),
+                          dateCreated: Timestamp.now(),
+                          name: _noteController.text,
+                          isComplete: false,
+                        ),
+                      );
+
+                      Navigator.pop(context);
                     },
                     child: Text('Add'),
                   ),
