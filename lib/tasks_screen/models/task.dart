@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lachies_life_planner/tasks_screen/models/invalid-task-exception.dart';
 
 class Task {
   final String id;
@@ -13,11 +14,18 @@ class Task {
     return 'Task(${toJson().toString()}';
   }
 
-  Task.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        dateCreated = json['dateCreated'],
-        isComplete = json['isComplete'];
+  static Task fromJson(Map<String, dynamic> json) {
+    try {
+      return Task(
+        id: json['id'],
+        name: json['name'],
+        dateCreated: json['dateCreated'],
+        isComplete: json['isComplete'],
+      );
+    } catch (e) {
+      throw InvalidTaskException(json);
+    }
+  }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
