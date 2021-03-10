@@ -10,6 +10,10 @@ void main() {
     driver = await FlutterDriver.connect();
   });
 
+  setUp(() async {
+    await driver.requestData('resetFirestoreData');
+  });
+
   tearDownAll(() async {
     if (driver != null) {
       await driver.close();
@@ -39,5 +43,27 @@ void main() {
 
     await driver.tap(find.text('Add'));
     await takeScreenshot(driver, 'tasks/task_added');
+
+    await driver.waitFor(find.text('Test task'));
+  }, timeout: Timeout(Duration(seconds: 60)));
+
+  test('editing a task', () async {
+    await driver.tap(find.text('Tasks'));
+
+    await driver.tap(find.byType('FloatingActionButton'));
+
+    await driver.enterText('Test task');
+
+    await driver.tap(find.text('Add'));
+
+    await driver.tap(find.text('Test task'));
+
+    await driver.enterText('New task name');
+    await takeScreenshot(driver, 'tasks/editing_start');
+
+    await driver.tap(find.text('Update'));
+
+    await driver.waitFor(find.text('New task name'));
+    await takeScreenshot(driver, 'tasks/editing_complete');
   }, timeout: Timeout(Duration(seconds: 60)));
 }
