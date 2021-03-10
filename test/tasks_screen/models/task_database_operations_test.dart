@@ -1,0 +1,64 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:lachies_life_planner/shared/global_config.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task.dart';
+
+import '../../utils/mock_firestore_data.dart';
+
+void main() {
+  group('Task', () {
+    MockFirestoreInstance mockFirestoreInstance;
+
+    setUp(() {
+      mockFirestoreInstance = MockFirestoreInstance();
+      setFirestoreInstance(mockFirestoreInstance);
+    });
+
+    group('addTask()', () {
+      test('adds task to Firestore', () async {
+        addTask(mockTask);
+
+        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        expect(dbData.data(), mockTask.toJson());
+      });
+
+      test('can be used multiple times', () async {
+        for (Task task in mockTaskList) {
+          addTask(task);
+
+          DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(task.id).get();
+          expect(dbData.data(), task.toJson());
+        }
+      });
+    });
+
+    group('updateTask()', () {
+      test('updates task in Firestore', () async {
+        addTask(mockTask);
+        updateTask(mockTask.copyWith(name: 'new task name'));
+
+        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        expect(dbData.data(), {
+          'id': '1234567890',
+          'dateCreated': Timestamp(12345, 67890),
+          'name': 'new task name',
+          'isComplete': false,
+        });
+      });
+    });
+
+    group('removeTask()', () {
+      setUp(() async {});
+
+      test('removes task from Firestore', () async {
+        addTask(mockTask);
+        deleteTask(mockTask);
+
+        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        expect(dbData.data(), null);
+      });
+    });
+  });
+}
