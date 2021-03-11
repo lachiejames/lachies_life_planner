@@ -1,4 +1,4 @@
-import 'package:lachies_life_planner/shared/global_config.dart';
+import 'package:lachies_life_planner/shared/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

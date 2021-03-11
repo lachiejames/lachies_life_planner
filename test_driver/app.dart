@@ -1,6 +1,6 @@
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:lachies_life_planner/main.dart' as app;
-import 'package:lachies_life_planner/shared/global_config.dart';
+import 'package:lachies_life_planner/shared/firebase_config.dart';
 
 void main() {
   enableFlutterDriverExtension(handler: (dynamic command) async {
