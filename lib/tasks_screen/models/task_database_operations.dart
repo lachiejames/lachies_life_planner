@@ -23,7 +23,7 @@ void deleteTask(Task task) {
       .catchError((dynamic e) => print('ERROR: could not delete $task from FireStore'));
 }
 
-Stream<QuerySnapshot> getAllTasks() {
+Stream<QuerySnapshot> getTasksStream() {
   return getTaskCollection().snapshots().handleError((dynamic e) => print('ERROR: could get tasks from FireStore'));
 }
 
