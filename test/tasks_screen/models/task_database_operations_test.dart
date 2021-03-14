@@ -9,11 +9,8 @@ import '../../utils/mock_firestore_data.dart';
 
 void main() {
   group('Task', () {
-    MockFirestoreInstance mockFirestoreInstance;
-
     setUp(() {
-      mockFirestoreInstance = MockFirestoreInstance();
-      setFirestoreInstance(mockFirestoreInstance);
+      setFirestoreInstance(MockFirestoreInstance());
     });
 
     group('addTask()', () {
@@ -50,8 +47,6 @@ void main() {
     });
 
     group('removeTask()', () {
-      setUp(() async {});
-
       test('removes task from Firestore', () async {
         addTask(mockTask);
         deleteTask(mockTask);

@@ -3,28 +3,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
+import '../../utils/mock_firestore_data.dart';
+
 void main() {
   group('Task', () {
-    Task task;
-
-    setUp(() {
-      task = Task(
-        id: '1234567890',
-        dateCreated: Timestamp(12345, 67890),
-        name: 'test task',
-        isComplete: false,
-      );
-    });
-
     test('toString() returns correct string', () async {
       expect(
-        task.toString(),
+        mockTask.toString(),
         'Task({id: 1234567890, name: test task, dateCreated: Timestamp(seconds=12345, nanoseconds=67890), isComplete: false}',
       );
     });
 
     test('toJSON() returns correct JSON object', () async {
-      expect(task.toJson(), <String, dynamic>{
+      expect(mockTask.toJson(), <String, dynamic>{
         'id': '1234567890',
         'dateCreated': Timestamp(12345, 67890),
         'name': 'test task',
@@ -42,7 +33,7 @@ void main() {
         };
         Task parsedTask = Task.fromJson(jsonTask);
 
-        expect(parsedTask.toString(), task.toString());
+        expect(parsedTask.toString(), mockTask.toString());
       });
 
       test('should throw InvalidTaskException when incorrectly formatted task is passed', () async {
@@ -77,7 +68,7 @@ void main() {
     });
 
     test('copyWith() returns new Task with values modified', () async {
-      Task taskCopy = task.copyWith(isComplete: true, name: 'new task name');
+      Task taskCopy = mockTask.copyWith(isComplete: true, name: 'new task name');
 
       expect(taskCopy.toJson(), {
         'id': '1234567890',
