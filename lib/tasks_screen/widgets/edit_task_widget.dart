@@ -19,11 +19,7 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
   @override
   void initState() {
     super.initState();
-    _taskEditingController = TextEditingController.fromValue(
-      TextEditingValue(
-        text: widget.task?.name ?? '',
-      ),
-    );
+    _initTextController();
   }
 
   @override
@@ -38,62 +34,105 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
       height: screenHeightUnit * 65,
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: screenWidthUnit * 7),
-            child: TextField(
-              decoration: InputDecoration(border: InputBorder.none),
-              autofocus: true,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              controller: _taskEditingController,
-            ),
+          _EditTaskTextField(
+            taskEditingController: _taskEditingController,
           ),
           Row(
             children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(screenWidthUnit * 8),
-                  child: TextButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Cancel'),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.all(screenWidthUnit * 8),
-                  child: TextButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-                    onPressed: () {
-                      if (widget.task == null) {
-                        addTask(
-                          Task(
-                            id: DateTime.now().millisecondsSinceEpoch.toString(),
-                            dateCreated: Timestamp.now(),
-                            name: _taskEditingController.text,
-                            isComplete: false,
-                          ),
-                        );
-                      } else {
-                        updateTask(widget.task.copyWith(name: _taskEditingController.text));
-                      }
-
-                      Navigator.pop(context);
-                    },
-                    child: Text(widget.task == null ? 'Add' : 'Update'),
-                  ),
-                ),
+              _EditTaskPrimaryOption(),
+              _EditTaskSecondaryOption(
+                task: widget.task,
+                newText: _taskEditingController.text,
               ),
             ],
           )
         ],
+      ),
+    );
+  }
+
+  void _initTextController() {
+    _taskEditingController = TextEditingController.fromValue(
+      TextEditingValue(
+        text: widget.task?.name ?? '',
+      ),
+    );
+  }
+}
+
+class _EditTaskPrimaryOption extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(screenWidthUnit * 8),
+        child: TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Cancel'),
+        ),
+      ),
+    );
+  }
+}
+
+class _EditTaskSecondaryOption extends StatelessWidget {
+  final Task task;
+  final String newText;
+
+  _EditTaskSecondaryOption({@required this.task, @required this.newText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(screenWidthUnit * 8),
+        child: TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+          onPressed: () {
+            if (task == null) {
+              addTask(
+                Task(
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                  dateCreated: Timestamp.now(),
+                  name: newText,
+                  isComplete: false,
+                ),
+              );
+            } else {
+              updateTask(task.copyWith(name: newText));
+            }
+
+            Navigator.pop(context);
+          },
+          child: Text(task == null ? 'Add' : 'Update'),
+        ),
+      ),
+    );
+  }
+}
+
+class _EditTaskTextField extends StatelessWidget {
+  final TextEditingController taskEditingController;
+
+  _EditTaskTextField({this.taskEditingController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: screenWidthUnit * 7),
+      child: TextField(
+        decoration: InputDecoration(border: InputBorder.none),
+        autofocus: true,
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        controller: taskEditingController,
       ),
     );
   }
