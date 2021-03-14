@@ -1,11 +1,11 @@
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:lachies_life_planner/main.dart' as app;
-import 'package:lachies_life_planner/shared/firebase_config.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
 
 void main() {
   enableFlutterDriverExtension(handler: (dynamic command) async {
-    if (command == 'resetFirestoreData') {
-      await resetFirestoreData();
+    if (command == 'deleteAllTasks') {
+      await deleteAllTasks();
     }
     return 'ok';
   });

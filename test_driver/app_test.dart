@@ -11,7 +11,7 @@ void main() {
   });
 
   setUp(() async {
-    await driver.requestData('resetFirestoreData');
+    await driver.requestData('deleteAllTasks');
   });
 
   tearDownAll(() async {

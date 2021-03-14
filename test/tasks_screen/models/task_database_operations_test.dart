@@ -20,7 +20,7 @@ void main() {
       test('adds task to Firestore', () async {
         addTask(mockTask);
 
-        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
         expect(dbData.data(), mockTask.toJson());
       });
 
@@ -28,7 +28,7 @@ void main() {
         for (Task task in mockTaskList) {
           addTask(task);
 
-          DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(task.id).get();
+          DocumentSnapshot dbData = await getTaskCollection().doc(task.id).get();
           expect(dbData.data(), task.toJson());
         }
       });
@@ -39,7 +39,7 @@ void main() {
         addTask(mockTask);
         updateTask(mockTask.copyWith(name: 'new task name'));
 
-        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
         expect(dbData.data(), {
           'id': '1234567890',
           'dateCreated': Timestamp(12345, 67890),
@@ -56,7 +56,7 @@ void main() {
         addTask(mockTask);
         deleteTask(mockTask);
 
-        DocumentSnapshot dbData = await mockFirestoreInstance.collection('tasks').doc(mockTask.id).get();
+        DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
         expect(dbData.data(), null);
       });
     });
