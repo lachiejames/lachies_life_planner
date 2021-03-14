@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lachies_life_planner/tasks_screen/models/invalid-task-exception.dart';
+import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 void main() {

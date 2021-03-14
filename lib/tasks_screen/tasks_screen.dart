@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';

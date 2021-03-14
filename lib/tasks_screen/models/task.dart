@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:lachies_life_planner/tasks_screen/models/invalid-task-exception.dart';
+import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.dart';
 
 class Task {
   final String id;
@@ -11,7 +11,7 @@ class Task {
 
   @override
   String toString() {
-    return 'Task(${toJson().toString()}';
+    return 'Task(${toJson()}';
   }
 
   static Task fromJson(Map<String, dynamic> json) {

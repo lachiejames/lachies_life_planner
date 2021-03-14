@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/size_config.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task-database-operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 class EditTaskWidget extends StatefulWidget {
