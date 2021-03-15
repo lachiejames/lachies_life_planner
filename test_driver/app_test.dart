@@ -2,7 +2,6 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 import 'shared.dart';
-import 'utils/flutter_driver_requests.dart';
 
 void main() {
   FlutterDriver driver;
@@ -12,7 +11,8 @@ void main() {
   });
 
   setUp(() async {
-    await sendFlutterDriverCommand(driver, FlutterDriverRequests.deleteAllTasks);
+    await driver.requestData('deleteAllTasks');
+    await driver.requestData('backToHome');
   });
 
   tearDownAll(() async {

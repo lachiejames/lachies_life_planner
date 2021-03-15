@@ -9,11 +9,12 @@ void main() async {
   // Allows Firebase services to be used
   await Firebase.initializeApp();
 
- 
-  runApp(LachiesLifePlannerApp());
+  runApp(LachiesLifePlannerApp(key: UniqueKey()));
 }
 
 class LachiesLifePlannerApp extends StatelessWidget {
+  LachiesLifePlannerApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
