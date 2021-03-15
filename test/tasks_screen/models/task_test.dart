@@ -44,11 +44,8 @@ void main() {
           'isComplet2e': false,
         };
 
-        try {
-          Task.fromJson(invalidJsonTask);
-        } catch (e) {
-          expect(e, isA<InvalidTaskException>());
-        }
+        // For throwsA() to work, we must wrap the error-throwing function inside a zero-argument function
+        expect(() => Task.fromJson(invalidJsonTask), throwsA(isA<InvalidTaskException>()));
       });
 
       test('should throw InvalidTaskException when incorrect types are passed', () async {
@@ -59,11 +56,7 @@ void main() {
           'isComplete': 5,
         };
 
-        try {
-          Task.fromJson(invalidJsonTask);
-        } catch (e) {
-          expect(e, isA<InvalidTaskException>());
-        }
+        expect(() => Task.fromJson(invalidJsonTask), throwsA(isA<InvalidTaskException>()));
       });
     });
 
