@@ -7,7 +7,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task_database_operation
 class EditTaskAddButton extends StatelessWidget {
   final TextEditingController taskEditingController;
 
-  EditTaskAddButton({@required this.taskEditingController});
+  EditTaskAddButton({@required this.taskEditingController}) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,8 @@ import 'package:lachies_life_planner/tasks_screen/widgets/add_task_button.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_list_view.dart';
 
 class TasksScreen extends StatelessWidget {
+  TasksScreen() : super(key: UniqueKey());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

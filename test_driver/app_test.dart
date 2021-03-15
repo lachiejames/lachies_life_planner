@@ -39,8 +39,7 @@ void main() {
     await driver.tap(find.byType('FloatingActionButton'));
     await takeScreenshot(driver, 'tasks/add_task_button_pressed');
 
-    // Must tap before entering text https://github.com/flutter/flutter/issues/53410
-    await driver.tap(find.byType('TextField'));
+    await driver.waitUntilNoTransientCallbacks();
     await driver.enterText('Test task');
     await takeScreenshot(driver, 'tasks/task_text_entered');
 
@@ -61,7 +60,7 @@ void main() {
 
     await driver.tap(find.text('Test task'));
 
-    await driver.tap(find.byType('TextField'));
+    await driver.waitUntilNoTransientCallbacks();
     await driver.enterText('New task name');
     await takeScreenshot(driver, 'tasks/editing_start');
 

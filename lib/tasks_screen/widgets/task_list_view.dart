@@ -5,6 +5,8 @@ import 'package:lachies_life_planner/tasks_screen/models/task_database_operation
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 class TaskListView extends StatelessWidget {
+  TaskListView() : super(key: UniqueKey());
+
   List<TaskWidget> _createTaskWidgetsFromDocs(List<QueryDocumentSnapshot> docs) {
     return docs
         .map(

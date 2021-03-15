@@ -14,7 +14,7 @@ class TextIconButton extends StatelessWidget {
     @required this.icon,
     this.color,
     this.backgroundColor,
-  });
+  }) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
