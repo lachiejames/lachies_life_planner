@@ -5,6 +5,6 @@ class InvalidTaskException implements Exception {
 
   @override
   String toString() {
-    return 'InvalidTaskException(Tried to pass Task($taskJson))';
+    return 'InvalidTaskException(Tried to parse Task($taskJson))';
   }
 }
