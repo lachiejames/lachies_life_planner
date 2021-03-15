@@ -4,6 +4,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_add_button.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_cancel_button.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_text_field.dart';
+import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_update_button.dart';
 
 class EditTaskSheet extends StatefulWidget {
   final Task task;
@@ -41,15 +42,23 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
           Row(
             children: <Widget>[
               EditTaskCancelButton(),
-              EditTaskAddButton(
-                task: widget.task,
-                newText: _taskEditingController.text,
-              ),
+              _getPrimaryButton(),
             ],
           )
         ],
       ),
     );
+  }
+
+  Widget _getPrimaryButton() {
+    return widget.task == null
+        ? EditTaskAddButton(
+            taskEditingController: _taskEditingController,
+          )
+        : EditTaskUpdateButton(
+            taskToUpdate: widget.task,
+            taskEditingController: _taskEditingController,
+          );
   }
 
   void _initTextController() {
