@@ -14,7 +14,17 @@ class Task {
     return 'Task(${toJson()}';
   }
 
+  static bool jsonMatchesTaskStructure(Map<String, dynamic> json) =>
+      json.containsKey('id') &&
+      json.containsKey('name') &&
+      json.containsKey('dateCreated') &&
+      json.containsKey('isComplete') &&
+      json.keys.length == 4;
+
   static Task fromJson(Map<String, dynamic> json) {
+    if (!jsonMatchesTaskStructure(json)) {
+      throw InvalidTaskException(json);
+    }
     try {
       return Task(
         id: json['id'],
