@@ -39,8 +39,8 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
           ),
           Row(
             children: <Widget>[
-              _EditTaskPrimaryOption(),
-              _EditTaskSecondaryOption(
+              _EditTaskSecondaryOption(),
+              _EditTaskPrimaryOption(
                 task: widget.task,
                 newText: _taskEditingController.text,
               ),
@@ -61,30 +61,10 @@ class _EditTaskWidgetState extends State<EditTaskWidget> {
 }
 
 class _EditTaskPrimaryOption extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(screenWidthUnit * 8),
-        child: TextButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Cancel'),
-        ),
-      ),
-    );
-  }
-}
-
-class _EditTaskSecondaryOption extends StatelessWidget {
   final Task task;
   final String newText;
 
-  _EditTaskSecondaryOption({@required this.task, @required this.newText});
+  _EditTaskPrimaryOption({@required this.task, @required this.newText});
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +92,26 @@ class _EditTaskSecondaryOption extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Text(task == null ? 'Add' : 'Update'),
+        ),
+      ),
+    );
+  }
+}
+
+class _EditTaskSecondaryOption extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(screenWidthUnit * 8),
+        child: TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Cancel'),
         ),
       ),
     );
