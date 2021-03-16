@@ -36,7 +36,7 @@ void main() {
         expect(parsedTask.toString(), mockTask.toString());
       });
 
-      test('should throw InvalidTaskException when incorrectly formatted task is passed', ()  {
+      test('should throw InvalidTaskException when incorrectly formatted task is passed', () {
         Map<String, dynamic> invalidJsonTask = {
           'id': '1234567890',
           'dateCreatd': Timestamp(12345, 67890),
