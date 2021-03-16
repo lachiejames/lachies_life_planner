@@ -10,12 +10,15 @@ class EditTaskTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: screenWidthUnit * 7),
-      child: TextField(
-        decoration: InputDecoration(border: InputBorder.none),
-        autofocus: true,
-        keyboardType: TextInputType.multiline,
-        maxLines: null,
-        controller: taskEditingController,
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: TextField(
+          decoration: InputDecoration(border: InputBorder.none),
+          autofocus: true,
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          controller: taskEditingController,
+        ),
       ),
     );
   }

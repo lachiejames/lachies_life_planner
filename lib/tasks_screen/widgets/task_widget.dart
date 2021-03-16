@@ -11,16 +11,19 @@ class TaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        onTap: () => showMaterialModalBottomSheet(
-          context: context,
-          builder: (BuildContext context) => EditTaskSheet(task: task),
-        ),
-        title: Text(task.name),
-        leading: Checkbox(
-          value: task.isComplete,
-          onChanged: (bool value) => updateTask(task.copyWith(isComplete: value)),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Card(
+        child: ListTile(
+          onTap: () => showMaterialModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) => EditTaskSheet(task: task),
+          ),
+          title: Text(task.name),
+          leading: Checkbox(
+            value: task.isComplete,
+            onChanged: (bool value) => updateTask(task.copyWith(isComplete: value)),
+          ),
         ),
       ),
     );

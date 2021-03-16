@@ -7,12 +7,15 @@ class AddTaskButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () => showMaterialModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) => EditTaskSheet(),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: FloatingActionButton(
+        onPressed: () => showMaterialModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) => EditTaskSheet(),
+        ),
+        child: Icon(Icons.add),
       ),
-      child: Icon(Icons.add),
     );
   }
 }
