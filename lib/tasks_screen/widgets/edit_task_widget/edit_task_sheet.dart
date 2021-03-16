@@ -41,7 +41,9 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
           ),
           Row(
             children: <Widget>[
-              EditTaskCancelButton(),
+              Expanded(
+                child: EditTaskCancelButton(),
+              ),
               _getPrimaryButton(),
             ],
           )
@@ -52,12 +54,16 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
 
   Widget _getPrimaryButton() {
     return widget.task == null
-        ? EditTaskAddButton(
-            taskEditingController: _taskEditingController,
+        ? Expanded(
+            child: EditTaskAddButton(
+              taskEditingController: _taskEditingController,
+            ),
           )
-        : EditTaskUpdateButton(
-            taskToUpdate: widget.task,
-            taskEditingController: _taskEditingController,
+        : Expanded(
+            child: EditTaskUpdateButton(
+              taskToUpdate: widget.task,
+              taskEditingController: _taskEditingController,
+            ),
           );
   }
 

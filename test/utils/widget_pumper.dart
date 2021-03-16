@@ -7,7 +7,7 @@ class ScreenTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget screen;
 
-  ScreenTestingWrapper({this.screenSize = samsungGalaxyS9, this.screen}) : super(key: UniqueKey());
+  ScreenTestingWrapper({this.screenSize = samsungGalaxyS9, @required this.screen}) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class WidgetTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget widget;
 
-  WidgetTestingWrapper({this.screenSize = samsungGalaxyS9, this.widget}) : super(key: UniqueKey());
+  WidgetTestingWrapper({this.screenSize = samsungGalaxyS9, @required this.widget}) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {

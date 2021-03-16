@@ -9,9 +9,10 @@ class SheetTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(screenWidthUnit * 8),
+    return Container(
+      margin: EdgeInsets.all(screenWidthUnit * 8),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
         child: TextButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
