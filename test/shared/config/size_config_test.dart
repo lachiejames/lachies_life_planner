@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-import '../utils/device_screen_sizes.dart';
+import '../../utils/device_screen_sizes.dart';
 
 void main() {
   testWidgets('sets values for screenWidthUnit and screenHeightUnit', (WidgetTester tester) async {
