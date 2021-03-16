@@ -5,7 +5,7 @@ import 'package:lachies_life_planner/fitness_screen/fitness_screen.dart';
 import 'package:lachies_life_planner/goals_screen/goals_screen.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
-import 'package:lachies_life_planner/shared/size_config.dart';
+import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 class HomeScreen extends StatelessWidget {

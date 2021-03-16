@@ -1,7 +1,7 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lachies_life_planner/shared/firebase_config.dart';
+import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
