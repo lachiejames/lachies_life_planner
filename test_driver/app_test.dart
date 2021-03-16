@@ -54,6 +54,7 @@ void main() {
 
     await driver.tap(find.byType('FloatingActionButton'));
 
+    await driver.waitUntilNoTransientCallbacks();
     await driver.enterText('Test task');
 
     await driver.tap(find.text('Add'));
