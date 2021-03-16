@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.dart';
 
 class Task {
@@ -7,34 +8,35 @@ class Task {
   final Timestamp dateCreated;
   final bool isComplete;
 
-  Task({this.id, this.name, this.dateCreated, this.isComplete});
+  Task({@required this.id, @required this.name, @required this.dateCreated, @required this.isComplete});
 
   @override
   String toString() {
     return 'Task(${toJson()}';
   }
 
-  static bool jsonMatchesTaskStructure(Map<String, dynamic> json) =>
+  static bool isValidJsonTask(Map<String, dynamic> json) =>
       json.containsKey('id') &&
       json.containsKey('name') &&
       json.containsKey('dateCreated') &&
       json.containsKey('isComplete') &&
-      json.keys.length == 4;
+      json.keys.length == 4 &&
+      json['id'].runtimeType == String &&
+      json['name'].runtimeType == String &&
+      json['dateCreated'].runtimeType == Timestamp &&
+      json['isComplete'].runtimeType == bool;
 
   static Task fromJson(Map<String, dynamic> json) {
-    if (!jsonMatchesTaskStructure(json)) {
+    if (!isValidJsonTask(json)) {
       throw InvalidTaskException(json);
     }
-    try {
-      return Task(
-        id: json['id'],
-        name: json['name'],
-        dateCreated: json['dateCreated'],
-        isComplete: json['isComplete'],
-      );
-    } catch (e) {
-      throw InvalidTaskException(json);
-    }
+
+    return Task(
+      id: json['id'],
+      name: json['name'],
+      dateCreated: json['dateCreated'],
+      isComplete: json['isComplete'],
+    );
   }
 
   Map<String, dynamic> toJson() {
