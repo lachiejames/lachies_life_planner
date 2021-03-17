@@ -1,11 +1,10 @@
 class TaskDBException implements Exception {
   final String message;
-  final dynamic errorObject;
 
-  TaskDBException(this.message, this.errorObject);
+  TaskDBException(this.message);
 
   @override
   String toString() {
-    return 'TaskDBException: $message\n$errorObject';
+    return 'TaskDBException:($message)';
   }
 }
