@@ -8,31 +8,29 @@ import '../../utils/device_screen_sizes.dart';
 import '../../utils/widget_pumper.dart';
 
 void main() {
+  Future<void> initTaskListView(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    await tester.runAsync(() async {
+      await tester.pumpWidget(
+        WidgetTestingWrapper(
+          screenSize: size,
+          widget: TaskListView(),
+        ),
+      );
+    });
+  }
+
   group('TaskListView', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
     });
 
     testWidgets('displays correct text and icon', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await tester.pumpWidget(
-          WidgetTestingWrapper(
-            widget: TaskListView(),
-          ),
-        );
-      });
+      await initTaskListView(tester);
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
       for (Size size in allDeviceSizes) {
-        await tester.runAsync(() async {
-          await tester.pumpWidget(
-            WidgetTestingWrapper(
-              screenSize: size,
-              widget: TaskListView(),
-            ),
-          );
-        });
+        await initTaskListView(tester, size);
       }
     });
   });

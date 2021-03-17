@@ -47,7 +47,7 @@ DA:10,2
 LF:5
 LH:5
 end_of_record
-SF:lib\goals_screen\goals_screen.dart
+SF:lib\fitness_screen\fitness_screen.dart
 DA:4,2
 DA:6,2
 DA:7,2
@@ -56,7 +56,7 @@ DA:10,2
 LF:5
 LH:5
 end_of_record
-SF:lib\fitness_screen\fitness_screen.dart
+SF:lib\goals_screen\goals_screen.dart
 DA:4,2
 DA:6,2
 DA:7,2

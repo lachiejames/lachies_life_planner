@@ -6,25 +6,24 @@ import '../../../utils/device_screen_sizes.dart';
 import '../../../utils/widget_pumper.dart';
 
 void main() {
+  Future<void> initEditTaskCancelButton(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    await tester.pumpWidget(
+      WidgetTestingWrapper(
+        screenSize: size,
+        widget: EditTaskCancelButton(),
+      ),
+    );
+  }
+
   group('EditTaskCancelButton', () {
     testWidgets('displays "Cancel"', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        WidgetTestingWrapper(
-          widget: EditTaskCancelButton(),
-        ),
-      );
-
+      await initEditTaskCancelButton(tester);
       expect(find.text('Cancel'), findsOneWidget);
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
       for (Size size in allDeviceSizes) {
-        await tester.pumpWidget(
-          WidgetTestingWrapper(
-            screenSize: size,
-            widget: EditTaskCancelButton(),
-          ),
-        );
+        await initEditTaskCancelButton(tester, size);
       }
     });
   });

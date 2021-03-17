@@ -10,19 +10,26 @@ import '../utils/mock_firestore_data.dart';
 import '../utils/widget_pumper.dart';
 
 void main() {
+  Future<void> initTasksScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    // Required for tests involving Streams https://github.com/flutter/flutter/issues/17738#issuecomment-392237064
+    await tester.runAsync(() async {
+      await tester.pumpWidget(
+        ScreenTestingWrapper(
+          screenSize: size,
+          screen: TasksScreen(),
+        ),
+      );
+    });
+  }
+
   setUp(() {
     setFirestoreInstance(MockFirestoreInstance());
     addTask(mockTask);
   });
 
   testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    // Required for tests involving Streams https://github.com/flutter/flutter/issues/17738#issuecomment-392237064
-    await tester.runAsync(() async {
-      for (Size size in allDeviceSizes) {
-        await tester.pumpWidget(
-          ScreenTestingWrapper(screenSize: size, screen: TasksScreen()),
-        );
-      }
-    });
+    for (Size size in allDeviceSizes) {
+      await initTasksScreen(tester, size);
+    }
   });
 }

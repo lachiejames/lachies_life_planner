@@ -6,18 +6,23 @@ import '../../../utils/device_screen_sizes.dart';
 import '../../../utils/widget_pumper.dart';
 
 void main() {
-  group('EditTaskTextField', () {
-    testWidgets('can enter text into it', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        // TextField widgets must be wrapped with MaterialApp and Scaffold
-        MaterialApp(
-          home: Scaffold(
-            body: WidgetTestingWrapper(
-              widget: EditTaskTextField(),
-            ),
+  Future<void> initEditTaskTextField(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    await tester.pumpWidget(
+      // TextField widgets must be wrapped with MaterialApp and Scaffold
+      MaterialApp(
+        home: Scaffold(
+          body: WidgetTestingWrapper(
+            screenSize: size,
+            widget: EditTaskTextField(),
           ),
         ),
-      );
+      ),
+    );
+  }
+
+  group('EditTaskTextField', () {
+    testWidgets('can enter text into it', (WidgetTester tester) async {
+      await initEditTaskTextField(tester);
 
       await tester.enterText(find.byType(EditTaskTextField), 'test');
       expect(find.text('test'), findsOneWidget);
@@ -25,16 +30,7 @@ void main() {
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
       for (Size size in allDeviceSizes) {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: WidgetTestingWrapper(
-                screenSize: size,
-                widget: EditTaskTextField(),
-              ),
-            ),
-          ),
-        );
+        await initEditTaskTextField(tester, size);
       }
     });
   });
