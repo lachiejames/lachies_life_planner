@@ -8,7 +8,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import '../../utils/mock_firestore_data.dart';
 
 void main() {
-  group('Task', () {
+  group('Task DB Operations', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
       addTask(mockTask);

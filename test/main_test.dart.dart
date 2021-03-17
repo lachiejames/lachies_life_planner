@@ -9,7 +9,9 @@ void main() {
     await tester.pumpWidget(LachiesLifePlannerApp());
   }
 
-  testWidgets('app successfully initialises', (WidgetTester tester) async {
-    await initLachiesLifePlannerApp(tester);
+  group('main', () {
+    testWidgets('app successfully initialises', (WidgetTester tester) async {
+      await initLachiesLifePlannerApp(tester);
+    });
   });
 }

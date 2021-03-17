@@ -22,14 +22,16 @@ void main() {
     });
   }
 
-  setUp(() {
-    setFirestoreInstance(MockFirestoreInstance());
-    addTask(mockTask);
-  });
+  group('TasksScreen', () {
+    setUp(() {
+      setFirestoreInstance(MockFirestoreInstance());
+      addTask(mockTask);
+    });
 
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initTasksScreen(tester, size);
-    }
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initTasksScreen(tester, size);
+      }
+    });
   });
 }

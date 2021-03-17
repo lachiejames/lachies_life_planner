@@ -15,9 +15,11 @@ void main() {
     );
   }
 
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initCalendarScreen(tester, size);
-    }
+  group('CalendarScreen', () {
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initCalendarScreen(tester, size);
+      }
+    });
   });
 }

@@ -19,16 +19,18 @@ void main() {
     );
   }
 
-  testWidgets('displays correct text and icon', (WidgetTester tester) async {
-    await initTextIconButton(tester);
+  group('TextIconButton', () {
+    testWidgets('displays correct text and icon', (WidgetTester tester) async {
+      await initTextIconButton(tester);
 
-    expect(find.byIcon(Icons.check), findsOneWidget);
-    expect(find.text('Tasks'), findsOneWidget);
-  });
+      expect(find.byIcon(Icons.check), findsOneWidget);
+      expect(find.text('Tasks'), findsOneWidget);
+    });
 
-  testWidgets('works on all device sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initTextIconButton(tester, size);
-    }
+    testWidgets('works on all device sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initTextIconButton(tester, size);
+      }
+    });
   });
 }

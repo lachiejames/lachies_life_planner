@@ -4,7 +4,7 @@ import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.
 import '../../utils/mock_firestore_data.dart';
 
 void main() {
-  group('TaskDBException', () {
+  group('InvalidTaskException', () {
     test('logs correct string', () {
       try {
         throw InvalidTaskException(mockTask.toJson());

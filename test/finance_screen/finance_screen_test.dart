@@ -15,9 +15,11 @@ void main() {
     );
   }
 
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initFinanceScreen(tester, size);
-    }
+  group('FinanceScreen', () {
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initFinanceScreen(tester, size);
+      }
+    });
   });
 }

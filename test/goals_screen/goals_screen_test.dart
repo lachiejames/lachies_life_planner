@@ -15,9 +15,11 @@ void main() {
     );
   }
 
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initGoalsScreen(tester, size);
-    }
+  group('GoalsScreen', () {
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initGoalsScreen(tester, size);
+      }
+    });
   });
 }

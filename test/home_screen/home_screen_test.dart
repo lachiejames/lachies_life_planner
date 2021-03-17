@@ -27,72 +27,74 @@ void main() {
     );
   }
 
-  setUp(() {
-    setFirestoreInstance(MockFirestoreInstance());
-  });
+  group('HomeScreen', () {
+    setUp(() {
+      setFirestoreInstance(MockFirestoreInstance());
+    });
 
-  testWidgets('initialised with Home screen buttons', (WidgetTester tester) async {
-    await initHomeScreen(tester);
-    expect(find.byType(TextIconButton), findsNWidgets(6));
-  });
+    testWidgets('initialised with Home screen buttons', (WidgetTester tester) async {
+      await initHomeScreen(tester);
+      expect(find.byType(TextIconButton), findsNWidgets(6));
+    });
 
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await initHomeScreen(tester, size);
-    }
-  });
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initHomeScreen(tester, size);
+      }
+    });
 
-  testWidgets('pressing "Tasks" navigates you to TasksScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Tasks" navigates you to TasksScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Tasks'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Tasks'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(TasksScreen), findsOneWidget);
-  });
+      expect(find.byType(TasksScreen), findsOneWidget);
+    });
 
-  testWidgets('pressing "Calendar" navigates you to CalendarScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Calendar" navigates you to CalendarScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Calendar'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Calendar'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(CalendarScreen), findsOneWidget);
-  });
+      expect(find.byType(CalendarScreen), findsOneWidget);
+    });
 
-  testWidgets('pressing "Fitness" navigates you to FitnessScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Fitness" navigates you to FitnessScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Fitness'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Fitness'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(FitnessScreen), findsOneWidget);
-  });
+      expect(find.byType(FitnessScreen), findsOneWidget);
+    });
 
-  testWidgets('pressing "Homework" navigates you to HomeworkScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Homework" navigates you to HomeworkScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Homework'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Homework'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(HomeworkScreen), findsOneWidget);
-  });
+      expect(find.byType(HomeworkScreen), findsOneWidget);
+    });
 
-  testWidgets('pressing "Finance" navigates you to FinanceScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Finance" navigates you to FinanceScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Finance'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Finance'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(FinanceScreen), findsOneWidget);
-  });
+      expect(find.byType(FinanceScreen), findsOneWidget);
+    });
 
-  testWidgets('pressing "Goals" navigates you to GoalsScreen', (WidgetTester tester) async {
-    await initHomeScreen(tester);
+    testWidgets('pressing "Goals" navigates you to GoalsScreen', (WidgetTester tester) async {
+      await initHomeScreen(tester);
 
-    await tester.tap(find.text('Goals'));
-    await tester.pumpAndSettle();
+      await tester.tap(find.text('Goals'));
+      await tester.pumpAndSettle();
 
-    expect(find.byType(GoalsScreen), findsOneWidget);
+      expect(find.byType(GoalsScreen), findsOneWidget);
+    });
   });
 }

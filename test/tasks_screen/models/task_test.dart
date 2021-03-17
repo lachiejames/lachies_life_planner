@@ -70,5 +70,16 @@ void main() {
         'isComplete': true,
       });
     });
+
+    test('copyWith() retains all values when no args are passed', () async {
+      Task taskCopy = mockTask.copyWith();
+
+      expect(taskCopy.toJson(), {
+        'id': '1234567890',
+        'dateCreated': Timestamp(12345, 67890),
+        'name': 'test task',
+        'isComplete': false,
+      });
+    });
   });
 }
