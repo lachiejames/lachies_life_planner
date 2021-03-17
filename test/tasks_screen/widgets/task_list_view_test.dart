@@ -28,6 +28,7 @@ void main() {
         await tester.runAsync(() async {
           await tester.pumpWidget(
             WidgetTestingWrapper(
+              screenSize: size,
               widget: TaskListView(),
             ),
           );
