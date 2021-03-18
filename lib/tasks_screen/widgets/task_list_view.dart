@@ -20,15 +20,18 @@ class TaskListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: StreamBuilder<QuerySnapshot>(
-        stream: getTasksStream(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) => (!snapshot.hasData)
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView(
-                children: _createTaskWidgetsFromDocs(snapshot.data.docs),
-              ),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: StreamBuilder<QuerySnapshot>(
+          stream: getTasksStream(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) => (!snapshot.hasData)
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView(
+                  children: _createTaskWidgetsFromDocs(snapshot.data.docs),
+                ),
+        ),
       ),
     );
   }

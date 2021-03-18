@@ -3,22 +3,31 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_database_exception.dart';
 
-void addTask(Task task) {
-  getTaskCollection()
+Future<void> addTask(Task task) async {
+  await getTaskCollection()
       .doc(task.id)
       .set(task.toJson())
       .catchError((e) => throw TaskDBException('ERROR: could not add $task to FireStore'));
 }
 
-void updateTask(Task task) {
-  getTaskCollection()
+Future<Task> getTask(String taskID) async {
+  DocumentSnapshot documentSnapshot = await getTaskCollection()
+      .doc(taskID)
+      .get()
+      .catchError((dynamic e) => throw TaskDBException('ERROR: could not get task with id=$taskID from Firestore'));
+  ;
+  return Task.fromJson(documentSnapshot.data());
+}
+
+Future<void> updateTask(Task task) async {
+  await getTaskCollection()
       .doc(task.id)
       .set(task.toJson())
       .catchError((dynamic e) => throw TaskDBException('ERROR: could not update $task in FireStore'));
 }
 
-void deleteTask(Task task) {
-  getTaskCollection()
+Future<void> deleteTask(Task task) async {
+  await getTaskCollection()
       .doc(task.id)
       .delete()
       .catchError((dynamic e) => throw TaskDBException('ERROR: could not delete $task from FireStore'));

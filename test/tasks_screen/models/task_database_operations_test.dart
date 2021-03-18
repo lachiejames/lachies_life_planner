@@ -21,7 +21,7 @@ void main() {
 
     test('addTask() can be used multiple times', () async {
       for (Task task in mockTaskList) {
-        addTask(task);
+        await addTask(task);
 
         DocumentSnapshot dbData = await getTaskCollection().doc(task.id).get();
         expect(dbData.data(), task.toJson());
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('updateTask() updates task in Firestore', () async {
-      updateTask(mockTask.copyWith(name: 'new task name'));
+      await updateTask(mockTask.copyWith(name: 'new task name'));
 
       DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
       expect(dbData.data(), {
@@ -41,7 +41,7 @@ void main() {
     });
 
     test('deleteTask() removes task from Firestore', () async {
-      deleteTask(mockTask);
+      await deleteTask(mockTask);
 
       DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
       expect(dbData.data(), null);
@@ -49,7 +49,7 @@ void main() {
 
     test('deleteAllTasks() removes all tasks from Firestore', () async {
       for (Task task in mockTaskList) {
-        addTask(task);
+        await addTask(task);
       }
 
       await deleteAllTasks();
