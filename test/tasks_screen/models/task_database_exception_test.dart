@@ -6,14 +6,18 @@ import '../../utils/mock_firestore_data.dart';
 void main() {
   group('TaskDBException', () {
     test('logs correct string', () {
+      TaskDBException error;
+
       try {
         throw TaskDBException('ERROR: could not delete $mockTask from FireStore');
       } catch (e) {
-        expect(
-          e.toString(),
-          'TaskDBException:(ERROR: could not delete Task({id: 1234567890, name: test task, dateCreated: Timestamp(seconds=12345, nanoseconds=67890), isComplete: false} from FireStore)',
-        );
+        error = e;
       }
+
+      expect(
+        error.toString(),
+        'TaskDBException:(ERROR: could not delete Task({id: 1234567890, name: test task, dateCreated: Timestamp(seconds=12345, nanoseconds=67890), isComplete: false} from FireStore)',
+      );
     });
   });
 }

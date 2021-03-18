@@ -28,8 +28,9 @@ void main() {
   }
 
   group('EditTaskSheet', () {
-    setUp(() {
+    setUp(() async {
       setFirestoreInstance(MockFirestoreInstance());
+      await addTask(mockTask);
     });
 
     testWidgets('shows correct text when task is null', (WidgetTester tester) async {
@@ -57,8 +58,13 @@ void main() {
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
       await tester.tap(find.text('Add'));
 
-      String firestoreDump = (getFirestoreInstance() as MockFirestoreInstance).dump();
-      expect(firestoreDump.contains('"name": "test task"'), true);
+      Task newTask = (await getAllTasks())[0];
+      expect(newTask.name, 'test task');
+      expect(newTask.isComplete, false);
+
+      // These are randomly generated, so cannot test with an explicit value
+      expect(newTask.dateCreated, isNotNull);
+      expect(newTask.id, isNotNull);
     });
 
     testWidgets('tapping "Add" closes the sheet', (WidgetTester tester) async {
@@ -69,8 +75,6 @@ void main() {
     });
 
     testWidgets('entering text then tapping "Update" updates a task within firestore', (WidgetTester tester) async {
-      await addTask(mockTask);
-
       await initEditTaskSheet(tester, task: mockTask);
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
       await tester.tap(find.text('Update'));

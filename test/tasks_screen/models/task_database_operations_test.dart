@@ -11,28 +11,34 @@ void main() {
   group('Task DB Operations', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
-      addTask(mockTask);
     });
 
     test('addTask() adds task to Firestore', () async {
-      DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
-      expect(dbData.data(), mockTask.toJson());
+      await addTask(mockTask);
+      expect((await getTaskByID(mockTask.id)).toJson(), mockTask.toJson());
     });
 
     test('addTask() can be used multiple times', () async {
       for (Task task in mockTaskList) {
         await addTask(task);
-
-        DocumentSnapshot dbData = await getTaskCollection().doc(task.id).get();
-        expect(dbData.data(), task.toJson());
+        expect((await getTaskByID(task.id)).toJson(), task.toJson());
       }
     });
 
+    test('getTaskByID() returns a task it exists', () async {
+      await addTask(mockTask);
+      expect((await getTaskByID(mockTask.id)).toJson(), mockTask.toJson());
+    });
+
+    test('getTaskByID() throws an error when the task does not exist', () async {
+      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+    });
+
     test('updateTask() updates task in Firestore', () async {
+      await addTask(mockTask);
       await updateTask(mockTask.copyWith(name: 'new task name'));
 
-      DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
-      expect(dbData.data(), {
+      expect((await getTaskByID(mockTask.id)).toJson(), {
         'id': '1234567890',
         'dateCreated': Timestamp(12345, 67890),
         'name': 'new task name',
@@ -40,11 +46,28 @@ void main() {
       });
     });
 
+    test('updateTask() throws an error when task does not exist', () async {
+      expect(() async => await updateTask(mockTask.copyWith(name: 'new task name')), throwsA(isA<NoSuchMethodError>()));
+    });
+
     test('deleteTask() removes task from Firestore', () async {
+      await addTask(mockTask);
       await deleteTask(mockTask);
 
-      DocumentSnapshot dbData = await getTaskCollection().doc(mockTask.id).get();
-      expect(dbData.data(), null);
+      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+    });
+
+    test('getAllTasks() returns all tasks from Firestore', () async {
+      for (Task task in mockTaskList) {
+        await addTask(task);
+      }
+
+      List<Task> tasks = await getAllTasks();
+      expect(tasks.length, 10);
+
+      for (int i = 0; i < 10; i++) {
+        expect(tasks[i].toJson(), mockTaskList[i].toJson());
+      }
     });
 
     test('deleteAllTasks() removes all tasks from Firestore', () async {
@@ -55,8 +78,7 @@ void main() {
       await deleteAllTasks();
 
       for (Task task in mockTaskList) {
-        DocumentSnapshot dbData = await getTaskCollection().doc(task.id).get();
-        expect(dbData.data(), null);
+        expect(() async => await getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
       }
     });
   });
