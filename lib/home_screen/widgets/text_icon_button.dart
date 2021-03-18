@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/shared/size_config.dart';
+import 'package:lachies_life_planner/shared/config/size_config.dart';
 
 class TextIconButton extends StatelessWidget {
   final void Function() onPressed;
@@ -14,7 +14,7 @@ class TextIconButton extends StatelessWidget {
     @required this.icon,
     this.color,
     this.backgroundColor,
-  });
+  }) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {

@@ -6,14 +6,20 @@ import '../utils/device_screen_sizes.dart';
 import '../utils/widget_pumper.dart';
 
 void main() {
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await tester.pumpWidget(
-        ScreenTestingWrapper(
-          screenSize: size,
-          screen: CalendarScreen(),
-        ),
-      );
-    }
+  Future<void> initCalendarScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    await tester.pumpWidget(
+      ScreenTestingWrapper(
+        screenSize: size,
+        screen: CalendarScreen(),
+      ),
+    );
+  }
+
+  group('CalendarScreen', () {
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initCalendarScreen(tester, size);
+      }
+    });
   });
 }

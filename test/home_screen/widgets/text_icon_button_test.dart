@@ -6,9 +6,10 @@ import '../../utils/device_screen_sizes.dart';
 import '../../utils/widget_pumper.dart';
 
 void main() {
-  testWidgets('displays correct text and icon', (WidgetTester tester) async {
+  Future<void> initTextIconButton(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
       WidgetTestingWrapper(
+        screenSize: size,
         widget: TextIconButton(
           onPressed: null,
           text: 'Tasks',
@@ -16,23 +17,20 @@ void main() {
         ),
       ),
     );
+  }
 
-    expect(find.byIcon(Icons.check), findsOneWidget);
-    expect(find.text('Tasks'), findsOneWidget);
-  });
+  group('TextIconButton', () {
+    testWidgets('displays correct text and icon', (WidgetTester tester) async {
+      await initTextIconButton(tester);
 
-  testWidgets('works on all device sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await tester.pumpWidget(
-        WidgetTestingWrapper(
-          screenSize: size,
-          widget: TextIconButton(
-            onPressed: null,
-            text: 'Tasks',
-            icon: Icons.check,
-          ),
-        ),
-      );
-    }
+      expect(find.byIcon(Icons.check), findsOneWidget);
+      expect(find.text('Tasks'), findsOneWidget);
+    });
+
+    testWidgets('works on all device sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initTextIconButton(tester, size);
+      }
+    });
   });
 }

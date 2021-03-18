@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/shared/size_config.dart';
+import 'package:lachies_life_planner/shared/config/size_config.dart';
 
 import 'device_screen_sizes.dart';
 
@@ -7,7 +7,7 @@ class ScreenTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget screen;
 
-  ScreenTestingWrapper({this.screenSize = samsungGalaxyS9, this.screen});
+  ScreenTestingWrapper({this.screenSize = samsungGalaxyS9, @required this.screen}) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class WidgetTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget widget;
 
-  WidgetTestingWrapper({this.screenSize = samsungGalaxyS9, this.widget});
+  WidgetTestingWrapper({this.screenSize = samsungGalaxyS9, @required this.widget}) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {

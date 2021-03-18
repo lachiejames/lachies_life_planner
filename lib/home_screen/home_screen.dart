@@ -5,10 +5,12 @@ import 'package:lachies_life_planner/fitness_screen/fitness_screen.dart';
 import 'package:lachies_life_planner/goals_screen/goals_screen.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
-import 'package:lachies_life_planner/shared/size_config.dart';
+import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen() : super(key: UniqueKey());
+
   @override
   Widget build(BuildContext context) {
     initSizeConfigurations(MediaQuery.of(context).size);
@@ -77,7 +79,7 @@ Future<T> _navigateTo<T extends Widget>(BuildContext context, T screen) {
 class _ExpandedRow extends StatelessWidget {
   final List<Widget> children;
 
-  _ExpandedRow({@required this.children});
+  _ExpandedRow({@required this.children}) : super(key: UniqueKey());
 
   List<Widget> _expandChildren(List<Widget> children) {
     List<Widget> expandedChildren = <Widget>[];

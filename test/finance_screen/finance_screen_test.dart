@@ -6,14 +6,20 @@ import '../utils/device_screen_sizes.dart';
 import '../utils/widget_pumper.dart';
 
 void main() {
-  testWidgets('works on all screen sizes', (WidgetTester tester) async {
-    for (Size size in allDeviceSizes) {
-      await tester.pumpWidget(
-        ScreenTestingWrapper(
-          screenSize: size,
-          screen: FinanceScreen(),
-        ),
-      );
-    }
+  Future<void> initFinanceScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
+    await tester.pumpWidget(
+      ScreenTestingWrapper(
+        screenSize: size,
+        screen: FinanceScreen(),
+      ),
+    );
+  }
+
+  group('FinanceScreen', () {
+    testWidgets('works on all screen sizes', (WidgetTester tester) async {
+      for (Size size in allDeviceSizes) {
+        await initFinanceScreen(tester, size);
+      }
+    });
   });
 }
