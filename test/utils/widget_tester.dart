@@ -54,3 +54,5 @@ Future<void> tapOff(WidgetTester tester) async {
   await tester.tapAt(Offset.zero);
   await flushAllMicrotasks(tester);
 }
+
+Future<void> tapDropDownMenu(WidgetTester tester, String menuOption) async {}

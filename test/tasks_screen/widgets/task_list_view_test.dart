@@ -13,18 +13,16 @@ import '../../utils/widget_tester.dart';
 
 void main() {
   Future<void> initTaskListView(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
-    await tester.runAsync(() async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: WidgetTestingWrapper(
-              screenSize: size,
-              widget: TaskListView(),
-            ),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: WidgetTestingWrapper(
+            screenSize: size,
+            widget: TaskListView(),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 
   group('TaskListView', () {
@@ -33,24 +31,30 @@ void main() {
     });
 
     testWidgets('displays correct text and icon', (WidgetTester tester) async {
-      await initTaskListView(tester);
+      await tester.runAsync(() async {
+        await initTaskListView(tester);
+      });
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
-      for (Size size in allDeviceSizes) {
-        await initTaskListView(tester, size);
-      }
+      await tester.runAsync(() async {
+        for (Size size in allDeviceSizes) {
+          await initTaskListView(tester, size);
+        }
+      });
     });
 
     testWidgets('initially shows CircularProgressIndicator', (WidgetTester tester) async {
-      await initTaskListView(tester);
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      await tester.runAsync(() async {
+        await initTaskListView(tester);
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      });
     });
 
     testWidgets('displays all task widgets in Firestore', (WidgetTester tester) async {
-      await initTaskListView(tester);
-
       await tester.runAsync(() async {
+        await initTaskListView(tester);
+
         for (Task task in mockTaskList) {
           await addTask(task);
         }

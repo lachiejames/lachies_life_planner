@@ -49,6 +49,5 @@ Future<void> navigateTo(FlutterDriver driver, String screenName) async {
   }
 }
 
-// For some reason test hangs unless we add a random async/await call here
-// Should submit an issue to GitHub
-Future<void> applyStreamBugWorkAround() => Future.value('');
+// Some tests fail unless we add a random async/await call.  Seems to happen when StreamBuilder is used
+Future<void> applyStreamBugWorkAround() => Future.delayed(Duration(seconds: 1));

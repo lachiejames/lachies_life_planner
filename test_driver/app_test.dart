@@ -36,6 +36,7 @@ void main() {
       test('updating a task', () async {
         await addTask(driver, 'Test task');
         await updateTask(driver, 'Test task', 'New task name');
+
         await expectToFind(driver, find.text('New task name'));
       }, timeout: Timeout(Duration(seconds: 60)));
 
