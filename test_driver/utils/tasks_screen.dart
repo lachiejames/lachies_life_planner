@@ -2,7 +2,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 
 import 'shared.dart';
 
-const numTasksPopulated = 15;
+List<String> mockTaskNames = List.generate(15, (int index) => 'Task $index');
 
 Future<void> addTask(FlutterDriver driver, String taskName) async {
   await driver.tap(find.byType('FloatingActionButton'));
@@ -11,8 +11,8 @@ Future<void> addTask(FlutterDriver driver, String taskName) async {
 }
 
 Future<void> populateTasksList(FlutterDriver driver) async {
-  for (int i = 1; i <= numTasksPopulated; i++) {
-    await addTask(driver, 'Task $i');
+  for (String taskName in mockTaskNames) {
+    await addTask(driver, taskName);
   }
   await applyStreamBugWorkAround();
 }

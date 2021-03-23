@@ -30,7 +30,7 @@ void main() {
       for (Task task in mockTaskList) {
         await addTask(task);
       }
-      
+
       await flushAllMicrotasks(tester);
     });
   }

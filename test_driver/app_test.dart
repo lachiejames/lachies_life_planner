@@ -61,26 +61,25 @@ void main() {
       test('updating a task that requires scrolling to get to', () async {
         await populateTasksList(driver);
 
-        await scrollToTask(driver, 'Task $numTasksPopulated');
-
-        await updateTask(driver, 'Task $numTasksPopulated', 'New task name');
+        await scrollToTask(driver, 'Task 14');
+        await updateTask(driver, 'Task 14', 'New task name');
 
         await expectToFind(driver, find.text('New task name'));
-        await expectNotToFind(driver, find.text('Task $numTasksPopulated'));
+        await expectNotToFind(driver, find.text('Task 14'));
       }, timeout: Timeout(Duration(seconds: 200)));
 
       test('pressing "Delete All Tasks" on overflow menu', () async {
         await populateTasksList(driver);
 
-        for (int i = 1; i <= numTasksPopulated; i++) {
-          await scrollToTask(driver, 'Task $i');
-          await expectToFind(driver, find.text('Task $i'));
+        for (String taskName in mockTaskNames) {
+          await scrollToTask(driver, taskName);
+          await expectToFind(driver, find.text(taskName));
         }
 
         await pressDropDownMenuItem(driver, 'Delete All Tasks');
 
-        for (int i = 1; i <= numTasksPopulated; i++) {
-          await expectNotToFind(driver, find.text('Task $i'));
+        for (String taskName in mockTaskNames) {
+          await expectNotToFind(driver, find.text(taskName));
         }
       }, timeout: Timeout(Duration(seconds: 200)));
     });
