@@ -45,6 +45,10 @@ Future<void> navigateTo(FlutterDriver driver, String screenName) async {
       await driver.tap(find.text('Goals'));
       break;
     default:
-      print('invalid screenName: $screenName');
+      throw Exception('Invalid screen name: $screenName');
   }
 }
+
+// For some reason test hangs unless we add a random async/await call here
+// Should submit an issue to GitHub
+Future<void> applyStreamBugWorkAround() => Future.value('');

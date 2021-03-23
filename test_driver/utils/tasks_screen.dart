@@ -14,6 +14,7 @@ Future<void> populateTasksList(FlutterDriver driver) async {
   for (int i = 1; i <= numTasksPopulated; i++) {
     await addTask(driver, 'Task $i');
   }
+  await applyStreamBugWorkAround();
 }
 
 Future<void> updateTask(FlutterDriver driver, String oldTaskName, String newTaskName) async {

@@ -72,10 +72,6 @@ void main() {
       test('pressing "Delete All Tasks" on overflow menu', () async {
         await populateTasksList(driver);
 
-        // For some reason test hangs unless we add a random async/await call here
-        // Should submit an issue to GitHub
-        await Future.delayed(Duration(seconds: 1));
-
         for (int i = 1; i <= numTasksPopulated; i++) {
           await scrollToTask(driver, 'Task $i');
           await expectToFind(driver, find.text('Task $i'));
