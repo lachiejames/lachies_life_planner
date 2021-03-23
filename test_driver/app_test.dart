@@ -1,7 +1,8 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
-import 'shared.dart';
+import 'utils/shared.dart';
+import 'utils/tasks_screen.dart';
 
 void main() {
   FlutterDriver driver;
@@ -22,54 +23,66 @@ void main() {
       }
     });
 
-    test('home screen buttons appear', () async {
-      await driver.waitFor(find.text('Tasks'));
-      await driver.waitFor(find.text('Calendar'));
-      await driver.waitFor(find.text('Fitness'));
-      await driver.waitFor(find.text('Homework'));
-      await driver.waitFor(find.text('Finance'));
-      await driver.waitFor(find.text('Goals'));
+    group('TasksScreen', () {
+      setUp(() async {
+        await navigateTo(driver, 'TasksScreen');
+      });
 
-      await takeScreenshot(driver, 'home/home_screen');
-    }, timeout: Timeout(Duration(seconds: 60)));
+      test('adding a task', () async {
+        await addTask(driver, 'Test task');
+        await expectToFind(driver, find.text('Test task'));
+      }, timeout: Timeout(Duration(seconds: 60)));
 
-    test('adding a task', () async {
-      await driver.tap(find.text('Tasks'));
-      await takeScreenshot(driver, 'tasks/tasks_screen');
+      test('updating a task', () async {
+        await addTask(driver, 'Test task');
+        await updateTask(driver, 'Test task', 'New task name');
 
-      await driver.tap(find.byType('FloatingActionButton'));
-      await takeScreenshot(driver, 'tasks/add_task_button_pressed');
+        await expectToFind(driver, find.text('New task name'));
+      }, timeout: Timeout(Duration(seconds: 60)));
 
-      await driver.waitUntilNoTransientCallbacks();
-      await driver.enterText('Test task');
-      await takeScreenshot(driver, 'tasks/task_text_entered');
+      test('cancelling during adding a task', () async {
+        await driver.tap(find.byType('FloatingActionButton'));
+        await enterText(driver, 'Cancel this');
+        await driver.tap(find.text('Cancel'));
 
-      await driver.tap(find.text('Add'));
-      await takeScreenshot(driver, 'tasks/task_added');
+        await expectNotToFind(driver, find.text('Cancel'));
+      }, timeout: Timeout(Duration(seconds: 60)));
 
-      await driver.waitFor(find.text('Test task'));
-    }, timeout: Timeout(Duration(seconds: 60)));
+      test('cancelling during updating a task', () async {
+        await addTask(driver, 'Test task');
 
-    test('editing a task', () async {
-      await driver.tap(find.text('Tasks'));
+        await driver.tap(find.text('Test task'));
+        await enterText(driver, 'Cancel this');
+        await driver.tap(find.text('Cancel'));
 
-      await driver.tap(find.byType('FloatingActionButton'));
+        await expectToFind(driver, find.text('Test task'));
+        await expectNotToFind(driver, find.text('Cancel'));
+      }, timeout: Timeout(Duration(seconds: 60)));
 
-      await driver.waitUntilNoTransientCallbacks();
-      await driver.enterText('Test task');
+      test('updating a task that requires scrolling to get to', () async {
+        await populateTasksList(driver);
 
-      await driver.tap(find.text('Add'));
+        await scrollToTask(driver, 'Task 14');
+        await updateTask(driver, 'Task 14', 'New task name');
 
-      await driver.tap(find.text('Test task'));
+        await expectToFind(driver, find.text('New task name'));
+        await expectNotToFind(driver, find.text('Task 14'));
+      }, timeout: Timeout(Duration(seconds: 200)));
 
-      await driver.waitUntilNoTransientCallbacks();
-      await driver.enterText('New task name');
-      await takeScreenshot(driver, 'tasks/editing_start');
+      test('pressing "Delete All Tasks" on overflow menu', () async {
+        await populateTasksList(driver);
 
-      await driver.tap(find.text('Update'));
+        for (String taskName in mockTaskNames) {
+          await scrollToTask(driver, taskName);
+          await expectToFind(driver, find.text(taskName));
+        }
 
-      await driver.waitFor(find.text('New task name'));
-      await takeScreenshot(driver, 'tasks/editing_complete');
-    }, timeout: Timeout(Duration(seconds: 60)));
+        await pressDropDownMenuItem(driver, 'Delete All Tasks');
+
+        for (String taskName in mockTaskNames) {
+          await expectNotToFind(driver, find.text(taskName));
+        }
+      }, timeout: Timeout(Duration(seconds: 200)));
+    });
   });
 }

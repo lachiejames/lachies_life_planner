@@ -9,7 +9,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 import '../../utils/device_screen_sizes.dart';
 import '../../utils/mock_firestore_data.dart';
-import '../../utils/widget_pumper.dart';
+import '../../utils/widget_tester.dart';
 
 void main() {
   Future<void> initTaskWidget(WidgetTester tester, {Task task, Size size = samsungGalaxyNote5}) async {
@@ -50,8 +50,7 @@ void main() {
     testWidgets('tapping it opens the sheet', (WidgetTester tester) async {
       await initTaskWidget(tester, task: mockTask);
 
-      await tester.tap(find.text(mockTask.name));
-      await tester.pumpAndSettle();
+      await tap(tester, find.text(mockTask.name));
 
       expect(find.byType(EditTaskSheet), findsOneWidget);
     });
@@ -61,8 +60,7 @@ void main() {
 
       expect((await getTaskByID(mockTask.id)).isComplete, false);
 
-      await tester.tap(find.byType(Checkbox));
-      await tester.pumpAndSettle();
+      await tap(tester, find.byType(Checkbox));
 
       expect((await getTaskByID(mockTask.id)).isComplete, true);
     });

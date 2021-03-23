@@ -12,7 +12,7 @@ import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 import '../utils/device_screen_sizes.dart';
-import '../utils/widget_pumper.dart';
+import '../utils/widget_tester.dart';
 import 'package:mockito/mockito.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
@@ -45,55 +45,38 @@ void main() {
 
     testWidgets('pressing "Tasks" navigates you to TasksScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Tasks'));
-      await tester.pumpAndSettle();
-
+      await tap(tester, find.text('Tasks'));
       expect(find.byType(TasksScreen), findsOneWidget);
     });
 
     testWidgets('pressing "Calendar" navigates you to CalendarScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Calendar'));
-      await tester.pumpAndSettle();
+      await tap(tester, find.text('Calendar'));
 
       expect(find.byType(CalendarScreen), findsOneWidget);
     });
 
     testWidgets('pressing "Fitness" navigates you to FitnessScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Fitness'));
-      await tester.pumpAndSettle();
-
+      await tap(tester, find.text('Fitness'));
       expect(find.byType(FitnessScreen), findsOneWidget);
     });
 
     testWidgets('pressing "Homework" navigates you to HomeworkScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Homework'));
-      await tester.pumpAndSettle();
-
+      await tap(tester, find.text('Homework'));
       expect(find.byType(HomeworkScreen), findsOneWidget);
     });
 
     testWidgets('pressing "Finance" navigates you to FinanceScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Finance'));
-      await tester.pumpAndSettle();
-
+      await tap(tester, find.text('Finance'));
       expect(find.byType(FinanceScreen), findsOneWidget);
     });
 
     testWidgets('pressing "Goals" navigates you to GoalsScreen', (WidgetTester tester) async {
       await initHomeScreen(tester);
-
-      await tester.tap(find.text('Goals'));
-      await tester.pumpAndSettle();
-
+      await tap(tester, find.text('Goals'));
       expect(find.byType(GoalsScreen), findsOneWidget);
     });
   });
