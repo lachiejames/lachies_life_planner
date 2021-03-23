@@ -83,10 +83,14 @@ void main() {
           await longPumpUntilSettle(tester);
         });
 
+        // Currently not working, but this seems to be due to a bug in flutter_test
+        // https://github.com/flutter/flutter/issues/78832
+        await initTasksScreen(tester);
+
         expect(find.byType(TaskWidget), findsNothing);
 
         // Tasks get deleted from DB, but does not seem to get updated on page
-      }, skip: true);
+      });
 
       testWidgets('collapses after tapping off', (WidgetTester tester) async {
         await initTasksScreen(tester);

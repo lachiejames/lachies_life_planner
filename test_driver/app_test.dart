@@ -64,7 +64,7 @@ void main() {
         await updateTask(driver, 'Task $numTasksPopulated', 'New task name');
         await expectToFind(driver, find.text('New task name'));
         await expectNotToFind(driver, find.text('Task $numTasksPopulated'));
-      }, timeout: Timeout(Duration(seconds: 120)));
+      }, timeout: Timeout(Duration(seconds: 300)));
 
       test('pressing "Delete All Tasks" on overflow menu', () async {
         await populateTasksList(driver);
@@ -77,7 +77,7 @@ void main() {
         for (int i = 1; i <= numTasksPopulated; i++) {
           await expectNotToFind(driver, find.text('Task $i'));
         }
-      }, timeout: Timeout(Duration(seconds: 120)));
+      }, timeout: Timeout(Duration(seconds: 300)));
     });
   });
 }
