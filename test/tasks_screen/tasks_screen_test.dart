@@ -30,8 +30,8 @@ void main() {
       for (Task task in mockTaskList) {
         await addTask(task);
       }
-      await tester.idle();
-      await tester.pump();
+      
+      await flushAllMicrotasks(tester);
     });
   }
 
@@ -57,11 +57,7 @@ void main() {
     group('overflow menu', () {
       testWidgets('displays menu items when tapped', (WidgetTester tester) async {
         await initTasksScreen(tester);
-        await flushAllMicrotasks(tester);
-
-        await tester.tap(find.byType(AppBarOverflowMenu));
-        await flushAllMicrotasks(tester);
-
+        await tap(tester, find.byType(AppBarOverflowMenu));
         expect(find.text('Delete All Tasks'), findsOneWidget);
       });
 
@@ -70,19 +66,15 @@ void main() {
         await populateTaskWidgets(tester);
 
         await tester.runAsync(() async {
-          await tester.tap(find.byType(AppBarOverflowMenu));
-          await flushAllMicrotasks(tester);
-          await tester.tap(find.text('Delete All Tasks'));
-          await flushAllMicrotasks(tester);
+          await tap(tester, find.byType(AppBarOverflowMenu));
+          await tap(tester, find.text('Delete All Tasks'));
         });
 
-        // Currently not working, but this seems to be due to a bug in flutter_test
+        // Currently not working without this line, but this seems to be due to a bug in flutter_test
         // https://github.com/flutter/flutter/issues/78832
         await initTasksScreen(tester);
 
         expect(find.byType(TaskWidget), findsNothing);
-
-        // Tasks get deleted from DB, but does not seem to get updated on page
       });
 
       testWidgets('collapses after tapping off', (WidgetTester tester) async {
@@ -91,13 +83,10 @@ void main() {
         await tester.runAsync(() async {
           expect(find.text('Delete All Tasks'), findsNothing);
 
-          await tester.tap(find.byType(AppBarOverflowMenu));
-          await flushAllMicrotasks(tester);
+          await tap(tester, find.byType(AppBarOverflowMenu));
 
           expect(find.text('Delete All Tasks'), findsOneWidget);
-
-          await tester.tapAt(Offset.zero);
-          await flushAllMicrotasks(tester);
+          await tapOff(tester);
 
           expect(find.text('Delete All Tasks'), findsNothing);
         });

@@ -35,9 +35,7 @@ void main() {
 
     testWidgets('tapping it brings up bottom sheet', (WidgetTester tester) async {
       await initAddTaskButton(tester);
-
-      await tester.tap(find.byIcon(Icons.add));
-      await tester.pumpAndSettle();
+      await tap(tester, find.byIcon(Icons.add));
 
       expect(find.byType(EditTaskSheet), findsOneWidget);
     });

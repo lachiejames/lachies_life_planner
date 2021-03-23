@@ -56,7 +56,7 @@ void main() {
     testWidgets('entering text then tapping "Add" adds a task to firestore', (WidgetTester tester) async {
       await initEditTaskSheet(tester, task: null);
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
-      await tester.tap(find.text('Add'));
+      await tap(tester, find.text('Add'));
 
       Task newTask = (await getAllTasks())[0];
       expect(newTask.name, 'test task');
@@ -69,15 +69,14 @@ void main() {
 
     testWidgets('tapping "Add" closes the sheet', (WidgetTester tester) async {
       await initEditTaskSheet(tester, task: null);
-      await tester.tap(find.text('Add'));
-      await tester.pumpAndSettle();
+      await tap(tester, find.text('Add'));
       expect(find.byType(EditTaskSheet), findsNothing);
     });
 
     testWidgets('entering text then tapping "Update" updates a task within firestore', (WidgetTester tester) async {
       await initEditTaskSheet(tester, task: mockTask);
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
-      await tester.tap(find.text('Update'));
+      await tap(tester, find.text('Update'));
 
       String firestoreDump = (getFirestoreInstance() as MockFirestoreInstance).dump();
       expect(firestoreDump.contains('"name": "test task"'), true);
@@ -85,15 +84,13 @@ void main() {
 
     testWidgets('tapping "Update" closes the sheet', (WidgetTester tester) async {
       await initEditTaskSheet(tester, task: mockTask);
-      await tester.tap(find.text('Update'));
-      await tester.pumpAndSettle();
+      await tap(tester, find.text('Update'));
       expect(find.byType(EditTaskSheet), findsNothing);
     });
 
     testWidgets('tapping "Cancel" closes the sheet', (WidgetTester tester) async {
       await initEditTaskSheet(tester, task: mockTask);
-      await tester.tap(find.text('Cancel'));
-      await tester.pumpAndSettle();
+      await tap(tester, find.text('Cancel'));
       expect(find.byType(EditTaskSheet), findsNothing);
     });
   });

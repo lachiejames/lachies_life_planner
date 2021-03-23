@@ -37,7 +37,20 @@ class WidgetTestingWrapper extends StatelessWidget {
   }
 }
 
+// I don't know why this works, but it does
+// Deleting any of these lines will cause certain tests to fail
 Future<void> flushAllMicrotasks(WidgetTester tester) async {
   await tester.idle();
   await tester.pump();
+  await tester.pump(Duration(seconds: 1));
+}
+
+Future<void> tap(WidgetTester tester, Finder finder) async {
+  await tester.tap(finder);
+  await flushAllMicrotasks(tester);
+}
+
+Future<void> tapOff(WidgetTester tester) async {
+  await tester.tapAt(Offset.zero);
+  await flushAllMicrotasks(tester);
 }

@@ -26,11 +26,6 @@ void main() {
     );
   }
 
-  Future<void> tapMenu(WidgetTester tester) async {
-    await tester.tap(find.byType(AppBarOverflowMenu));
-    await tester.pumpAndSettle();
-  }
-
   group('AppBarOverflowMenu', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
@@ -53,7 +48,7 @@ void main() {
       expect(find.text('option 1'), findsNothing);
       expect(find.text('option 2'), findsNothing);
 
-      await tapMenu(tester);
+      await tap(tester, find.byType(AppBarOverflowMenu));
 
       expect(find.text('option 1'), findsOneWidget);
       expect(find.text('option 2'), findsOneWidget);
