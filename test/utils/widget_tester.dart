@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
 import 'device_screen_sizes.dart';
@@ -34,4 +35,9 @@ class WidgetTestingWrapper extends StatelessWidget {
 
     return widget;
   }
+}
+
+Future<void> flushAllMicrotasks(WidgetTester tester) async {
+  await tester.idle();
+  await tester.pump();
 }

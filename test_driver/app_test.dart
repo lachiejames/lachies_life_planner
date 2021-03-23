@@ -2,7 +2,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 import 'utils/shared.dart';
-import 'utils/tasks_screen_test_utils.dart';
+import 'utils/tasks_screen.dart';
 
 void main() {
   FlutterDriver driver;
@@ -70,26 +70,23 @@ void main() {
       }, timeout: Timeout(Duration(seconds: 200)));
 
       test('pressing "Delete All Tasks" on overflow menu', () async {
-        print('xxx - 1');
-
         await populateTasksList(driver);
-        print('xxx - 2');
+
+        // For some reason test hangs unless we add a random async/await call here
+        // Should submit an issue to GitHub
         await Future.delayed(Duration(seconds: 1));
 
         for (int i = 1; i <= numTasksPopulated; i++) {
           await scrollToTask(driver, 'Task $i');
           await expectToFind(driver, find.text('Task $i'));
         }
-        print('xxx - 3');
 
         await pressDropDownMenuItem(driver, 'Delete All Tasks');
-        print('xxx - 4');
 
         for (int i = 1; i <= numTasksPopulated; i++) {
           await expectNotToFind(driver, find.text('Task $i'));
         }
-        print('xxx - 5');
-      }, timeout: Timeout(Duration(seconds: 180)));
+      }, timeout: Timeout(Duration(seconds: 200)));
     });
   });
 }

@@ -9,7 +9,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_
 
 import '../../../utils/device_screen_sizes.dart';
 import '../../../utils/mock_firestore_data.dart';
-import '../../../utils/widget_pumper.dart';
+import '../../../utils/widget_tester.dart';
 
 void main() {
   Future<void> initEditTaskSheet(WidgetTester tester, {@required Task task, Size size = samsungGalaxyNote5}) async {

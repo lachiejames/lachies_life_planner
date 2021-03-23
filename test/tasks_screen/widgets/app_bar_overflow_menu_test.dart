@@ -5,7 +5,7 @@ import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/shared/widgets/app_bar_overflow_menu.dart';
 
 import '../../utils/device_screen_sizes.dart';
-import '../../utils/widget_pumper.dart';
+import '../../utils/widget_tester.dart';
 
 void main() {
   Future<void> initAppBarOverflowMenu(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {

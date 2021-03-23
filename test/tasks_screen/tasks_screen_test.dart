@@ -10,7 +10,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 import '../utils/device_screen_sizes.dart';
 import '../utils/mock_firestore_data.dart';
-import '../utils/widget_pumper.dart';
+import '../utils/widget_tester.dart';
 
 void main() {
   Future<void> initTasksScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
@@ -23,12 +23,6 @@ void main() {
         ),
       );
     });
-  }
-
-  Future<void> longPumpUntilSettle(WidgetTester tester) async {
-    await tester.pump();
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
   }
 
   Future<void> populateTaskWidgets(WidgetTester tester) async {
@@ -63,10 +57,10 @@ void main() {
     group('overflow menu', () {
       testWidgets('displays menu items when tapped', (WidgetTester tester) async {
         await initTasksScreen(tester);
-        await longPumpUntilSettle(tester);
+        await flushAllMicrotasks(tester);
 
         await tester.tap(find.byType(AppBarOverflowMenu));
-        await longPumpUntilSettle(tester);
+        await flushAllMicrotasks(tester);
 
         expect(find.text('Delete All Tasks'), findsOneWidget);
       });
@@ -77,10 +71,9 @@ void main() {
 
         await tester.runAsync(() async {
           await tester.tap(find.byType(AppBarOverflowMenu));
-          await longPumpUntilSettle(tester);
+          await flushAllMicrotasks(tester);
           await tester.tap(find.text('Delete All Tasks'));
-          await longPumpUntilSettle(tester);
-          await longPumpUntilSettle(tester);
+          await flushAllMicrotasks(tester);
         });
 
         // Currently not working, but this seems to be due to a bug in flutter_test
@@ -99,12 +92,12 @@ void main() {
           expect(find.text('Delete All Tasks'), findsNothing);
 
           await tester.tap(find.byType(AppBarOverflowMenu));
-          await longPumpUntilSettle(tester);
+          await flushAllMicrotasks(tester);
 
           expect(find.text('Delete All Tasks'), findsOneWidget);
 
           await tester.tapAt(Offset.zero);
-          await longPumpUntilSettle(tester);
+          await flushAllMicrotasks(tester);
 
           expect(find.text('Delete All Tasks'), findsNothing);
         });

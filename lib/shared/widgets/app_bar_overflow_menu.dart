@@ -11,10 +11,10 @@ class AppBarOverflowMenu extends StatelessWidget {
       onSelected: (String value) => menuOptions[value](),
       itemBuilder: (BuildContext context) {
         return menuOptions.keys.map(
-          (String choice) {
+          (String option) {
             return PopupMenuItem<String>(
-              value: choice,
-              child: Text(choice),
+              value: option,
+              child: Text(option),
             );
           },
         ).toList();

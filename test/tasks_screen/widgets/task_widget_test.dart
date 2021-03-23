@@ -9,7 +9,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 import '../../utils/device_screen_sizes.dart';
 import '../../utils/mock_firestore_data.dart';
-import '../../utils/widget_pumper.dart';
+import '../../utils/widget_tester.dart';
 
 void main() {
   Future<void> initTaskWidget(WidgetTester tester, {Task task, Size size = samsungGalaxyNote5}) async {
