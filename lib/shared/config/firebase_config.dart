@@ -13,3 +13,7 @@ void setFirestoreInstance(FirebaseFirestore firestoreInstance) {
 CollectionReference getTaskCollection() {
   return getFirestoreInstance().collection('tasks');
 }
+
+CollectionReference getAssignmentCollection() {
+  return getFirestoreInstance().collection('assignments');
+}
