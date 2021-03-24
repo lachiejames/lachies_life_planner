@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 final Task mockTask = Task(
@@ -69,4 +70,62 @@ final List<Task> mockTaskList = [
     name: 'test9',
     isComplete: true,
   ),
+];
+
+final Assignment mockAssignment = Assignment(
+  id: '1234567890',
+  dateCreated: Timestamp(12345, 67890),
+  title: 'Assignment 1',
+  subject: 'Science',
+  dueDate: Timestamp(123456, 0),
+  priority: 'Low',
+  isComplete: false,
+);
+
+final List<Assignment> mockAssignmentList = [
+  Assignment(
+    id: '1',
+    dateCreated: Timestamp(1, 2),
+    title: 'Solve P=NP',
+    subject: 'Maths',
+    dueDate: Timestamp(123456, 0),
+    priority: 'High',
+    isComplete: false,
+  ),
+  Assignment(
+    id: '2',
+    dateCreated: Timestamp(3, 4),
+    title: 'Assignment 1',
+    subject: 'English',
+    dueDate: Timestamp(123456, 0),
+    priority: 'Low',
+    isComplete: false,
+  ),
+  Assignment(
+    id: '3',
+    dateCreated: Timestamp(5, 6),
+    title: 'Assignment 1',
+    subject: 'Maths',
+    dueDate: Timestamp(123456, 0),
+    priority: 'Low',
+    isComplete: false,
+  ),
+  Assignment(
+    id: '4',
+    dateCreated: Timestamp(7, 8),
+    title: 'Pop a kickflip',
+    subject: 'Economics',
+    dueDate: Timestamp(123456, 0),
+    priority: 'Medium',
+    isComplete: false,
+  ),
+  Assignment(
+    id: '5',
+    dateCreated: Timestamp(9, 10),
+    title: 'Write a book',
+    subject: 'English',
+    dueDate: Timestamp(123456, 0),
+    priority: 'Low',
+    isComplete: false,
+  )
 ];
