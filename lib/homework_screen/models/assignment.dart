@@ -7,7 +7,7 @@ class Assignment {
   final Timestamp dateCreated;
   final String title;
   final String subject;
-  final DateTime dueDate;
+  final Timestamp dueDate;
   final String priority;
   final bool isComplete;
 
@@ -34,12 +34,12 @@ class Assignment {
       json.containsKey('dueDate') &&
       json.containsKey('priority') &&
       json.containsKey('isComplete') &&
-      json.keys.length == 4 &&
+      json.keys.length == 7 &&
       json['id'].runtimeType == String &&
       json['dateCreated'].runtimeType == Timestamp &&
       json['title'].runtimeType == String &&
       json['subject'].runtimeType == String &&
-      json['dueDate'].runtimeType == DateTime &&
+      json['dueDate'].runtimeType == Timestamp &&
       json['priority'].runtimeType == String &&
       json['isComplete'].runtimeType == bool;
 
@@ -74,7 +74,7 @@ class Assignment {
   Assignment copyWith({
     String title,
     String subject,
-    DateTime dueDate,
+    Timestamp dueDate,
     String priority,
     bool isComplete,
   }) {
