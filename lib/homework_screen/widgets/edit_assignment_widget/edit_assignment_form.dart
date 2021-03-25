@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form_field.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_subject_menu.dart';
 
 class EditAssignmentForm extends StatelessWidget {
   @override
@@ -13,6 +14,7 @@ class EditAssignmentForm extends StatelessWidget {
             labelText: 'Title',
             hintText: 'Enter a title',
           ),
+          EditAssignmentSubjectMenu(),
         ],
       ),
     );

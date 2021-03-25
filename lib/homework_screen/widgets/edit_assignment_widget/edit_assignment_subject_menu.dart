@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-final editAssignmentformKey = GlobalKey<FormState>();
-
-class EditAssignmentFormField extends StatelessWidget {
-  final String labelText;
-  final String hintText;
-
-  EditAssignmentFormField({
-    @required this.labelText,
-    @required this.hintText,
-  });
-
+class EditAssignmentSubjectMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,10 +12,10 @@ class EditAssignmentFormField extends StatelessWidget {
         screenHeightUnit * 0,
       ),
       child: Center(
-        child: TextFormField(
+        child: DropdownButtonFormField(
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            labelText: labelText,
+            labelText: 'Subject',
             labelStyle: TextStyle(color: Colors.black),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
@@ -33,8 +23,17 @@ class EditAssignmentFormField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: hintText,
+            hintText: 'Choose a subject',
           ),
+          items: ['Choose a subject', 'Maths', 'English']
+              .map((String option) => DropdownMenuItem<String>(
+                    value: option,
+                    child: Text(option),
+                  ))
+              .toList(),
+          onChanged: (String option) {
+            print(option);
+          },
         ),
       ),
     );
