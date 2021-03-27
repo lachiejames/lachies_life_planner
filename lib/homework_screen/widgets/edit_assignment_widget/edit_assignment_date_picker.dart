@@ -33,12 +33,11 @@ class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
         ),
         child: Center(
           child: TextFormField(
+            onTap: () async => await _selectDateFromDatePicker(),
+            readOnly: true,
             controller: _datePickerTextEditingController,
             decoration: InputDecoration(
-              prefixIcon: GestureDetector(
-                onTap: () async => await _selectDateFromDatePicker(),
-                child: Icon(Icons.calendar_today),
-              ),
+              prefixIcon: Icon(Icons.calendar_today),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: 'Due Date',
               labelStyle: TextStyle(color: Colors.black),
@@ -71,6 +70,8 @@ class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
       firstDate: DateTime.utc(1970),
       lastDate: DateTime.utc(2069, 4, 20),
     );
-    _datePickerTextEditingController.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+    if (selectedDate != null) {
+      _datePickerTextEditingController.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+    }
   }
 }

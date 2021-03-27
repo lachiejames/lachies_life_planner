@@ -33,12 +33,11 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
         ),
         child: Center(
           child: TextFormField(
+            onTap: () async => await _selectTimeFromTimePicker(),
+            readOnly: true,
             controller: _timePickerTextEditingController,
             decoration: InputDecoration(
-              prefixIcon: GestureDetector(
-                onTap: () async => await _selectTimeFromTimePicker(),
-                child: Icon(Icons.alarm),
-              ),
+              prefixIcon: Icon(Icons.alarm),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: 'Due Time',
               labelStyle: TextStyle(color: Colors.black),
@@ -66,6 +65,8 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
 
   Future<void> _selectTimeFromTimePicker() async {
     TimeOfDay selectedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-    _timePickerTextEditingController.text = '${selectedTime.hour}:${selectedTime.minute}';
+    if (selectedTime != null) {
+      _timePickerTextEditingController.text = '${selectedTime.hour}:${selectedTime.minute}';
+    }
   }
 }
