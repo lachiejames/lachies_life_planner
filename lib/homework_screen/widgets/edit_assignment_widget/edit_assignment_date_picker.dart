@@ -24,33 +24,29 @@ class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.fromLTRB(
-          screenWidthUnit * 10,
-          screenHeightUnit * 5,
-          screenWidthUnit * 2.5,
-          screenHeightUnit * 0,
-        ),
-        child: Center(
-          child: TextFormField(
-            onTap: () async => await _selectDateFromDatePicker(),
-            readOnly: true,
-            controller: _datePickerTextEditingController,
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.calendar_today),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              labelText: 'Due Date',
-              labelStyle: TextStyle(color: Colors.black),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 3.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black, width: 3.0),
-              ),
-              hintText: 'dd/mm/yy',
-            ),
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+        screenWidthUnit * 10,
+        screenHeightUnit * 5,
+        screenWidthUnit * 2.5,
+        screenHeightUnit * 0,
+      ),
+      child: TextFormField(
+        onTap: () async => await _selectDateFromDatePicker(),
+        readOnly: true,
+        controller: _datePickerTextEditingController,
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.calendar_today),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          labelText: 'Due Date',
+          labelStyle: TextStyle(color: Colors.black),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 3.0),
+          ),
+          hintText: 'dd/mm/yy',
         ),
       ),
     );

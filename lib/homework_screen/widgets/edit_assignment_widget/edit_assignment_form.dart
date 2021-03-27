@@ -18,10 +18,16 @@ class EditAssignmentForm extends StatelessWidget {
             hintText: 'Enter a title',
           ),
           EditAssignmentSubjectMenu(),
-          Row(children: [
-            EditAssignmentDatePicker(),
-            EditAssignmentTimePicker(),
-          ]),
+          Row(
+            children: [
+              Expanded(
+                child: EditAssignmentDatePicker(),
+              ),
+              Expanded(
+                child: EditAssignmentTimePicker(),
+              ),
+            ],
+          ),
           EditAssignmentPriorityMenu(),
         ],
       ),
