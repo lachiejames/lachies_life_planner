@@ -16,6 +16,7 @@ class EditAssignmentSheet extends StatefulWidget {
 }
 
 class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
+  final GlobalKey<FormState> editAssignmentformKey = GlobalKey<FormState>();
   TextEditingController _assignmentEditingController;
 
   @override
@@ -36,7 +37,7 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
       height: screenHeightUnit * 80,
       child: Column(
         children: <Widget>[
-          EditAssignmentForm(),
+          EditAssignmentForm(formKey: editAssignmentformKey),
           Row(
             children: <Widget>[
               Expanded(
@@ -54,11 +55,13 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
     return widget.assignment == null
         ? Expanded(
             child: EditAssignmentAddButton(
+              formKey: editAssignmentformKey,
               assignmentEditingController: _assignmentEditingController,
             ),
           )
         : Expanded(
             child: EditAssignmentUpdateButton(
+              formKey: editAssignmentformKey,
               assignmentToUpdate: widget.assignment,
               assignmentEditingController: _assignmentEditingController,
             ),

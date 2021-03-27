@@ -6,10 +6,14 @@ import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_wid
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_time_picker.dart';
 
 class EditAssignmentForm extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+
+  EditAssignmentForm({@required this.formKey});
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: editAssignmentformKey,
+      key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

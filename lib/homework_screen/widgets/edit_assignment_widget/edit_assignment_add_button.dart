@@ -5,17 +5,24 @@ import 'package:lachies_life_planner/homework_screen/models/assignment_database_
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
 
 class EditAssignmentAddButton extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+
   final TextEditingController assignmentEditingController;
 
-  EditAssignmentAddButton({@required this.assignmentEditingController}) : super(key: UniqueKey());
+  EditAssignmentAddButton({
+    @required this.formKey,
+    @required this.assignmentEditingController,
+  }) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
     return SheetTextButton(
       text: 'Add',
       onPressed: () {
-        addAssignment(_generateAssignment(assignmentName: assignmentEditingController.text));
-        Navigator.pop(context);
+        if (formKey.currentState.validate()) {
+          addAssignment(_generateAssignment(assignmentName: assignmentEditingController.text));
+          Navigator.pop(context);
+        }
       },
     );
   }

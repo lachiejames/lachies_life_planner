@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-final editAssignmentformKey = GlobalKey<FormState>();
-
 class EditAssignmentFormField extends StatelessWidget {
   final String labelText;
   final String hintText;
