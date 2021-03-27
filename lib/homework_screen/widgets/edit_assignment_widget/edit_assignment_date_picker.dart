@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-class EditAssignmentDatePicker extends StatelessWidget {
+class EditAssignmentDatePicker extends StatefulWidget {
+  @override
+  _EditAssignmentWidgetState createState() => _EditAssignmentWidgetState();
+}
+
+class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
+  TextEditingController _datePickerTextEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _initTextController();
+  }
+
+  @override
+  void dispose() {
+    _datePickerTextEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -14,14 +33,10 @@ class EditAssignmentDatePicker extends StatelessWidget {
         ),
         child: Center(
           child: TextFormField(
+            controller: _datePickerTextEditingController,
             decoration: InputDecoration(
               prefixIcon: GestureDetector(
-                onTap: () async => await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.utc(1970),
-                  lastDate: DateTime.utc(2069, 4, 20),
-                ),
+                onTap: () async => await _selectDateFromDatePicker(),
                 child: Icon(Icons.calendar_today),
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -39,5 +54,23 @@ class EditAssignmentDatePicker extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _initTextController() {
+    _datePickerTextEditingController = TextEditingController.fromValue(
+      TextEditingValue(
+        text: '',
+      ),
+    );
+  }
+
+  Future<void> _selectDateFromDatePicker() async {
+    DateTime selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.utc(1970),
+      lastDate: DateTime.utc(2069, 4, 20),
+    );
+    _datePickerTextEditingController.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
   }
 }

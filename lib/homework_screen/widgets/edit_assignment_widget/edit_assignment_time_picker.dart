@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-class EditAssignmentTimePicker extends StatelessWidget {
+class EditAssignmentTimePicker extends StatefulWidget {
+  @override
+  _EditAssignmentTimePickerState createState() => _EditAssignmentTimePickerState();
+}
+
+class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
+  TextEditingController _timePickerTextEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _initTextController();
+  }
+
+  @override
+  void dispose() {
+    _timePickerTextEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -14,9 +33,10 @@ class EditAssignmentTimePicker extends StatelessWidget {
         ),
         child: Center(
           child: TextFormField(
+            controller: _timePickerTextEditingController,
             decoration: InputDecoration(
               prefixIcon: GestureDetector(
-                onTap: () async => await showTimePicker(context: context, initialTime: TimeOfDay.now()),
+                onTap: () async => await _selectTimeFromTimePicker(),
                 child: Icon(Icons.alarm),
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -34,5 +54,18 @@ class EditAssignmentTimePicker extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _initTextController() {
+    _timePickerTextEditingController = TextEditingController.fromValue(
+      TextEditingValue(
+        text: '',
+      ),
+    );
+  }
+
+  Future<void> _selectTimeFromTimePicker() async {
+    TimeOfDay selectedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    _timePickerTextEditingController.text = '${selectedTime.hour}:${selectedTime.minute}';
   }
 }
