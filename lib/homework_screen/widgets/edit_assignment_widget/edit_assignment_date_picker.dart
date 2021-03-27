@@ -8,6 +8,7 @@ class EditAssignmentDatePicker extends StatefulWidget {
 
 class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
   TextEditingController _datePickerTextEditingController;
+  DateTime _currentDateEntered;
 
   @override
   void initState() {
@@ -66,11 +67,12 @@ class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
   Future<void> _selectDateFromDatePicker() async {
     DateTime selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: _currentDateEntered ?? DateTime.now(),
       firstDate: DateTime.utc(1970),
       lastDate: DateTime.utc(2069, 4, 20),
     );
     if (selectedDate != null) {
+      _currentDateEntered = selectedDate;
       _datePickerTextEditingController.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
     }
   }

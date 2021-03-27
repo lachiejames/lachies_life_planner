@@ -8,6 +8,7 @@ class EditAssignmentTimePicker extends StatefulWidget {
 
 class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
   TextEditingController _timePickerTextEditingController;
+  TimeOfDay _currentTimeEntered;
 
   @override
   void initState() {
@@ -64,9 +65,17 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
   }
 
   Future<void> _selectTimeFromTimePicker() async {
-    TimeOfDay selectedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    TimeOfDay selectedTime = await showTimePicker(
+      context: context,
+      initialTime: _currentTimeEntered ?? TimeOfDay.now(),
+    );
     if (selectedTime != null) {
-      _timePickerTextEditingController.text = '${selectedTime.hour}:${selectedTime.minute}';
+      _currentTimeEntered = selectedTime;
+      _timePickerTextEditingController.text = _getTimeString(selectedTime);
     }
+  }
+
+  String _getTimeString(TimeOfDay selectedTime) {
+    return '${selectedTime.hourOfPeriod}:${selectedTime.minute} ${selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}';
   }
 }
