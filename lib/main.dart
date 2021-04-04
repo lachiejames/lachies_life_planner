@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 
 void main() async {
   // Ensures resources are available for pre-launch setup
@@ -17,10 +20,13 @@ class LachiesLifePlannerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Lachie\'s Life Planner',
-      home: HomeScreen(),
+    return BlocProvider(
+      create: (context) => TasksBloc(tasksRepository: TasksRepository()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Lachie\'s Life Planner',
+        home: HomeScreen(),
+      ),
     );
   }
 }
