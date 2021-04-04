@@ -20,8 +20,12 @@ class LachiesLifePlannerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TasksBloc(tasksRepository: TasksRepository()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TasksBloc>(
+          create: (context) => TasksBloc(tasksRepository: TasksRepository()),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Lachie\'s Life Planner',

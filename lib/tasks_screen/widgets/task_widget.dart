@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_sheet.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -22,7 +23,8 @@ class TaskWidget extends StatelessWidget {
           title: Text(task.name),
           leading: Checkbox(
             value: task.isComplete,
-            onChanged: (bool value) => updateTask(task.copyWith(isComplete: value)),
+            onChanged: (bool value) =>
+                BlocProvider.of<TasksBloc>(context).tasksRepository.updateTask(task.copyWith(isComplete: value)),
           ),
         ),
       ),
