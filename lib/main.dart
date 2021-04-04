@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 
 void main() async {
@@ -23,7 +24,7 @@ class LachiesLifePlannerApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TasksBloc>(
-          create: (context) => TasksBloc(tasksRepository: TasksRepository()),
+          create: (context) => TasksBloc(tasksRepository: TasksRepository())..add(LoadTasksEvent()),
         )
       ],
       child: MaterialApp(

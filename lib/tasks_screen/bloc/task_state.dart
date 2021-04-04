@@ -8,12 +8,12 @@ abstract class TasksState extends Equatable {
   List<Object> get props => [];
 }
 
-class TasksLoading extends TasksState {}
+class TasksLoadingState extends TasksState {}
 
-class TasksLoaded extends TasksState {
+class TasksLoadedState extends TasksState {
   final List<Task> tasks;
 
-  const TasksLoaded([this.tasks = const []]);
+  const TasksLoadedState([this.tasks = const []]);
 
   @override
   List<Object> get props => [tasks];
