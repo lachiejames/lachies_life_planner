@@ -19,7 +19,7 @@ class AddTaskEvent extends TasksEvent {
   List<Object> get props => [task];
 
   @override
-  String toString() => 'AddTask { task: $task }';
+  String toString() => 'AddTaskEvent { task: $task }';
 }
 
 class UpdateTaskEvent extends TasksEvent {
@@ -31,7 +31,7 @@ class UpdateTaskEvent extends TasksEvent {
   List<Object> get props => [updatedTask];
 
   @override
-  String toString() => 'UpdateTask { updatedTask: $updatedTask }';
+  String toString() => 'UpdateTaskEvent { updatedTask: $updatedTask }';
 }
 
 class DeleteTaskEvent extends TasksEvent {
@@ -43,7 +43,7 @@ class DeleteTaskEvent extends TasksEvent {
   List<Object> get props => [task];
 
   @override
-  String toString() => 'DeleteTask { task: $task }';
+  String toString() => 'DeleteTaskEvent { task: $task }';
 }
 
 class TasksLoadedEvent extends TasksEvent {

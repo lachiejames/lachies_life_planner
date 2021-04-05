@@ -13,7 +13,7 @@ class Task extends Equatable {
   Task({@required this.id, @required this.dateCreated, @required this.name, @required this.isComplete});
 
   @override
-  List<Object> get props => [name];
+  List<Object> get props => [id, dateCreated, name, isComplete];
 
   @override
   String toString() {

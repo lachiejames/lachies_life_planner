@@ -16,6 +16,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   Stream<TasksState> mapEventToState(TasksEvent event) async* {
     if (event is LoadTasksEvent) {
       yield* _mapLoadTasksToState();
+    } else if (event is TasksLoadedEvent) {
+      yield* _mapTasksLoadedToState(event);
     } else if (event is AddTaskEvent) {
       yield* _mapAddTaskToState(event);
     } else if (event is UpdateTaskEvent) {
@@ -23,7 +25,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     } else if (event is DeleteTaskEvent) {
       yield* _mapDeleteTaskToState(event);
     } else {
-      print('wtf');
+      throw Exception('Unknown TasksEvent: $event');
     }
   }
 
@@ -31,6 +33,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     _tasksSubscription = tasksRepository.getTasksStream().listen(
           (List<Task> tasks) => add(TasksLoadedEvent(tasks)),
         );
+  }
+
+  Stream<TasksState> _mapTasksLoadedToState(TasksLoadedEvent event) async* {
+    yield TasksLoadedState(event.tasks);
   }
 
   Stream<TasksState> _mapAddTaskToState(AddTaskEvent event) async* {
