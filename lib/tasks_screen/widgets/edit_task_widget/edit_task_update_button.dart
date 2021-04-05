@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 class EditTaskUpdateButton extends StatelessWidget {
@@ -14,10 +15,14 @@ class EditTaskUpdateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SheetTextButton(
       text: 'Update',
-      onPressed: () {
-        BlocProvider.of<TasksBloc>(context).tasksRepository.updateTask(taskToUpdate.copyWith(name: taskEditingController.text));
-        Navigator.pop(context);
-      },
+      onPressed: () => _onPressed(context),
     );
+  }
+
+  void _onPressed(BuildContext context) {
+    Task updatedTask = taskToUpdate.copyWith(name: taskEditingController.text);
+    BlocProvider.of<TasksBloc>(context).add(UpdateTaskEvent(updatedTask));
+
+    Navigator.pop(context);
   }
 }

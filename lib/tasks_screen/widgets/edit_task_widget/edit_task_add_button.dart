@@ -20,17 +20,18 @@ class EditTaskAddButton extends StatelessWidget {
   }
 
   void _onPressed(BuildContext context) {
-    BlocProvider.of<TasksBloc>(context).add(
-      AddTaskEvent(
-        Task(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
-          dateCreated: Timestamp.now(),
-          name: taskEditingController.text,
-          isComplete: false,
-        ),
-      ),
-    );
+    Task newTask = _generateNewTask();
+    BlocProvider.of<TasksBloc>(context).add(AddTaskEvent(newTask));
 
     Navigator.pop(context);
+  }
+
+  Task _generateNewTask() {
+    return Task(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      dateCreated: Timestamp.now(),
+      name: taskEditingController.text,
+      isComplete: false,
+    );
   }
 }

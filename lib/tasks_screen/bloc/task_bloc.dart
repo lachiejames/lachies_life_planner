@@ -40,15 +40,15 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }
 
   Stream<TasksState> _mapAddTaskToState(AddTaskEvent event) async* {
-    await tasksRepository.addTask(event.task);
+    tasksRepository.addTask(event.task);
   }
 
   Stream<TasksState> _mapUpdateTaskToState(UpdateTaskEvent event) async* {
-    await tasksRepository.updateTask(event.updatedTask);
+    tasksRepository.updateTask(event.updatedTask);
   }
 
   Stream<TasksState> _mapDeleteTaskToState(DeleteTaskEvent event) async* {
-    await tasksRepository.deleteTask(event.task);
+    tasksRepository.deleteTask(event.task);
   }
 
   @override
