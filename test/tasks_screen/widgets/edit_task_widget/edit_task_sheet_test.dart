@@ -1,9 +1,11 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_sheet.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_text_field.dart';
 
@@ -12,14 +14,19 @@ import '../../../utils/mock_firestore_data.dart';
 import '../../../utils/widget_tester.dart';
 
 void main() {
+  TasksRepository tasksRepository;
+
   Future<void> initEditTaskSheet(WidgetTester tester, {@required Task task, Size size = samsungGalaxyNote5}) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: WidgetTestingWrapper(
-            screenSize: size,
-            widget: EditTaskSheet(
-              task: task,
+      BlocProvider(
+        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+        child: MaterialApp(
+          home: Scaffold(
+            body: WidgetTestingWrapper(
+              screenSize: size,
+              widget: EditTaskSheet(
+                task: task,
+              ),
             ),
           ),
         ),
@@ -30,7 +37,9 @@ void main() {
   group('EditTaskSheet', () {
     setUp(() async {
       setFirestoreInstance(MockFirestoreInstance());
-      await addTask(mockTask);
+      tasksRepository = TasksRepository();
+
+      await tasksRepository.addTask(mockTask);
     });
 
     testWidgets('shows correct text when task is null', (WidgetTester tester) async {
@@ -58,7 +67,7 @@ void main() {
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
       await tap(tester, find.text('Add'));
 
-      Task newTask = (await getAllTasks())[0];
+      Task newTask = (await tasksRepository.getAllTasks())[0];
       expect(newTask.name, 'test task');
       expect(newTask.isComplete, false);
 

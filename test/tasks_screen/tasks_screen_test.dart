@@ -1,10 +1,12 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/shared/widgets/app_bar_overflow_menu.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
@@ -13,18 +15,23 @@ import '../utils/mock_firestore_data.dart';
 import '../utils/widget_tester.dart';
 
 void main() {
+  TasksRepository tasksRepository;
+
   Future<void> initTasksScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      ScreenTestingWrapper(
-        screenSize: size,
-        screen: TasksScreen(),
+      BlocProvider(
+        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+        child: ScreenTestingWrapper(
+          screenSize: size,
+          screen: TasksScreen(),
+        ),
       ),
     );
   }
 
   Future<void> populateTaskWidgets(WidgetTester tester) async {
     for (Task task in mockTaskList) {
-      await addTask(task);
+      await tasksRepository.addTask(task);
     }
 
     await flushAllMicrotasks(tester);
@@ -33,6 +40,7 @@ void main() {
   group('TasksScreen', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
+      tasksRepository = TasksRepository();
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_database_operations.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_list_view.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
@@ -12,13 +14,18 @@ import '../../utils/mock_firestore_data.dart';
 import '../../utils/widget_tester.dart';
 
 void main() {
+  TasksRepository tasksRepository;
+
   Future<void> initTaskListView(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: WidgetTestingWrapper(
-            screenSize: size,
-            widget: TaskListView(),
+      BlocProvider(
+        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+        child: MaterialApp(
+          home: Scaffold(
+            body: WidgetTestingWrapper(
+              screenSize: size,
+              widget: TaskListView(),
+            ),
           ),
         ),
       ),
@@ -26,8 +33,9 @@ void main() {
   }
 
   group('TaskListView', () {
-    setUp(() {
+    setUp(() async {
       setFirestoreInstance(MockFirestoreInstance());
+      tasksRepository = TasksRepository();
     });
 
     testWidgets('displays correct text and icon', (WidgetTester tester) async {
@@ -56,7 +64,7 @@ void main() {
         await initTaskListView(tester);
 
         for (Task task in mockTaskList) {
-          await addTask(task);
+          await tasksRepository.addTask(task);
         }
         await tester.idle();
         await tester.pump();
