@@ -19,6 +19,7 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
+  bloc_test: "8.0.0"
   cloud_firestore_mocks: "0.7.0"
   pedantic: "1.11.0"
   screenshots: "0.2.1"
