@@ -24,6 +24,8 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       yield* _mapUpdateTaskToState(event);
     } else if (event is DeleteTaskEvent) {
       yield* _mapDeleteTaskToState(event);
+    } else if (event is DeleteAllTasksEvent) {
+      yield* _mapDeleteAllTasksToState(event);
     } else {
       throw Exception('Unknown TasksEvent: $event');
     }
@@ -49,6 +51,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   Stream<TasksState> _mapDeleteTaskToState(DeleteTaskEvent event) async* {
     tasksRepository.deleteTask(event.task);
+  }
+
+  Stream<TasksState> _mapDeleteAllTasksToState(DeleteAllTasksEvent event) async* {
+    tasksRepository.deleteAllTasks();
   }
 
   @override

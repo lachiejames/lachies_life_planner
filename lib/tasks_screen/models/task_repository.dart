@@ -29,12 +29,12 @@ class TasksRepository {
   }
 
   Future<void> deleteAllTasks() async {
-  await _taskCollection.get().then((snapshot) async {
-    for (DocumentSnapshot documentSnapshot in snapshot.docs) {
-      await documentSnapshot.reference.delete();
-    }
-  });
-}
+    await _taskCollection.get().then((snapshot) async {
+      for (DocumentSnapshot documentSnapshot in snapshot.docs) {
+        await documentSnapshot.reference.delete();
+      }
+    });
+  }
 
   Stream<List<Task>> getTasksStream() {
     return _taskCollection.snapshots().map((snapshot) {
