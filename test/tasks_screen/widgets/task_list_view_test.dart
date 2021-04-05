@@ -39,37 +39,29 @@ void main() {
     });
 
     testWidgets('displays correct text and icon', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await initTaskListView(tester);
-      });
+      await initTaskListView(tester);
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        for (Size size in allDeviceSizes) {
-          await initTaskListView(tester, size);
-        }
-      });
+      for (Size size in allDeviceSizes) {
+        await initTaskListView(tester, size);
+      }
     });
 
     testWidgets('initially shows CircularProgressIndicator', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await initTaskListView(tester);
-        expect(find.byType(CircularProgressIndicator), findsOneWidget);
-      });
+      await initTaskListView(tester);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets('displays all task widgets in Firestore', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await initTaskListView(tester);
+      await initTaskListView(tester);
 
-        for (Task task in mockTaskList) {
-          await tasksRepository.addTask(task);
-        }
-        await tester.idle();
-        await tester.pump();
-        expect(find.byType(TaskWidget), findsNWidgets(10));
-      });
+      for (Task task in mockTaskList) {
+        await tasksRepository.addTask(task);
+      }
+      await tester.idle();
+      await tester.pump();
+      expect(find.byType(TaskWidget), findsNWidgets(10));
     });
   });
 }

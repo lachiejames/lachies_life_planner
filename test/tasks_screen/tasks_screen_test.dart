@@ -44,60 +44,49 @@ void main() {
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
-      // Required for tests involving Streams https://github.com/flutter/flutter/issues/17738#issuecomment-392237064
-      await tester.runAsync(() async {
-        for (Size size in allDeviceSizes) {
-          await initTasksScreen(tester, size);
-        }
-      });
+      for (Size size in allDeviceSizes) {
+        await initTasksScreen(tester, size);
+      }
     });
 
     testWidgets('displays all TaskWidgets', (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await initTasksScreen(tester);
-        await populateTaskWidgets(tester);
+      await initTasksScreen(tester);
+      await populateTaskWidgets(tester);
 
-        // Need to add "skipOffstage: false" to find off-screen TaskWidgets
-        expect(find.byType(TaskWidget, skipOffstage: false), findsNWidgets(10));
-      });
+      // Need to add "skipOffstage: false" to find off-screen TaskWidgets
+      expect(find.byType(TaskWidget, skipOffstage: false), findsNWidgets(10));
     });
 
     group('overflow menu', () {
       testWidgets('displays menu items when tapped', (WidgetTester tester) async {
-        await tester.runAsync(() async {
-          await initTasksScreen(tester);
-          await tap(tester, find.byType(AppBarOverflowMenu));
+        await initTasksScreen(tester);
+        await tap(tester, find.byType(AppBarOverflowMenu));
 
-          expect(find.text('Delete All Tasks'), findsOneWidget);
-        });
+        expect(find.text('Delete All Tasks'), findsOneWidget);
       });
 
       testWidgets('tapping "Delete All Tasks" will remove all TaskWidgets', (WidgetTester tester) async {
-        await tester.runAsync(() async {
-          await initTasksScreen(tester);
-          await populateTaskWidgets(tester);
+        await initTasksScreen(tester);
+        await populateTaskWidgets(tester);
 
-          await tap(tester, find.byType(AppBarOverflowMenu));
-          await tap(tester, find.text('Delete All Tasks'));
+        await tap(tester, find.byType(AppBarOverflowMenu));
+        await tap(tester, find.text('Delete All Tasks'));
 
-          // Currently not working without this line, but this seems to be due to a bug in flutter_test
-          // https://github.com/flutter/flutter/issues/78832
-          await initTasksScreen(tester);
+        // Currently not working without this line, but this seems to be due to a bug in flutter_test
+        // https://github.com/flutter/flutter/issues/78832
+        await initTasksScreen(tester);
 
-          expect(find.byType(TaskWidget), findsNothing);
-        });
+        expect(find.byType(TaskWidget), findsNothing);
       });
 
       testWidgets('collapses after tapping off', (WidgetTester tester) async {
-        await tester.runAsync(() async {
-          await initTasksScreen(tester);
+        await initTasksScreen(tester);
 
-          expect(find.text('Delete All Tasks'), findsNothing);
-          await tap(tester, find.byType(AppBarOverflowMenu));
-          expect(find.text('Delete All Tasks'), findsOneWidget);
-          await tapOff(tester);
-          expect(find.text('Delete All Tasks'), findsNothing);
-        });
+        expect(find.text('Delete All Tasks'), findsNothing);
+        await tap(tester, find.byType(AppBarOverflowMenu));
+        expect(find.text('Delete All Tasks'), findsOneWidget);
+        await tapOff(tester);
+        expect(find.text('Delete All Tasks'), findsNothing);
       });
     });
   });
