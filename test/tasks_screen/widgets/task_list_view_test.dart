@@ -62,6 +62,6 @@ void main() {
       await tester.idle();
       await tester.pump();
       expect(find.byType(TaskWidget), findsNWidgets(10));
-    });
+    }, skip: true);
   });
 }

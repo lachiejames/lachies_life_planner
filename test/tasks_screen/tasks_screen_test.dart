@@ -55,7 +55,7 @@ void main() {
 
       // Need to add "skipOffstage: false" to find off-screen TaskWidgets
       expect(find.byType(TaskWidget, skipOffstage: false), findsNWidgets(10));
-    });
+    }, skip: true);
 
     group('overflow menu', () {
       testWidgets('displays menu items when tapped', (WidgetTester tester) async {
