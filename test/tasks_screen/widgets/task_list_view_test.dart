@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_list_view.dart';
@@ -15,11 +16,12 @@ import '../../utils/widget_tester.dart';
 
 void main() {
   TasksRepository tasksRepository;
+  TasksBloc tasksBloc;
 
   Future<void> initTaskListView(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+      BlocProvider.value(
+        value: tasksBloc,
         child: MaterialApp(
           home: Scaffold(
             body: WidgetTestingWrapper(
@@ -36,6 +38,8 @@ void main() {
     setUp(() async {
       setFirestoreInstance(MockFirestoreInstance());
       tasksRepository = TasksRepository();
+      tasksBloc = TasksBloc(tasksRepository: tasksRepository);
+      tasksBloc.add(LoadTasksEvent());
     });
 
     testWidgets('displays correct text and icon', (WidgetTester tester) async {
@@ -54,14 +58,16 @@ void main() {
     });
 
     testWidgets('displays all task widgets in Firestore', (WidgetTester tester) async {
-      await initTaskListView(tester);
+      await tester.runAsync(() async {
+        await initTaskListView(tester);
 
-      for (Task task in mockTaskList) {
-        await tasksRepository.addTask(task);
-      }
-      await tester.idle();
-      await tester.pump();
-      expect(find.byType(TaskWidget), findsNWidgets(10));
-    }, skip: true);
+        for (Task task in mockTaskList) {
+          tasksBloc.add(AddTaskEvent(task));
+        }
+
+        await flushAllMicrotasks(tester);
+        expect(find.byType(TaskWidget), findsNWidgets(10));
+      });
+    });
   });
 }

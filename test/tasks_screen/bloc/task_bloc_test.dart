@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,6 +14,8 @@ import '../../utils/mock_firestore_data.dart';
 
 class MockTasksRepository extends Mock implements TasksRepository {}
 
+class FakeTasksEvent extends TasksEvent {}
+
 void main() {
   TasksRepository mockTasksRepository;
 
@@ -21,6 +25,14 @@ void main() {
   });
 
   group('TaskBloc', () {
+    test('throws exception when an unknown TaskEvent is passed', () async {
+      await runZonedGuarded(() async {
+        TasksBloc(tasksRepository: mockTasksRepository).add(FakeTasksEvent());
+      }, (exception, stackTrace) {
+        expect(exception, isA<Exception>());
+      });
+    });
+
     blocTest(
       'LoadTasksEvent emits [TasksLoadingState, TasksLoadedState]',
       build: () {

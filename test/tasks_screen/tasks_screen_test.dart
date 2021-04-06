@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/shared/widgets/app_bar_overflow_menu.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
@@ -16,11 +17,12 @@ import '../utils/widget_tester.dart';
 
 void main() {
   TasksRepository tasksRepository;
+  TasksBloc tasksBloc;
 
   Future<void> initTasksScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+      BlocProvider.value(
+        value: tasksBloc,
         child: ScreenTestingWrapper(
           screenSize: size,
           screen: TasksScreen(),
@@ -41,6 +43,8 @@ void main() {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
       tasksRepository = TasksRepository();
+      tasksBloc = TasksBloc(tasksRepository: tasksRepository);
+      tasksBloc.add(LoadTasksEvent());
     });
 
     testWidgets('works on all screen sizes', (WidgetTester tester) async {
@@ -50,12 +54,14 @@ void main() {
     });
 
     testWidgets('displays all TaskWidgets', (WidgetTester tester) async {
-      await initTasksScreen(tester);
-      await populateTaskWidgets(tester);
+      await tester.runAsync(() async {
+        await initTasksScreen(tester);
+        await populateTaskWidgets(tester);
 
-      // Need to add "skipOffstage: false" to find off-screen TaskWidgets
-      expect(find.byType(TaskWidget, skipOffstage: false), findsNWidgets(10));
-    }, skip: true);
+        // Need to add "skipOffstage: false" to find off-screen TaskWidgets
+        expect(find.byType(TaskWidget, skipOffstage: false), findsNWidgets(10));
+      });
+    });
 
     group('overflow menu', () {
       testWidgets('displays menu items when tapped', (WidgetTester tester) async {

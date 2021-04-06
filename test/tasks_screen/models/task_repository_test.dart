@@ -28,7 +28,7 @@ void main() {
       }
     });
 
-    test('getTaskByID() returns a task it exists', () async {
+    test('getTaskByID() returns a task if it exists', () async {
       await tasksRepository.addTask(mockTask);
       expect((await tasksRepository.getTaskByID(mockTask.id)).toJson(), mockTask.toJson());
     });
@@ -83,6 +83,14 @@ void main() {
       for (Task task in mockTaskList) {
         expect(() async => await tasksRepository.getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
       }
+    });
+
+    test('getTasksStream() returns a stream that emits all tasks in the repository', () async {
+      for (Task task in mockTaskList) {
+        await tasksRepository.addTask(task);
+      }
+
+      expect(tasksRepository.getTasksStream(), emits(mockTaskList));
     });
   });
 }
