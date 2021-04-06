@@ -32,6 +32,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }
 
   Stream<TasksState> _mapLoadTasksToState() async* {
+    yield TasksLoadingState();
     _tasksSubscription = tasksRepository.getTasksStream().listen(
           (List<Task> tasks) => add(TasksLoadedEvent(tasks)),
         );
