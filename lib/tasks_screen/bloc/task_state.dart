@@ -17,7 +17,4 @@ class TasksLoadedState extends TasksState {
 
   @override
   List<Object> get props => [tasks];
-
-  @override
-  String toString() => 'TasksLoaded { tasks: $tasks }';
 }

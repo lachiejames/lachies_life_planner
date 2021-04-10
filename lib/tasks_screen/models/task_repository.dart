@@ -6,7 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task_database_exception.dart';
 
 class TasksRepository {
-  final CollectionReference _taskCollection = getTaskCollection();
+  final CollectionReference _taskCollection = getFirestoreInstance().collection('tasks');
 
   Future<void> addTask(Task task) async {
     _taskCollection
@@ -16,7 +16,7 @@ class TasksRepository {
   }
 
   Future<void> updateTask(Task task) async {
-    getTaskCollection()
+    _taskCollection
         .doc(task.id)
         .update(task.toJson())
         .catchError((dynamic e) => throw TaskDBException('ERROR: could not update $task in FireStore'));
