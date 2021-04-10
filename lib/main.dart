@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
+import 'package:lachies_life_planner/shared/widgets/all_bloc_providers.dart';
 
 void main() async {
   // Ensures resources are available for pre-launch setup
@@ -21,12 +18,7 @@ class LachiesLifePlannerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<TasksBloc>(
-          create: (context) => TasksBloc(tasksRepository: TasksRepository())..add(LoadTasksEvent()),
-        )
-      ],
+    return AllBlocProviders(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Lachie\'s Life Planner',

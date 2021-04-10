@@ -25,14 +25,6 @@ void main() {
   });
 
   group('TaskBloc', () {
-    test('throws exception when an unknown TaskEvent is passed', () async {
-      await runZonedGuarded(() async {
-        TasksBloc(tasksRepository: mockTasksRepository).add(FakeTasksEvent());
-      }, (exception, stackTrace) {
-        expect(exception, isA<Exception>());
-      });
-    });
-
     blocTest(
       'LoadTasksEvent emits [TasksLoadingState, TasksLoadedState]',
       build: () {
@@ -80,5 +72,13 @@ void main() {
       act: (bloc) => bloc.add(DeleteAllTasksEvent()),
       expect: () => [],
     );
+
+    test('throws exception when an unknown TaskEvent is passed', () async {
+      await runZonedGuarded(() async {
+        TasksBloc(tasksRepository: mockTasksRepository).add(FakeTasksEvent());
+      }, (exception, stackTrace) {
+        expect(exception, isA<Exception>());
+      });
+    });
   });
 }
