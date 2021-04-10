@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:lachies_life_planner/shared/exceptions/unknown_bloc_event_exception.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/task_state.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
@@ -27,7 +28,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     } else if (event is DeleteAllTasksEvent) {
       yield* _mapDeleteAllTasksToState(event);
     } else {
-      throw Exception('Unknown TasksEvent: $event');
+      throw UnknownBlocEventException(event);
     }
   }
 
