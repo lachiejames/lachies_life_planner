@@ -16,10 +16,6 @@ class TasksRepository {
   }
 
   Future<void> updateTask(Task task) async {
-    // Throws an error if the task does not exist
-    // There seems to be a bug where `.update()` does not throw an error when the task does not exist
-    getTaskByID(task.id);
-
     getTaskCollection()
         .doc(task.id)
         .update(task.toJson())
