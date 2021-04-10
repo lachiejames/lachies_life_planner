@@ -9,7 +9,7 @@ class TasksRepository {
   final CollectionReference _taskCollection = getTaskCollection();
 
   Future<void> addTask(Task task) async {
-    await _taskCollection
+    _taskCollection
         .doc(task.id)
         .set(task.toJson())
         .catchError((e) => throw TaskDBException('ERROR: could not add $task to FireStore'));
@@ -18,25 +18,25 @@ class TasksRepository {
   Future<void> updateTask(Task task) async {
     // Throws an error if the task does not exist
     // There seems to be a bug where `.update()` does not throw an error when the task does not exist
-    await getTaskByID(task.id);
+    getTaskByID(task.id);
 
-    await getTaskCollection()
+    getTaskCollection()
         .doc(task.id)
         .update(task.toJson())
         .catchError((dynamic e) => throw TaskDBException('ERROR: could not update $task in FireStore'));
   }
 
   Future<void> deleteTask(Task task) async {
-    await _taskCollection
+    _taskCollection
         .doc(task.id)
         .delete()
         .catchError((dynamic e) => throw TaskDBException('ERROR: could not delete $task from FireStore'));
   }
 
   Future<void> deleteAllTasks() async {
-    await _taskCollection.get().then((snapshot) async {
+    _taskCollection.get().then((snapshot) async {
       for (DocumentSnapshot documentSnapshot in snapshot.docs) {
-        await documentSnapshot.reference.delete();
+        documentSnapshot.reference.delete();
       }
     });
   }
@@ -59,7 +59,7 @@ class TasksRepository {
   Future<List<Task>> getAllTasks() async {
     List<Task> tasksInDatabase = [];
 
-    await _taskCollection.get().then((snapshot) async {
+    _taskCollection.get().then((snapshot) async {
       for (DocumentSnapshot documentSnapshot in snapshot.docs) {
         Map<String, dynamic> taskJson = documentSnapshot.data();
         tasksInDatabase.add(Task.fromJson(taskJson));
