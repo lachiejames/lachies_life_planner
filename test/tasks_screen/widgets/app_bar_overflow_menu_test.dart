@@ -15,9 +15,9 @@ void main() {
           body: WidgetTestingWrapper(
             screenSize: size,
             widget: AppBarOverflowMenu(
-              menuOptions: {
-                'option 1': () => {},
-                'option 2': () => {},
+              menuOptions: <String, Function>{
+                'option 1': () {},
+                'option 2': () {},
               },
             ),
           ),

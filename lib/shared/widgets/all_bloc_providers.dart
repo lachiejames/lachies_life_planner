@@ -14,7 +14,7 @@ class AllBlocProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TasksBloc>(
-          create: (context) => TasksBloc(tasksRepository: TasksRepository())..add(LoadTasksEvent()),
+          create: (BuildContext context) => TasksBloc(tasksRepository: TasksRepository())..add(LoadTasksEvent()),
         )
       ],
       child: child,

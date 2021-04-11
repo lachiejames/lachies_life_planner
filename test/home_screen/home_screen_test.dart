@@ -25,8 +25,8 @@ void main() {
 
   Future<void> initHomeScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+      BlocProvider<TasksBloc>(
+        create: (BuildContext context) => TasksBloc(tasksRepository: tasksRepository),
         child: ScreenTestingWrapper(
           screenSize: size,
           screen: HomeScreen(),

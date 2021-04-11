@@ -2,6 +2,14 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
+    # Conflicts with `always_specify_types`
     avoid_annotating_with_dynamic: false
+
+    # Conflicts with `always_specify_types`
     omit_local_variable_types: false
+
+    # Great 99% of the time, but bad 1%
+    always_specify_types: false
+
+    # Performance increase
     unawaited_futures: false

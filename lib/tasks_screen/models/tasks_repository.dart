@@ -12,7 +12,7 @@ class TasksRepository {
     _taskCollection
         .doc(task.id)
         .set(task.toJson())
-        .catchError((e) => throw TasksRepositoryException('ERROR: could not add $task to FireStore'));
+        .catchError((dynamic e) => throw TasksRepositoryException('ERROR: could not add $task to FireStore'));
   }
 
   Future<void> updateTask(Task task) async {
@@ -30,7 +30,7 @@ class TasksRepository {
   }
 
   Future<void> deleteAllTasks() async {
-    _taskCollection.get().then((snapshot) async {
+    _taskCollection.get().then((QuerySnapshot snapshot) async {
       for (DocumentSnapshot documentSnapshot in snapshot.docs) {
         documentSnapshot.reference.delete();
       }
@@ -38,7 +38,7 @@ class TasksRepository {
   }
 
   Stream<List<Task>> getTasksStream() {
-    return _taskCollection.snapshots().map((snapshot) {
+    return _taskCollection.snapshots().map((QuerySnapshot snapshot) {
       return snapshot.docs.map((QueryDocumentSnapshot doc) => Task.fromJson(doc.data())).toList();
     });
   }

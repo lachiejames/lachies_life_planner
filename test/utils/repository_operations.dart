@@ -11,7 +11,7 @@ Future<Task> getTaskByID(String taskID) async {
 Future<List<Task>> getAllTasks() async {
   List<Task> tasksInDatabase = [];
 
-  await getFirestoreInstance().collection('tasks').get().then((snapshot) {
+  await getFirestoreInstance().collection('tasks').get().then((QuerySnapshot snapshot) {
     for (DocumentSnapshot documentSnapshot in snapshot.docs) {
       Map<String, dynamic> taskJson = documentSnapshot.data();
       tasksInDatabase.add(Task.fromJson(taskJson));

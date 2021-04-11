@@ -21,8 +21,8 @@ void main() {
     await tasksRepository.addTask(task);
 
     await tester.pumpWidget(
-      BlocProvider(
-        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+      BlocProvider<TasksBloc>(
+        create: (BuildContext context) => TasksBloc(tasksRepository: tasksRepository),
         child: MaterialApp(
           home: Scaffold(
             body: WidgetTestingWrapper(

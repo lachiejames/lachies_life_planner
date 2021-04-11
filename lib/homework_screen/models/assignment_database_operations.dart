@@ -7,7 +7,7 @@ Future<void> addAssignment(Assignment assignment) async {
   await getAssignmentCollection()
       .doc(assignment.id)
       .set(assignment.toJson())
-      .catchError((e) => throw AssignmentDBException('ERROR: could not add $assignment to FireStore'));
+      .catchError((dynamic e) => throw AssignmentDBException('ERROR: could not add $assignment to FireStore'));
 }
 
 Future<Assignment> getAssignmentByID(String assignmentID) async {
@@ -45,7 +45,7 @@ Stream<QuerySnapshot> getAssignmentsStream() {
 Future<List<Assignment>> getAllAssignments() async {
   List<Assignment> assignmentsInDatabase = [];
 
-  await getAssignmentCollection().get().then((snapshot) async {
+  await getAssignmentCollection().get().then((QuerySnapshot snapshot) async {
     for (DocumentSnapshot documentSnapshot in snapshot.docs) {
       Map<String, dynamic> assignmentJson = documentSnapshot.data();
       assignmentsInDatabase.add(Assignment.fromJson(assignmentJson));
@@ -56,7 +56,7 @@ Future<List<Assignment>> getAllAssignments() async {
 }
 
 Future<void> deleteAllAssignments() async {
-  await getAssignmentCollection().get().then((snapshot) async {
+  await getAssignmentCollection().get().then((QuerySnapshot snapshot) async {
     for (DocumentSnapshot documentSnapshot in snapshot.docs) {
       await documentSnapshot.reference.delete();
     }
