@@ -6,6 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_text_field.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_update_button.dart';
 
+@immutable
 class EditTaskSheet extends StatefulWidget {
   final Task task;
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
+@immutable
 class EditTaskTextField extends StatelessWidget {
   final TextEditingController taskEditingController;
 

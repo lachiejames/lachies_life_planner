@@ -5,6 +5,7 @@ import 'package:lachies_life_planner/tasks_screen/bloc/tasks_state.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
+@immutable
 class TasksListView extends StatelessWidget {
   TasksListView() : super(key: UniqueKey());
 

@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+@immutable
 class TasksRepositoryException implements Exception {
   final String message;
 

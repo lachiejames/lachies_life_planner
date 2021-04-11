@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_exception.dart';
 
+@immutable
 class Assignment {
   final String id;
   final Timestamp dateCreated;

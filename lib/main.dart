@@ -13,6 +13,7 @@ void main() async {
   runApp(LachiesLifePlannerApp());
 }
 
+@immutable
 class LachiesLifePlannerApp extends StatelessWidget {
   LachiesLifePlannerApp({Key key}) : super(key: UniqueKey());
 

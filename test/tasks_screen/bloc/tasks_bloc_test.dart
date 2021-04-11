@@ -11,6 +11,8 @@ import 'package:mockito/mockito.dart';
 
 import '../../utils/mock_firestore_data.dart';
 
+// Cannot make a mock immutable without unnecessary boilerplate
+// ignore: must_be_immutable
 class MockTasksRepository extends Mock implements TasksRepository {}
 
 class FakeTasksEvent extends TasksEvent {}

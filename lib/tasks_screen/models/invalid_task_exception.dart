@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+@immutable
 class InvalidTaskException implements Exception {
   final Map<String, dynamic> taskJson;
 
