@@ -6,6 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 
 import '../../utils/mock_firestore_data.dart';
+import '../../utils/repository_operations.dart';
 
 void main() {
   TasksRepository tasksRepository;
@@ -18,18 +19,18 @@ void main() {
 
     test('addTask() adds task to Firestore', () async {
       await tasksRepository.addTask(mockTask);
-      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      Task taskInRepository = await getTaskByID(mockTask.id);
       expect(taskInRepository.toJson(), mockTask.toJson());
     });
 
     test('getTaskByID() returns a task if it exists', () async {
       await tasksRepository.addTask(mockTask);
-      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      Task taskInRepository = await getTaskByID(mockTask.id);
       expect(taskInRepository.toJson(), mockTask.toJson());
     });
 
     test('getTaskByID() throws an error when the task does not exist', () async {
-      expect(() async => await tasksRepository.getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('updateTask() updates task in Firestore', () async {
@@ -37,7 +38,7 @@ void main() {
       Task updatedTask = mockTask.copyWith(name: 'new task name');
       await tasksRepository.updateTask(updatedTask);
 
-      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      Task taskInRepository = await getTaskByID(mockTask.id);
       expect(taskInRepository.toJson(), {
         'id': '1234567890',
         'dateCreated': Timestamp(12345, 67890),
@@ -58,7 +59,7 @@ void main() {
       await tasksRepository.addTask(mockTask);
       await tasksRepository.deleteTask(mockTask);
 
-      expect(() async => await tasksRepository.getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('getAllTasks() returns all tasks from Firestore', () async {
@@ -66,7 +67,7 @@ void main() {
         await tasksRepository.addTask(task);
       }
 
-      List<Task> tasks = await tasksRepository.getAllTasks();
+      List<Task> tasks = await getAllTasks();
       expect(tasks.length, 10);
 
       for (int i = 0; i < 10; i++) {
@@ -82,7 +83,7 @@ void main() {
       await tasksRepository.deleteAllTasks();
 
       for (Task task in mockTaskList) {
-        expect(() async => await tasksRepository.getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
+        expect(() async => await getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
       }
     });
 

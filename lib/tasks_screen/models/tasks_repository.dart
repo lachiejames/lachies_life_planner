@@ -42,26 +42,4 @@ class TasksRepository {
       return snapshot.docs.map((QueryDocumentSnapshot doc) => Task.fromJson(doc.data())).toList();
     });
   }
-
-  Future<Task> getTaskByID(String taskID) async {
-    DocumentSnapshot documentSnapshot = await _taskCollection
-        .doc(taskID)
-        .get()
-        .catchError((dynamic e) => throw TasksRepositoryException('ERROR: could not get task with id=$taskID from Firestore'));
-
-    return Task.fromJson(documentSnapshot.data());
-  }
-
-  Future<List<Task>> getAllTasks() async {
-    List<Task> tasksInDatabase = [];
-
-    _taskCollection.get().then((snapshot) async {
-      for (DocumentSnapshot documentSnapshot in snapshot.docs) {
-        Map<String, dynamic> taskJson = documentSnapshot.data();
-        tasksInDatabase.add(Task.fromJson(taskJson));
-      }
-    });
-
-    return tasksInDatabase;
-  }
 }

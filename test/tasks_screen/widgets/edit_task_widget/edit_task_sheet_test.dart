@@ -11,6 +11,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_
 
 import '../../../utils/device_screen_sizes.dart';
 import '../../../utils/mock_firestore_data.dart';
+import '../../../utils/repository_operations.dart';
 import '../../../utils/widget_tester.dart';
 
 void main() {
@@ -68,7 +69,7 @@ void main() {
       await tap(tester, find.text('Add'));
 
       // Cannot use `getTaskByID()` since ID is generated at runtime
-      Task newTask = (await tasksRepository.getAllTasks())[0];
+      Task newTask = (await getAllTasks())[0];
       expect(newTask.name, 'test task');
       expect(newTask.isComplete, false);
 

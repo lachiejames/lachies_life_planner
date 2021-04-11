@@ -11,6 +11,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 import '../../utils/device_screen_sizes.dart';
 import '../../utils/mock_firestore_data.dart';
+import '../../utils/repository_operations.dart';
 import '../../utils/widget_tester.dart';
 
 void main() {
@@ -66,12 +67,12 @@ void main() {
     testWidgets('tapping the checkbox completes the task', (WidgetTester tester) async {
       await initTaskWidget(tester, task: mockTask);
 
-      Task taskBeforeTap = await tasksRepository.getTaskByID(mockTask.id);
+      Task taskBeforeTap = await getTaskByID(mockTask.id);
       expect(taskBeforeTap.isComplete, false);
 
       await tap(tester, find.byType(Checkbox));
 
-      Task taskAfterTap = await tasksRepository.getTaskByID(mockTask.id);
+      Task taskAfterTap = await getTaskByID(mockTask.id);
       expect(taskAfterTap.isComplete, true);
     });
   });
