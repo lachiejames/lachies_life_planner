@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lachies_life_planner/shared/widgets/all_bloc_providers.dart';
 
 void main() async {
   // Ensures resources are available for pre-launch setup
@@ -17,10 +18,12 @@ class LachiesLifePlannerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Lachie\'s Life Planner',
-      home: HomeScreen(),
+    return AllBlocProviders(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Lachie\'s Life Planner',
+        home: HomeScreen(),
+      ),
     );
   }
 }

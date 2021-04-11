@@ -1,14 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/tasks_screen/models/invalid_task_exception.dart';
+import 'package:equatable/equatable.dart';
 
-class Task {
+@immutable
+class Task extends Equatable {
   final String id;
-  final String name;
   final Timestamp dateCreated;
+  final String name;
   final bool isComplete;
 
-  Task({@required this.id, @required this.name, @required this.dateCreated, @required this.isComplete});
+  Task({@required this.id, @required this.dateCreated, @required this.name, @required this.isComplete});
+
+  @override
+  List<Object> get props => [id, dateCreated, name, isComplete];
 
   @override
   String toString() {

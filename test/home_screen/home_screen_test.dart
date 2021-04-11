@@ -1,5 +1,6 @@
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/calendar_screen/calendar_screen.dart';
 import 'package:lachies_life_planner/finance_screen/finance_screen.dart';
@@ -9,6 +10,8 @@ import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 import '../utils/device_screen_sizes.dart';
@@ -18,11 +21,16 @@ import 'package:mockito/mockito.dart';
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 
 void main() {
+  TasksRepository tasksRepository;
+
   Future<void> initHomeScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      ScreenTestingWrapper(
-        screenSize: size,
-        screen: HomeScreen(),
+      BlocProvider(
+        create: (context) => TasksBloc(tasksRepository: tasksRepository),
+        child: ScreenTestingWrapper(
+          screenSize: size,
+          screen: HomeScreen(),
+        ),
       ),
     );
   }
@@ -30,6 +38,7 @@ void main() {
   group('HomeScreen', () {
     setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
+      tasksRepository = TasksRepository();
     });
 
     testWidgets('initialised with Home screen buttons', (WidgetTester tester) async {
