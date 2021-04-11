@@ -66,11 +66,13 @@ void main() {
     testWidgets('tapping the checkbox completes the task', (WidgetTester tester) async {
       await initTaskWidget(tester, task: mockTask);
 
-      expect((await tasksRepository.getTaskByID(mockTask.id)).isComplete, false);
+      Task taskBeforeTap = await tasksRepository.getTaskByID(mockTask.id);
+      expect(taskBeforeTap.isComplete, false);
 
       await tap(tester, find.byType(Checkbox));
 
-      expect((await tasksRepository.getTaskByID(mockTask.id)).isComplete, true);
+      Task taskAfterTap = await tasksRepository.getTaskByID(mockTask.id);
+      expect(taskAfterTap.isComplete, true);
     });
   });
 }

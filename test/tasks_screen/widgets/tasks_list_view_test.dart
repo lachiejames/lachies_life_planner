@@ -58,6 +58,7 @@ void main() {
     });
 
     testWidgets('displays all task widgets in Firestore', (WidgetTester tester) async {
+      // Required for tests involving streams - https://github.com/flutter/flutter/issues/17738#issuecomment-392237064
       await tester.runAsync(() async {
         await initTasksListView(tester);
 
