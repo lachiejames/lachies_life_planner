@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_task_sheet.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 
 class TaskWidget extends StatelessWidget {
   final Task task;

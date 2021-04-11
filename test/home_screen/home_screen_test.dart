@@ -10,8 +10,8 @@ import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:lachies_life_planner/home_screen/widgets/text_icon_button.dart';
 import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/models/task_repository.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 import '../utils/device_screen_sizes.dart';

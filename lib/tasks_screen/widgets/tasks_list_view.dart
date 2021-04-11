@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_state.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_state.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
-class TaskListView extends StatelessWidget {
-  TaskListView() : super(key: UniqueKey());
+class TasksListView extends StatelessWidget {
+  TasksListView() : super(key: UniqueKey());
 
   Widget _getTasksLoadingView() {
     return Center(

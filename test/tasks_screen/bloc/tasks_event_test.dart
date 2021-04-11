@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 
 import '../../utils/mock_firestore_data.dart';
 

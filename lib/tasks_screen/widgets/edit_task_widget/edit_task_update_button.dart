@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_bloc.dart';
-import 'package:lachies_life_planner/tasks_screen/bloc/task_event.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
+import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
 class EditTaskUpdateButton extends StatelessWidget {
