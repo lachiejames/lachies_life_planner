@@ -27,13 +27,23 @@ void main() {
 
   group('TaskBloc', () {
     blocTest(
-      'LoadTasksEvent emits [TasksLoadingState, TasksLoadedState]',
+      'when getTasksStream() is succeessful, LoadTasksEvent leads to TasksLoadedEvent, which emits [TasksLoadedState]',
       build: () {
         when(mockTasksRepository.getTasksStream()).thenAnswer((_) => Stream.value(mockTaskList));
         return TasksBloc(tasksRepository: mockTasksRepository);
       },
       act: (bloc) => bloc.add(LoadTasksEvent()),
-      expect: () => [TasksLoadingState(), TasksLoadedState(mockTaskList)],
+      expect: () => [TasksLoadedState(mockTaskList)],
+    );
+
+    blocTest(
+      'when getTasksStream() fails, LoadTasksEvent emits []',
+      build: () {
+        when(mockTasksRepository.getTasksStream()).thenThrow(Exception('something went wrong'));
+        return TasksBloc(tasksRepository: mockTasksRepository);
+      },
+      act: (bloc) => bloc.add(LoadTasksEvent()),
+      expect: () => [],
     );
 
     blocTest(
