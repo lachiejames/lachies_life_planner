@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
+@immutable
 class TextIconButton extends StatelessWidget {
   final void Function() onPressed;
   final String text;

@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+@immutable
 class InvalidAssignmentException implements Exception {
   final Map<String, dynamic> assignmentJson;
 

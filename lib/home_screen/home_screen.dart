@@ -8,6 +8,7 @@ import 'package:lachies_life_planner/homework_screen/homework_screen.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
+@immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen() : super(key: UniqueKey());
 
@@ -76,6 +77,7 @@ Future<T> _navigateTo<T extends Widget>(BuildContext context, T screen) {
   return Navigator.push(context, MaterialPageRoute<T>(builder: (BuildContext context) => screen));
 }
 
+@immutable
 class _ExpandedRow extends StatelessWidget {
   final List<Widget> children;
 

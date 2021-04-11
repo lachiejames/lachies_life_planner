@@ -6,6 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/add_task_button.dart';
 import 'package:lachies_life_planner/tasks_screen/widgets/tasks_list_view.dart';
 
+@immutable
 class TasksScreen extends StatelessWidget {
   TasksScreen() : super(key: UniqueKey());
 

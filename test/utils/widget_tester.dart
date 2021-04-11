@@ -4,6 +4,7 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 
 import 'device_screen_sizes.dart';
 
+@immutable
 class ScreenTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget screen;
@@ -23,6 +24,7 @@ class ScreenTestingWrapper extends StatelessWidget {
   }
 }
 
+@immutable
 class WidgetTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget widget;
