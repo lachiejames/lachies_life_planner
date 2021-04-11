@@ -12,7 +12,7 @@ class AddTaskButton extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: FloatingActionButton(
         onPressed: () => _onPressed(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

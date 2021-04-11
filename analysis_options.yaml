@@ -8,8 +8,11 @@ linter:
     # Conflicts with `always_specify_types`
     omit_local_variable_types: false
 
-    # Great 99% of the time, but bad 1%
+    # Great 99% of the time, but bad 1%.  Temporarily switched on sometimes
     always_specify_types: false
 
-    # Performance increase
+    # Performance increase for bloc events when not awaiting futures
     unawaited_futures: false
+
+    # better performance
+    prefer_const_constructors: true

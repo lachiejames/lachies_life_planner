@@ -6,7 +6,7 @@ class FitnessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fitness'),
+        title: const Text('Fitness'),
       ),
       body: Container(),
     );

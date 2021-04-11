@@ -6,7 +6,7 @@ class HomeworkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Homework'),
+        title: const Text('Homework'),
       ),
       body: Container(),
     );

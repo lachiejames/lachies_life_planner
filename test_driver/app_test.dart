@@ -31,14 +31,14 @@ void main() {
       test('adding a task', () async {
         await addTask(driver, 'Test task');
         await expectToFind(driver, find.text('Test task'));
-      }, timeout: Timeout(Duration(seconds: 60)));
+      }, timeout: const Timeout(Duration(seconds: 60)));
 
       test('updating a task', () async {
         await addTask(driver, 'Test task');
         await updateTask(driver, 'Test task', 'New task name');
 
         await expectToFind(driver, find.text('New task name'));
-      }, timeout: Timeout(Duration(seconds: 60)));
+      }, timeout: const Timeout(Duration(seconds: 60)));
 
       test('cancelling during adding a task', () async {
         await driver.tap(find.byType('FloatingActionButton'));
@@ -46,7 +46,7 @@ void main() {
         await driver.tap(find.text('Cancel'));
 
         await expectNotToFind(driver, find.text('Cancel'));
-      }, timeout: Timeout(Duration(seconds: 60)));
+      }, timeout: const Timeout(Duration(seconds: 60)));
 
       test('cancelling during updating a task', () async {
         await addTask(driver, 'Test task');
@@ -57,7 +57,7 @@ void main() {
 
         await expectToFind(driver, find.text('Test task'));
         await expectNotToFind(driver, find.text('Cancel'));
-      }, timeout: Timeout(Duration(seconds: 60)));
+      }, timeout: const Timeout(Duration(seconds: 60)));
 
       test('updating a task that requires scrolling to get to', () async {
         await populateTasksList(driver);
@@ -67,7 +67,7 @@ void main() {
 
         await expectToFind(driver, find.text('New task name'));
         await expectNotToFind(driver, find.text('Task 14'));
-      }, timeout: Timeout(Duration(seconds: 200)));
+      }, timeout: const Timeout(Duration(seconds: 200)));
 
       test('pressing "Delete All Tasks" on overflow menu', () async {
         await populateTasksList(driver);
@@ -82,7 +82,7 @@ void main() {
         for (String taskName in mockTaskNames) {
           await expectNotToFind(driver, find.text(taskName));
         }
-      }, timeout: Timeout(Duration(seconds: 200)));
+      }, timeout: const Timeout(Duration(seconds: 200)));
     });
   });
 }

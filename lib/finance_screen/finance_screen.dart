@@ -6,7 +6,7 @@ class FinanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Finance'),
+        title: const Text('Finance'),
       ),
       body: Container(),
     );

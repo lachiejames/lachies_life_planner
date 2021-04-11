@@ -14,7 +14,7 @@ class EditTaskTextField extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: TextField(
-          decoration: InputDecoration(border: InputBorder.none),
+          decoration: const InputDecoration(border: InputBorder.none),
           autofocus: true,
           keyboardType: TextInputType.multiline,
           maxLines: null,

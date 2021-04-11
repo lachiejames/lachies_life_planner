@@ -25,7 +25,7 @@ class TasksListView extends StatelessWidget {
   }
 
   Widget _getTasksLoadingView() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(),
     );
   }
@@ -38,7 +38,7 @@ class TasksListView extends StatelessWidget {
 
   Widget _getTasksErrorView() {
     return Container(
-      child: Text('something went wrong :('),
+      child: const Text('something went wrong :('),
     );
   }
 }

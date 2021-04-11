@@ -44,7 +44,7 @@ class WidgetTestingWrapper extends StatelessWidget {
 Future<void> flushAllMicrotasks(WidgetTester tester) async {
   await tester.idle();
   await tester.pump();
-  await tester.pump(Duration(seconds: 1));
+  await tester.pump(const Duration(seconds: 1));
 }
 
 Future<void> tap(WidgetTester tester, Finder finder) async {
