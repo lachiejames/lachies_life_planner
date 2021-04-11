@@ -21,7 +21,6 @@ void main() {
   TasksRepository mockTasksRepository;
 
   setUp(() {
-    setFirestoreInstance(MockFirestoreInstance());
     mockTasksRepository = MockTasksRepository();
   });
 

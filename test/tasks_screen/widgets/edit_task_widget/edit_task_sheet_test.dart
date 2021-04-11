@@ -67,6 +67,7 @@ void main() {
       await tester.enterText(find.byType(EditTaskTextField), 'test task');
       await tap(tester, find.text('Add'));
 
+      // Cannot use `getTaskByID()` since ID is generated at runtime
       Task newTask = (await tasksRepository.getAllTasks())[0];
       expect(newTask.name, 'test task');
       expect(newTask.isComplete, false);

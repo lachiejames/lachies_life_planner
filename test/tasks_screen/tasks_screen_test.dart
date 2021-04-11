@@ -78,10 +78,7 @@ void main() {
 
         await tap(tester, find.byType(AppBarOverflowMenu));
         await tap(tester, find.text('Delete All Tasks'));
-
-        // Currently not working without this line, but this seems to be due to a bug in flutter_test
-        // https://github.com/flutter/flutter/issues/78832
-        await initTasksScreen(tester);
+        await flushAllMicrotasks(tester);
 
         expect(find.byType(TaskWidget), findsNothing);
       });

@@ -18,19 +18,14 @@ void main() {
 
     test('addTask() adds task to Firestore', () async {
       await tasksRepository.addTask(mockTask);
-      expect((await tasksRepository.getTaskByID(mockTask.id)).toJson(), mockTask.toJson());
-    });
-
-    test('addTask() can be used multiple times', () async {
-      for (Task task in mockTaskList) {
-        await tasksRepository.addTask(task);
-        expect((await tasksRepository.getTaskByID(task.id)).toJson(), task.toJson());
-      }
+      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      expect(taskInRepository.toJson(), mockTask.toJson());
     });
 
     test('getTaskByID() returns a task if it exists', () async {
       await tasksRepository.addTask(mockTask);
-      expect((await tasksRepository.getTaskByID(mockTask.id)).toJson(), mockTask.toJson());
+      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      expect(taskInRepository.toJson(), mockTask.toJson());
     });
 
     test('getTaskByID() throws an error when the task does not exist', () async {
@@ -39,9 +34,11 @@ void main() {
 
     test('updateTask() updates task in Firestore', () async {
       await tasksRepository.addTask(mockTask);
-      await tasksRepository.updateTask(mockTask.copyWith(name: 'new task name'));
+      Task updatedTask = mockTask.copyWith(name: 'new task name');
+      await tasksRepository.updateTask(updatedTask);
 
-      expect((await tasksRepository.getTaskByID(mockTask.id)).toJson(), {
+      Task taskInRepository = await tasksRepository.getTaskByID(mockTask.id);
+      expect(taskInRepository.toJson(), {
         'id': '1234567890',
         'dateCreated': Timestamp(12345, 67890),
         'name': 'new task name',

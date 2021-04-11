@@ -8,7 +8,7 @@ class AllBlocProviders extends StatelessWidget {
   final Widget child;
 
   AllBlocProviders({@required this.child});
-  
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

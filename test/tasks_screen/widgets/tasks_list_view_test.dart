@@ -35,7 +35,7 @@ void main() {
   }
 
   group('TasksListView', () {
-    setUp(() async {
+    setUp(() {
       setFirestoreInstance(MockFirestoreInstance());
       tasksRepository = TasksRepository();
       tasksBloc = TasksBloc(tasksRepository: tasksRepository);
