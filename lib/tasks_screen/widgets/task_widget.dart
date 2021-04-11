@@ -6,6 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 
+@immutable
 class TaskWidget extends StatelessWidget {
   final Task task;
 

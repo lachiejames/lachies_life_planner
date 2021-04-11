@@ -6,6 +6,7 @@ import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 
+@immutable
 class EditTaskAddButton extends StatelessWidget {
   final TextEditingController taskEditingController;
 

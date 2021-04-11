@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/tasks_repository_exception.dart';
 
+@immutable
 class TasksRepository {
   final CollectionReference _taskCollection = getFirestoreInstance().collection('tasks');
 

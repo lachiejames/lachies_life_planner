@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class AppBarOverflowMenu extends StatelessWidget {
   final Map<String, Function> menuOptions;
 
