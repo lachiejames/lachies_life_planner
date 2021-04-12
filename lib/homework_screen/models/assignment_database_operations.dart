@@ -39,7 +39,7 @@ Future<void> deleteAssignment(Assignment assignment) async {
 Stream<QuerySnapshot> getAssignmentsStream() {
   return getAssignmentCollection()
       .snapshots()
-      .handleError((dynamic e) => throw AssignmentDBException('ERROR: could not retrieve Assignment snapshots from FireStore'));
+      .handleError((dynamic e) => throw const AssignmentDBException('ERROR: could not retrieve Assignment snapshots from FireStore'));
 }
 
 Future<List<Assignment>> getAllAssignments() async {

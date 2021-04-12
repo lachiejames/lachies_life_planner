@@ -5,7 +5,7 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 class EditTaskTextField extends StatelessWidget {
   final TextEditingController taskEditingController;
 
-  EditTaskTextField({this.taskEditingController});
+  const EditTaskTextField({this.taskEditingController});
 
   @override
   Widget build(BuildContext context) {

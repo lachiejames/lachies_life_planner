@@ -8,7 +8,7 @@ import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 class AllBlocProviders extends StatelessWidget {
   final Widget child;
 
-  AllBlocProviders({@required this.child});
+  const AllBlocProviders({@required this.child});
 
   @override
   Widget build(BuildContext context) {

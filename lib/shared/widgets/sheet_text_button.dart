@@ -6,7 +6,7 @@ class SheetTextButton extends StatelessWidget {
   final String text;
   final void Function() onPressed;
 
-  SheetTextButton({@required this.text, @required this.onPressed}) : super(key: UniqueKey());
+  const SheetTextButton({@required this.text, @required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

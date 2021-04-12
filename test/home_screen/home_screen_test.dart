@@ -29,7 +29,7 @@ void main() {
         create: (BuildContext context) => TasksBloc(tasksRepository: tasksRepository),
         child: ScreenTestingWrapper(
           screenSize: size,
-          screen: HomeScreen(),
+          screen: const HomeScreen(),
         ),
       ),
     );

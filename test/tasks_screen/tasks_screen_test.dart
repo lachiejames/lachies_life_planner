@@ -25,7 +25,7 @@ void main() {
         value: tasksBloc,
         child: ScreenTestingWrapper(
           screenSize: size,
-          screen: TasksScreen(),
+          screen: const TasksScreen(),
         ),
       ),
     );

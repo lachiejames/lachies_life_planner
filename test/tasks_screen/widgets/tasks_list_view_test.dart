@@ -26,7 +26,7 @@ void main() {
           home: Scaffold(
             body: WidgetTestingWrapper(
               screenSize: size,
-              widget: TasksListView(),
+              widget: const TasksListView(),
             ),
           ),
         ),

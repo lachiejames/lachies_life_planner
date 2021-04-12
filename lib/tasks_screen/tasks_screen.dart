@@ -8,7 +8,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/tasks_list_view.dart';
 
 @immutable
 class TasksScreen extends StatelessWidget {
-  TasksScreen() : super(key: UniqueKey());
+  const TasksScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class TasksScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: AddTaskButton(),
-      body: TasksListView(),
+      floatingActionButton: const AddTaskButton(),
+      body: const TasksListView(),
     );
   }
 

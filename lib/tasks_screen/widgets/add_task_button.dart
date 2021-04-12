@@ -4,7 +4,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 @immutable
 class AddTaskButton extends StatelessWidget {
-  AddTaskButton() : super(key: UniqueKey());
+  const AddTaskButton();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class AddTaskButton extends StatelessWidget {
   void _onPressed(BuildContext context) {
     showMaterialModalBottomSheet(
       context: context,
-      builder: (BuildContext context) => EditTaskSheet(),
+      builder: (BuildContext context) => const EditTaskSheet(),
     );
   }
 }

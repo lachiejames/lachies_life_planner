@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       ScreenTestingWrapper(
         screenSize: size,
-        screen: HomeworkScreen(),
+        screen: const HomeworkScreen(),
       ),
     );
   }

@@ -10,7 +10,7 @@ import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 class EditTaskAddButton extends StatelessWidget {
   final TextEditingController taskEditingController;
 
-  EditTaskAddButton({@required this.taskEditingController}) : super(key: UniqueKey());
+  const EditTaskAddButton({@required this.taskEditingController});
 
   @override
   Widget build(BuildContext context) {

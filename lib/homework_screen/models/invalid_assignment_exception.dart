@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class InvalidAssignmentException implements Exception {
   final Map<String, dynamic> assignmentJson;
 
-  InvalidAssignmentException(this.assignmentJson);
+  const InvalidAssignmentException(this.assignmentJson);
 
   @override
   String toString() {

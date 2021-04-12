@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 @immutable
 class GoalsScreen extends StatelessWidget {
+  const GoalsScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

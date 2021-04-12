@@ -7,7 +7,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 @immutable
 class TasksListView extends StatelessWidget {
-  TasksListView() : super(key: UniqueKey());
+  const TasksListView();
 
   @override
   Widget build(BuildContext context) {

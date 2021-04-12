@@ -10,7 +10,7 @@ import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 class TaskWidget extends StatelessWidget {
   final Task task;
 
-  TaskWidget({this.task}) : super(key: UniqueKey());
+  const TaskWidget({this.task});
 
   @override
   Widget build(BuildContext context) {

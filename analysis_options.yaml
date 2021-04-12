@@ -17,8 +17,6 @@ linter:
     # better persformance
     prefer_const_constructors: true
 
-    use_key_in_widget_constructors: true
-
     avoid_unnecessary_containers: true
 
     prefer_final_locals: true
@@ -36,8 +34,6 @@ linter:
     sized_box_for_whitespace: true
 
     directives_ordering: true
-
-    avoid_catches_without_on_clauses: true
 
     unnecessary_await_in_return: true
 

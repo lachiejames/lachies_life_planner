@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       WidgetTestingWrapper(
         screenSize: size,
-        widget: EditTaskCancelButton(),
+        widget: const EditTaskCancelButton(),
       ),
     );
   }

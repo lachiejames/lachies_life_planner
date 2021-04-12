@@ -10,7 +10,7 @@ import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
 
 @immutable
 class HomeScreen extends StatelessWidget {
-  HomeScreen() : super(key: UniqueKey());
+  const HomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, TasksScreen()),
+                  onPressed: () => _navigateTo(context, const TasksScreen()),
                   text: 'Tasks',
                   icon: Icons.check,
                 ),
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, CalendarScreen()),
+                  onPressed: () => _navigateTo(context, const CalendarScreen()),
                   text: 'Calendar',
                   icon: Icons.calendar_today,
                 ),
@@ -41,12 +41,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, FitnessScreen()),
+                  onPressed: () => _navigateTo(context, const FitnessScreen()),
                   text: 'Fitness',
                   icon: Icons.directions_run_outlined,
                 ),
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, HomeworkScreen()),
+                  onPressed: () => _navigateTo(context, const HomeworkScreen()),
                   text: 'Homework',
                   icon: Icons.menu_book_outlined,
                 ),
@@ -55,12 +55,12 @@ class HomeScreen extends StatelessWidget {
             _ExpandedRow(
               children: <Widget>[
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, FinanceScreen()),
+                  onPressed: () => _navigateTo(context, const FinanceScreen()),
                   text: 'Finance',
                   icon: Icons.attach_money,
                 ),
                 TextIconButton(
-                  onPressed: () => _navigateTo(context, GoalsScreen()),
+                  onPressed: () => _navigateTo(context, const GoalsScreen()),
                   text: 'Goals',
                   icon: Icons.lightbulb,
                 ),
@@ -81,7 +81,7 @@ Future<T> _navigateTo<T extends Widget>(BuildContext context, T screen) {
 class _ExpandedRow extends StatelessWidget {
   final List<Widget> children;
 
-  _ExpandedRow({@required this.children}) : super(key: UniqueKey());
+  const _ExpandedRow({@required this.children});
 
   List<Widget> _expandChildren(List<Widget> children) {
     List<Widget> expandedChildren = <Widget>[];

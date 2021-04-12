@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class TasksRepositoryException implements Exception {
   final String message;
 
-  TasksRepositoryException(this.message);
+  const TasksRepositoryException(this.message);
 
   @override
   String toString() {
