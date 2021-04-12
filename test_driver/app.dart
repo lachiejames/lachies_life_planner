@@ -2,12 +2,12 @@ import 'package:flutter_driver/driver_extension.dart';
 import 'package:lachies_life_planner/main.dart' as app;
 import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 
-void main() {
+Future<void> main() async {
   enableFlutterDriverExtension(handler: (String command) async {
     if (command == 'deleteAllTasks') {
       await TasksRepository().deleteAllTasks();
     } else if (command == 'backToHome') {
-      _restartApp();
+      await _restartApp();
     } else {
       throw Exception('unknown command: $command');
     }
@@ -15,9 +15,9 @@ void main() {
     return 'ok';
   });
 
-  app.main();
+  await app.main();
 }
 
-void _restartApp() {
-  app.main();
+Future<void> _restartApp() async {
+  await app.main();
 }

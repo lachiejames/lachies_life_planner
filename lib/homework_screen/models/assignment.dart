@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_exception.dart';
 
 @immutable
-class Assignment {
+class Assignment extends Equatable {
   final String id;
   final Timestamp dateCreated;
   final String title;
@@ -21,6 +22,9 @@ class Assignment {
     @required this.priority,
     @required this.isComplete,
   });
+
+  @override
+  List<Object> get props => [id, dateCreated, title, subject, dueDate, priority, isComplete];
 
   @override
   String toString() {
