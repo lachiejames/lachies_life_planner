@@ -9,10 +9,36 @@ linter:
     omit_local_variable_types: false
 
     # Great 99% of the time, but bad 1%.  Temporarily switched on sometimes
-    always_specify_types: false
+    always_specify_types: true
 
     # Performance increase for bloc events when not awaiting futures
-    unawaited_futures: false
+    unawaited_futures: true
 
-    # better performance
+    # better persformance
     prefer_const_constructors: true
+
+    use_key_in_widget_constructors: true
+
+    avoid_unnecessary_containers: true
+
+    prefer_final_locals: true
+
+    prefer_final_in_for_each: true
+
+    prefer_const_constructors_in_immutables: true
+
+    prefer_constructors_over_static_methods: true
+
+    avoid_void_async: true
+
+    avoid_unused_constructor_parameters: true
+
+    sized_box_for_whitespace: true
+
+    directives_ordering: true
+
+    avoid_catches_without_on_clauses: true
+
+    unnecessary_await_in_return: true
+
+    always_put_required_named_parameters_first: true
