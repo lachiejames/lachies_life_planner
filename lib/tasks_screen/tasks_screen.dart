@@ -17,7 +17,7 @@ class TasksScreen extends StatelessWidget {
         title: const Text('Tasks'),
         actions: [
           AppBarOverflowMenu(
-            menuOptions: <String, Function>{
+            menuOptions: {
               'Delete All Tasks': () => _deleteAllTasks(context),
             },
           ),
