@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
-import 'package:lachies_life_planner/homework_screen/models/tasks_assignment_exception.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignments_repository_exception.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
 @immutable

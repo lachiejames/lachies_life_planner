@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lachies_life_planner/homework_screen/models/tasks_assignment_exception.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignments_repository_exception.dart';
 
 import '../../utils/mock_firestore_data.dart';
 
