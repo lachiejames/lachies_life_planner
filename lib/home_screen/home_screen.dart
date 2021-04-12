@@ -21,53 +21,52 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _ExpandedRow(
-              children: <Widget>[
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const TasksScreen()),
-                  text: 'Tasks',
-                  icon: Icons.check,
-                ),
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const CalendarScreen()),
-                  text: 'Calendar',
-                  icon: Icons.calendar_today,
-                ),
-              ],
-            ),
-            _ExpandedRow(
-              children: <Widget>[
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const FitnessScreen()),
-                  text: 'Fitness',
-                  icon: Icons.directions_run_outlined,
-                ),
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const HomeworkScreen()),
-                  text: 'Homework',
-                  icon: Icons.menu_book_outlined,
-                ),
-              ],
-            ),
-            _ExpandedRow(
-              children: <Widget>[
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const FinanceScreen()),
-                  text: 'Finance',
-                  icon: Icons.attach_money,
-                ),
-                TextIconButton(
-                  onPressed: () => _navigateTo(context, const GoalsScreen()),
-                  text: 'Goals',
-                  icon: Icons.lightbulb,
-                ),
-              ],
-            ),
-          ],
-        ),
-      
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _ExpandedRow(
+            children: <Widget>[
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const TasksScreen()),
+                text: 'Tasks',
+                icon: Icons.check,
+              ),
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const CalendarScreen()),
+                text: 'Calendar',
+                icon: Icons.calendar_today,
+              ),
+            ],
+          ),
+          _ExpandedRow(
+            children: <Widget>[
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const FitnessScreen()),
+                text: 'Fitness',
+                icon: Icons.directions_run_outlined,
+              ),
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const HomeworkScreen()),
+                text: 'Homework',
+                icon: Icons.menu_book_outlined,
+              ),
+            ],
+          ),
+          _ExpandedRow(
+            children: <Widget>[
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const FinanceScreen()),
+                text: 'Finance',
+                icon: Icons.attach_money,
+              ),
+              TextIconButton(
+                onPressed: () => _navigateTo(context, const GoalsScreen()),
+                text: 'Goals',
+                icon: Icons.lightbulb,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

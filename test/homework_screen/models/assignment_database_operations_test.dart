@@ -31,7 +31,7 @@ void main() {
     });
 
     test('getAssignmentByID() throws an error when the assignment does not exist', () async {
-      expect(() async => await getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('updateAssignment() updates assignment in Firestore', () async {
@@ -50,14 +50,14 @@ void main() {
     });
 
     test('updateAssignment() throws an error when assignment does not exist', () async {
-      expect(() async => await updateAssignment(mockAssignment.copyWith(title: 'new assignment name')), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(updateAssignment(mockAssignment.copyWith(title: 'new assignment name')), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('deleteAssignment() removes assignment from Firestore', () async {
       await addAssignment(mockAssignment);
       await deleteAssignment(mockAssignment);
 
-      expect(() async => await getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('getAllAssignments() returns all assignments from Firestore', () async {
@@ -81,7 +81,7 @@ void main() {
       await deleteAllAssignments();
 
       for (Assignment assignment in mockAssignmentList) {
-        expect(() async => await getAssignmentByID(assignment.id), throwsA(isA<NoSuchMethodError>()));
+        await expectLater(getAssignmentByID(assignment.id), throwsA(isA<NoSuchMethodError>()));
       }
     });
   });

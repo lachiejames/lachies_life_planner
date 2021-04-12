@@ -30,7 +30,7 @@ void main() {
     });
 
     test('getTaskByID() throws an error when the task does not exist', () async {
-      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('updateTask() updates task in Firestore', () async {
@@ -48,8 +48,8 @@ void main() {
     });
 
     test('updateTask() throws an error when task does not exist', () async {
-      expect(
-        () async => await tasksRepository.updateTask(mockTask.copyWith(name: 'new task name')),
+      await expectLater(
+        tasksRepository.updateTask(mockTask.copyWith(name: 'new task name')),
         throwsA(isA<NoSuchMethodError>()),
       );
       // Failing due to a bug in cloud firestore mocks - https://github.com/atn832/cloud_firestore_mocks/issues/152
@@ -59,7 +59,7 @@ void main() {
       await tasksRepository.addTask(mockTask);
       await tasksRepository.deleteTask(mockTask);
 
-      expect(() async => await getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getTaskByID(mockTask.id), throwsA(isA<NoSuchMethodError>()));
     });
 
     test('getAllTasks() returns all tasks from Firestore', () async {
@@ -83,7 +83,7 @@ void main() {
       await tasksRepository.deleteAllTasks();
 
       for (Task task in mockTaskList) {
-        expect(() async => await getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
+        await expectLater(getTaskByID(task.id), throwsA(isA<NoSuchMethodError>()));
       }
     });
 

@@ -9,7 +9,7 @@ class ScreenTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget screen;
 
-  const ScreenTestingWrapper({@required this.screen,this.screenSize = samsungGalaxyS9});
+  const ScreenTestingWrapper({@required this.screen, this.screenSize = samsungGalaxyS9});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class WidgetTestingWrapper extends StatelessWidget {
   final Size screenSize;
   final Widget widget;
 
-  const WidgetTestingWrapper({ @required this.widget,this.screenSize = samsungGalaxyS9});
+  const WidgetTestingWrapper({@required this.widget, this.screenSize = samsungGalaxyS9});
 
   @override
   Widget build(BuildContext context) {
