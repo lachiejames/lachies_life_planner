@@ -7,7 +7,6 @@ import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignments_repository.dart';
 import 'package:lachies_life_planner/shared/exceptions/unknown_bloc_event_exception.dart';
 
-
 class AssignmentsBloc extends Bloc<AssignmentsEvent, AssignmentsState> {
   final AssignmentsRepository assignmentsRepository;
   StreamSubscription<List<Assignment>> _assignmentsSubscription;

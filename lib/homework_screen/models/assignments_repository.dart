@@ -6,7 +6,6 @@ import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/models/tasks_assignment_exception.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
-
 @immutable
 class AssignmentsRepository {
   final CollectionReference _assignmentCollection = getFirestoreInstance().collection('assignments');
