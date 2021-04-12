@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class InvalidTaskException implements Exception {
   final Map<String, dynamic> taskJson;
 
-  InvalidTaskException(this.taskJson);
+  const InvalidTaskException(this.taskJson);
 
   @override
   String toString() {

@@ -10,7 +10,7 @@ class Task extends Equatable {
   final String name;
   final bool isComplete;
 
-  Task({@required this.id, @required this.dateCreated, @required this.name, @required this.isComplete});
+  const Task({@required this.id, @required this.dateCreated, @required this.name, @required this.isComplete});
 
   @override
   List<Object> get props => [id, dateCreated, name, isComplete];

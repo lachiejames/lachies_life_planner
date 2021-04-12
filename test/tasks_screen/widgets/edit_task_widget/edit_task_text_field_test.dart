@@ -13,7 +13,7 @@ void main() {
         home: Scaffold(
           body: WidgetTestingWrapper(
             screenSize: size,
-            widget: EditTaskTextField(),
+            widget: const EditTaskTextField(),
           ),
         ),
       ),

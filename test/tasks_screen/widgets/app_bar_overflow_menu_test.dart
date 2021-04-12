@@ -16,8 +16,8 @@ void main() {
             screenSize: size,
             widget: AppBarOverflowMenu(
               menuOptions: {
-                'option 1': () => {},
-                'option 2': () => {},
+                'option 1': () {},
+                'option 2': () {},
               },
             ),
           ),

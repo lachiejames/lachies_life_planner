@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       WidgetTestingWrapper(
         screenSize: size,
-        widget: TextIconButton(
+        widget: const TextIconButton(
           onPressed: null,
           text: 'Tasks',
           icon: Icons.check,

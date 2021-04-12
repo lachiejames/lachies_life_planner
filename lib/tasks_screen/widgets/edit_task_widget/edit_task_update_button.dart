@@ -10,7 +10,7 @@ class EditTaskUpdateButton extends StatelessWidget {
   final Task taskToUpdate;
   final TextEditingController taskEditingController;
 
-  EditTaskUpdateButton({@required this.taskToUpdate, @required this.taskEditingController}) : super(key: UniqueKey());
+  const EditTaskUpdateButton({@required this.taskToUpdate, @required this.taskEditingController});
 
   @override
   Widget build(BuildContext context) {

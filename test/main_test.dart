@@ -6,7 +6,7 @@ import 'utils/device_screen_sizes.dart';
 
 void main() {
   Future<void> initLachiesLifePlannerApp(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
-    await tester.pumpWidget(LachiesLifePlannerApp());
+    await tester.pumpWidget(const LachiesLifePlannerApp());
   }
 
   group('main', () {

@@ -5,7 +5,7 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 class EditTaskTextField extends StatelessWidget {
   final TextEditingController taskEditingController;
 
-  EditTaskTextField({this.taskEditingController});
+  const EditTaskTextField({this.taskEditingController});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class EditTaskTextField extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: TextField(
-          decoration: InputDecoration(border: InputBorder.none),
+          decoration: const InputDecoration(border: InputBorder.none),
           autofocus: true,
           keyboardType: TextInputType.multiline,
           maxLines: null,

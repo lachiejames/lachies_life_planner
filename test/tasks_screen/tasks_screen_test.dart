@@ -21,11 +21,11 @@ void main() {
 
   Future<void> initTasksScreen(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      BlocProvider.value(
+      BlocProvider<TasksBloc>.value(
         value: tasksBloc,
         child: ScreenTestingWrapper(
           screenSize: size,
-          screen: TasksScreen(),
+          screen: const TasksScreen(),
         ),
       ),
     );

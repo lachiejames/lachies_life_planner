@@ -13,7 +13,7 @@ void main() {
         screenSize: size,
         widget: EditTaskUpdateButton(
           taskEditingController: TextEditingController.fromValue(
-            TextEditingValue(text: 'test'),
+            const TextEditingValue(text: 'test'),
           ),
           taskToUpdate: mockTask,
         ),

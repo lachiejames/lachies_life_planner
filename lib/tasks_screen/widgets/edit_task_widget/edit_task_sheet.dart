@@ -10,7 +10,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/edit_task_widget/edit_
 class EditTaskSheet extends StatefulWidget {
   final Task task;
 
-  EditTaskSheet({this.task});
+  const EditTaskSheet({this.task});
 
   @override
   _EditTaskWidgetState createState() => _EditTaskWidgetState();
@@ -33,7 +33,7 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: screenHeightUnit * 65,
       child: Column(
         children: <Widget>[
@@ -42,7 +42,7 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
           ),
           Row(
             children: <Widget>[
-              Expanded(
+              const Expanded(
                 child: EditTaskCancelButton(),
               ),
               _getPrimaryButton(),

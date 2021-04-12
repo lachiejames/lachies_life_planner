@@ -7,7 +7,7 @@ import 'package:lachies_life_planner/tasks_screen/widgets/task_widget.dart';
 
 @immutable
 class TasksListView extends StatelessWidget {
-  TasksListView() : super(key: UniqueKey());
+  const TasksListView();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class TasksListView extends StatelessWidget {
   }
 
   Widget _getTasksLoadingView() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(),
     );
   }
@@ -37,7 +37,7 @@ class TasksListView extends StatelessWidget {
   }
 
   Widget _getTasksErrorView() {
-    return Container(
+    return const Center(
       child: Text('something went wrong :('),
     );
   }

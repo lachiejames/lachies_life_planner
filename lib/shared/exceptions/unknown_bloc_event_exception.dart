@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class UnknownBlocEventException implements Exception {
   final Equatable event;
 
-  UnknownBlocEventException(this.event);
+  const UnknownBlocEventException(this.event);
 
   @override
   String toString() {

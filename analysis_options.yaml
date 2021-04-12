@@ -2,6 +2,47 @@ include: package:pedantic/analysis_options.yaml
 
 linter:
   rules:
+    # Adheres to my stylistic preference
+    always_put_required_named_parameters_first: true
+
+    # Great 95% of the time, but bad 5%
+    always_specify_types: false
+
+    # If it's dynamic, then just say so
     avoid_annotating_with_dynamic: false
+
+    # Unnecessary containers => longer build times
+    avoid_unnecessary_containers: true
+
+    # We should always avoid unused parameters
+    avoid_unused_constructor_parameters: true
+
+    # I like sorting my imports
+    directives_ordering: true
+
+    # If a method is async, then it's return type should be Future<T>
+    avoid_void_async: true
+
+    # Types are good, so this rule sucks
     omit_local_variable_types: false
+
+    # Constant constructors result in better performance
+    prefer_const_constructors: true
+
+    # Constant constructors result in better performance
+    prefer_const_constructors_in_immutables: true
+
+    # More constants generally indicates better performance
+    prefer_const_declarations: true
+
+    # More constants generally indicates better performance
+    prefer_const_literals_to_create_immutables: true
+
+    # Better performance than using a Container with width/height
+    sized_box_for_whitespace: true
+
+    # Awaiting futures in bloc `mapEventToState()` results in large performance decrease
     unawaited_futures: false
+
+    # Returning with `await` has no effect on a Future
+    unnecessary_await_in_return: true

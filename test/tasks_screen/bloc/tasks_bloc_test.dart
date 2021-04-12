@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_event.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_state.dart';
+import 'package:lachies_life_planner/tasks_screen/models/task.dart';
 import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 import 'package:mockito/mockito.dart';
 
@@ -28,10 +29,10 @@ void main() {
     blocTest(
       'when getTasksStream() is succeessful, LoadTasksEvent leads to TasksLoadedEvent, which emits [TasksLoadedState]',
       build: () {
-        when(mockTasksRepository.getTasksStream()).thenAnswer((_) => Stream.value(mockTaskList));
+        when(mockTasksRepository.getTasksStream()).thenAnswer((_) => Stream<List<Task>>.value(mockTaskList));
         return TasksBloc(tasksRepository: mockTasksRepository);
       },
-      act: (bloc) => bloc.add(LoadTasksEvent()),
+      act: (dynamic bloc) => bloc.add(LoadTasksEvent()),
       expect: () => [TasksLoadedState(mockTaskList)],
     );
 
@@ -41,52 +42,52 @@ void main() {
         when(mockTasksRepository.getTasksStream()).thenThrow(Exception('something went wrong'));
         return TasksBloc(tasksRepository: mockTasksRepository);
       },
-      act: (bloc) => bloc.add(LoadTasksEvent()),
+      act: (dynamic bloc) => bloc.add(LoadTasksEvent()),
       expect: () => [],
     );
 
     blocTest(
       'TasksLoadedEvent emits [TasksLoadedState]',
       build: () {
-        when(mockTasksRepository.getTasksStream()).thenAnswer((_) => Stream.value(mockTaskList));
+        when(mockTasksRepository.getTasksStream()).thenAnswer((_) => Stream<List<Task>>.value(mockTaskList));
         return TasksBloc(tasksRepository: mockTasksRepository);
       },
-      act: (bloc) => bloc.add(TasksLoadedEvent(mockTaskList)),
+      act: (dynamic bloc) => bloc.add(TasksLoadedEvent(mockTaskList)),
       expect: () => [TasksLoadedState(mockTaskList)],
     );
 
     blocTest(
       'AddTaskEvent emits no state changes',
       build: () => TasksBloc(tasksRepository: mockTasksRepository),
-      act: (bloc) => bloc.add(AddTaskEvent(mockTask)),
+      act: (dynamic bloc) => bloc.add(AddTaskEvent(mockTask)),
       expect: () => [],
     );
 
     blocTest(
       'UpdateTaskEvent emits no state changes',
       build: () => TasksBloc(tasksRepository: mockTasksRepository),
-      act: (bloc) => bloc.add(UpdateTaskEvent(mockTask)),
+      act: (dynamic bloc) => bloc.add(UpdateTaskEvent(mockTask)),
       expect: () => [],
     );
 
     blocTest(
       'DeleteTaskEvent emits no state changes',
       build: () => TasksBloc(tasksRepository: mockTasksRepository),
-      act: (bloc) => bloc.add(DeleteTaskEvent(mockTask)),
+      act: (dynamic bloc) => bloc.add(DeleteTaskEvent(mockTask)),
       expect: () => [],
     );
 
     blocTest(
       'DeleteAllTasksEvent emits no state changes',
       build: () => TasksBloc(tasksRepository: mockTasksRepository),
-      act: (bloc) => bloc.add(DeleteAllTasksEvent()),
+      act: (dynamic bloc) => bloc.add(DeleteAllTasksEvent()),
       expect: () => [],
     );
 
     test('throws exception when an unknown TaskEvent is passed', () async {
       await runZonedGuarded(() async {
         TasksBloc(tasksRepository: mockTasksRepository).add(FakeTasksEvent());
-      }, (exception, stackTrace) {
+      }, (Object exception, StackTrace stackTrace) {
         // We actually throw UnknownBlocEventException, but that cannot be tested
         expect(exception, isA<BlocUnhandledErrorException>());
       });

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AssignmentDBException implements Exception {
   final String message;
 
-  AssignmentDBException(this.message);
+  const AssignmentDBException(this.message);
 
   @override
   String toString() {

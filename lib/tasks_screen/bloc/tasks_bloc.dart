@@ -9,7 +9,7 @@ import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final TasksRepository tasksRepository;
-  StreamSubscription _tasksSubscription;
+  StreamSubscription<List<Task>> _tasksSubscription;
 
   TasksBloc({@required this.tasksRepository}) : super(TasksLoadingState());
 

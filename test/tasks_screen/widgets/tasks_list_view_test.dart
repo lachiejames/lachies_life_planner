@@ -20,13 +20,13 @@ void main() {
 
   Future<void> initTasksListView(WidgetTester tester, [Size size = samsungGalaxyNote5]) async {
     await tester.pumpWidget(
-      BlocProvider.value(
+      BlocProvider<TasksBloc>.value(
         value: tasksBloc,
         child: MaterialApp(
           home: Scaffold(
             body: WidgetTestingWrapper(
               screenSize: size,
-              widget: TasksListView(),
+              widget: const TasksListView(),
             ),
           ),
         ),

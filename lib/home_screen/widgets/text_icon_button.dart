@@ -9,13 +9,13 @@ class TextIconButton extends StatelessWidget {
   final Color color;
   final Color backgroundColor;
 
-  TextIconButton({
+  const TextIconButton({
     @required this.onPressed,
     @required this.text,
     @required this.icon,
     this.color,
     this.backgroundColor,
-  }) : super(key: UniqueKey());
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppBarOverflowMenu extends StatelessWidget {
   final Map<String, Function> menuOptions;
 
-  AppBarOverflowMenu({@required this.menuOptions});
+  const AppBarOverflowMenu({@required this.menuOptions});
 
   @override
   Widget build(BuildContext context) {
