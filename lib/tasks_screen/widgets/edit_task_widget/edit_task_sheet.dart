@@ -43,7 +43,7 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
           Row(
             children: <Widget>[
               const Expanded(
-                child: const EditTaskCancelButton(),
+                child: EditTaskCancelButton(),
               ),
               _getPrimaryButton(),
             ],
