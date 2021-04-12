@@ -13,10 +13,10 @@ import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 import 'package:lachies_life_planner/tasks_screen/bloc/tasks_bloc.dart';
 import 'package:lachies_life_planner/tasks_screen/models/tasks_repository.dart';
 import 'package:lachies_life_planner/tasks_screen/tasks_screen.dart';
+import 'package:mockito/mockito.dart';
 
 import '../utils/device_screen_sizes.dart';
 import '../utils/widget_tester.dart';
-import 'package:mockito/mockito.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 

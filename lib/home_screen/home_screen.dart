@@ -20,8 +20,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: Container(
-        child: Column(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _ExpandedRow(
@@ -68,7 +67,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

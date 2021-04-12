@@ -3,7 +3,7 @@ import 'package:lachies_life_planner/home_screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:lachies_life_planner/shared/widgets/all_bloc_providers.dart';
 
-void main() async {
+Future<void> main() async {
   // Ensures resources are available for pre-launch setup
   WidgetsFlutterBinding.ensureInitialized();
 

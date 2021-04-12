@@ -33,7 +33,7 @@ class _EditTaskWidgetState extends State<EditTaskSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: screenHeightUnit * 65,
       child: Column(
         children: <Widget>[

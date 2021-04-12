@@ -37,7 +37,7 @@ class TasksListView extends StatelessWidget {
   }
 
   Widget _getTasksErrorView() {
-    return Container(
+    return const Center(
       child: const Text('something went wrong :('),
     );
   }
