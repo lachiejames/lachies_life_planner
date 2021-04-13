@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_date_picker.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form_field.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_priority_menu.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_subject_menu.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_time_picker.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_date_picker.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_title_field.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_priority_menu.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_subject_menu.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_time_picker.dart';
 
 class EditAssignmentForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -17,7 +17,7 @@ class EditAssignmentForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          EditAssignmentFormField(
+          EditAssignmentTitleField(
             labelText: 'Title',
             hintText: 'Enter a title',
           ),

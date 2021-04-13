@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-class EditAssignmentFormField extends StatelessWidget {
+class EditAssignmentTitleField extends StatelessWidget {
   final String labelText;
   final String hintText;
 
-  EditAssignmentFormField({
+  EditAssignmentTitleField({
     @required this.labelText,
     @required this.hintText,
   });

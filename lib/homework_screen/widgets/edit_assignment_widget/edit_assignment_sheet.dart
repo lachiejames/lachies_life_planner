@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_add_button.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_cancel_button.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_update_button.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/form/edit_assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
 class EditAssignmentSheet extends StatefulWidget {
