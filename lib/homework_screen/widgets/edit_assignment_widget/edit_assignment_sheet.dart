@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_add_button.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_cancel_button.dart';
-import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_text_field.dart';
+import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_update_button.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 
-@immutable
 class EditAssignmentSheet extends StatefulWidget {
   final Assignment assignment;
 
@@ -17,6 +16,7 @@ class EditAssignmentSheet extends StatefulWidget {
 }
 
 class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
+  final GlobalKey<FormState> editAssignmentformKey = GlobalKey<FormState>();
   TextEditingController _assignmentEditingController;
 
   @override
@@ -34,12 +34,10 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: screenHeightUnit * 65,
+      height: screenHeightUnit * 80,
       child: Column(
         children: <Widget>[
-          EditAssignmentTextField(
-            assignmentEditingController: _assignmentEditingController,
-          ),
+          EditAssignmentForm(formKey: editAssignmentformKey),
           Row(
             children: <Widget>[
               const Expanded(
