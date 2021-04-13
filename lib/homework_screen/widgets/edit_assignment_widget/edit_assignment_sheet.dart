@@ -5,6 +5,7 @@ import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_wid
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_update_button.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
+import 'package:provider/provider.dart';
 
 class EditAssignmentSheet extends StatefulWidget {
   final Assignment assignment;
@@ -33,20 +34,23 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenHeightUnit * 80,
-      child: Column(
-        children: <Widget>[
-          EditAssignmentForm(formKey: editAssignmentformKey),
-          Row(
-            children: <Widget>[
-              const Expanded(
-                child: EditAssignmentCancelButton(),
-              ),
-              _getPrimaryButton(),
-            ],
-          )
-        ],
+    return Provider(
+      create: (BuildContext context) => const Assignment(),
+      child: SizedBox(
+        height: screenHeightUnit * 80,
+        child: Column(
+          children: <Widget>[
+            EditAssignmentForm(formKey: editAssignmentformKey),
+            Row(
+              children: <Widget>[
+                const Expanded(
+                  child: EditAssignmentCancelButton(),
+                ),
+                _getPrimaryButton(),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -55,11 +59,13 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
     return widget.assignment == null
         ? Expanded(
             child: EditAssignmentAddButton(
+              formKey: editAssignmentformKey,
               assignmentEditingController: _assignmentEditingController,
             ),
           )
         : Expanded(
             child: EditAssignmentUpdateButton(
+              formKey: editAssignmentformKey,
               assignmentToUpdate: widget.assignment,
               assignmentEditingController: _assignmentEditingController,
             ),

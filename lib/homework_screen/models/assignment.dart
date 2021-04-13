@@ -13,15 +13,7 @@ class Assignment extends Equatable {
   final String priority;
   final bool isComplete;
 
-  const Assignment({
-    @required this.id,
-    @required this.dateCreated,
-    @required this.title,
-    @required this.subject,
-    @required this.dueDate,
-    @required this.priority,
-    @required this.isComplete,
-  });
+  const Assignment({this.id, this.dateCreated, this.title, this.subject, this.dueDate, this.priority, this.isComplete});
 
   @override
   List<Object> get props => [id, dateCreated, title, subject, dueDate, priority, isComplete];

@@ -5,12 +5,18 @@ import 'package:lachies_life_planner/homework_screen/bloc/assignments_bloc.dart'
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_event.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
+import 'package:provider/provider.dart';
 
 @immutable
 class EditAssignmentAddButton extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+
   final TextEditingController assignmentEditingController;
 
-  const EditAssignmentAddButton({@required this.assignmentEditingController});
+  EditAssignmentAddButton({
+    @required this.formKey,
+    @required this.assignmentEditingController,
+  }) : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +27,22 @@ class EditAssignmentAddButton extends StatelessWidget {
   }
 
   void _onPressed(BuildContext context) {
-    Assignment newAssignment = _generateNewAssignment();
-    BlocProvider.of<AssignmentsBloc>(context).add(AddAssignmentEvent(newAssignment));
+    if (formKey.currentState.validate()) {
+      formKey.currentState.save();
+      BlocProvider.of<AssignmentsBloc>(context).add(AddAssignmentEvent(_generateNewAssignment(context)));
 
-    Navigator.pop(context);
+      Navigator.pop(context);
+    }
   }
 
-  Assignment _generateNewAssignment() {
+  Assignment _generateNewAssignment(BuildContext context) {
     return Assignment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       dateCreated: Timestamp.now(),
-      title: assignmentEditingController.text,
-      subject: 'Science',
-      dueDate: Timestamp.now(),
-      priority: 'medium',
+      title: Provider.of<Assignment>(context, listen: false).title ?? '',
+      subject: Provider.of<Assignment>(context, listen: false).subject ?? '',
+      dueDate: Provider.of<Assignment>(context, listen: false).dueDate ?? Timestamp(0, 0),
+      priority: Provider.of<Assignment>(context, listen: false).priority ?? '',
       isComplete: false,
     );
   }
