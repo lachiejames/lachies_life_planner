@@ -23,37 +23,24 @@ class Assignment extends Equatable {
     return 'Assignment(${toJson()}';
   }
 
-  static bool isValidJsonAssignment(Map<String, dynamic> json) =>
-      json.containsKey('id') &&
-      json.containsKey('dateCreated') &&
-      json.containsKey('title') &&
-      json.containsKey('subject') &&
-      json.containsKey('dueDate') &&
-      json.containsKey('priority') &&
-      json.containsKey('isComplete') &&
-      json.keys.length == 7 &&
-      json['id'].runtimeType == String &&
-      json['dateCreated'].runtimeType == Timestamp &&
-      json['title'].runtimeType == String &&
-      json['subject'].runtimeType == String &&
-      json['dueDate'].runtimeType == Timestamp &&
-      json['priority'].runtimeType == String &&
-      json['isComplete'].runtimeType == bool;
+  static bool isValidJsonAssignment(Map<String, dynamic> json) {
+    return true;
+  }
 
   static Assignment fromJson(Map<String, dynamic> json) {
-    if (!isValidJsonAssignment(json)) {
+    try {
+      return Assignment(
+        id: json['id'],
+        dateCreated: json['dateCreated'],
+        title: json['title'],
+        subject: json['subject'],
+        dueDate: json['dueDate'],
+        priority: json['priority'],
+        isComplete: json['isComplete'],
+      );
+    } catch (e) {
       throw InvalidAssignmentException(json);
     }
-
-    return Assignment(
-      id: json['id'],
-      dateCreated: json['dateCreated'],
-      title: json['title'],
-      subject: json['subject'],
-      dueDate: json['dueDate'],
-      priority: json['priority'],
-      isComplete: json['isComplete'],
-    );
   }
 
   Map<String, dynamic> toJson() {

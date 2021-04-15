@@ -39,19 +39,23 @@ class EditAssignmentAddButton extends StatelessWidget {
   Timestamp _getDueDate(BuildContext context) {
     DateTime dueDate = Provider.of<NewAssignment>(context, listen: false).dueDate;
     TimeOfDay dueTime = Provider.of<NewAssignment>(context, listen: false).dueTime;
-    dueDate.add(Duration(hours: dueTime.hour, minutes: dueTime.minute));
+    dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute));
 
-    return Timestamp.fromDate(dueDate);
+    if (dueDate != null) {
+      return Timestamp.fromDate(dueDate);
+    } else {
+      return null;
+    }
   }
 
   Assignment _generateNewAssignment(BuildContext context) {
     return Assignment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       dateCreated: Timestamp.now(),
-      title: Provider.of<NewAssignment>(context, listen: false).title ?? '',
-      subject: Provider.of<NewAssignment>(context, listen: false).subject ?? '',
+      title: Provider.of<NewAssignment>(context, listen: false).title,
+      subject: Provider.of<NewAssignment>(context, listen: false).subject,
       dueDate: _getDueDate(context),
-      priority: Provider.of<NewAssignment>(context, listen: false).priority ?? '',
+      priority: Provider.of<NewAssignment>(context, listen: false).priority,
       isComplete: false,
     );
   }
