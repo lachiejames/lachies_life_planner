@@ -18,7 +18,7 @@ class EditAssignmentSheet extends StatefulWidget {
 }
 
 class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
-  final GlobalKey<FormState> editAssignmentformKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController _assignmentEditingController;
 
   @override
@@ -36,13 +36,13 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
   @override
   Widget build(BuildContext context) {
     return Provider<NewAssignment>(
-      create: (BuildContext context) => NewAssignment(),
+      create: (BuildContext context) => NewAssignment(formKey),
       builder: (BuildContext context, Widget widget) {
         return SizedBox(
           height: screenHeightUnit * 80,
           child: Column(
             children: <Widget>[
-              EditAssignmentForm(formKey: editAssignmentformKey),
+              EditAssignmentForm(formKey: formKey),
               Row(
                 children: <Widget>[
                   const Expanded(
@@ -62,13 +62,13 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
     return widget.assignment == null
         ? Expanded(
             child: EditAssignmentAddButton(
-              formKey: editAssignmentformKey,
+              formKey: formKey,
               assignmentEditingController: _assignmentEditingController,
             ),
           )
         : Expanded(
             child: EditAssignmentUpdateButton(
-              formKey: editAssignmentformKey,
+              formKey: formKey,
               assignmentToUpdate: widget.assignment,
               assignmentEditingController: _assignmentEditingController,
             ),
@@ -83,4 +83,3 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
     );
   }
 }
-

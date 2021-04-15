@@ -36,9 +36,7 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
                     child: Text(option),
                   ))
               .toList(),
-          onChanged: (String option) {
-            print(option);
-          },
+          onChanged: (String _) {},
         ),
       ),
     );
