@@ -37,10 +37,10 @@ class EditAssignmentUpdateButton extends StatelessWidget {
     return Assignment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       dateCreated: Timestamp.now(),
-      title: Provider.of<Assignment>(context, listen: false).title ?? '',
-      subject: Provider.of<Assignment>(context, listen: false).subject ?? '',
-      dueDate: Provider.of<Assignment>(context, listen: false).dueDate ?? Timestamp(0, 0),
-      priority: Provider.of<Assignment>(context, listen: false).priority ?? '',
+      title: Provider.of<Assignment>(context, listen: false).title,
+      subject: Provider.of<Assignment>(context, listen: false).subject,
+      dueDate: Provider.of<Assignment>(context, listen: false).dueDate,
+      priority: Provider.of<Assignment>(context, listen: false).priority,
       isComplete: false,
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
+import 'package:provider/provider.dart';
 
 class EditAssignmentSubjectMenu extends StatelessWidget {
   @override
@@ -13,6 +15,9 @@ class EditAssignmentSubjectMenu extends StatelessWidget {
       ),
       child: Center(
         child: DropdownButtonFormField(
+          onSaved: (String selectedSubject) {
+            Provider.of<NewAssignment>(context, listen: false).subject = selectedSubject;
+          },
           decoration: const InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Subject',

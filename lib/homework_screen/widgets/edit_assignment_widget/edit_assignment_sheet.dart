@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
+import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_add_button.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_cancel_button.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_form.dart';
@@ -34,24 +35,26 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (BuildContext context) => const Assignment(),
-      child: SizedBox(
-        height: screenHeightUnit * 80,
-        child: Column(
-          children: <Widget>[
-            EditAssignmentForm(formKey: editAssignmentformKey),
-            Row(
-              children: <Widget>[
-                const Expanded(
-                  child: EditAssignmentCancelButton(),
-                ),
-                _getPrimaryButton(),
-              ],
-            )
-          ],
-        ),
-      ),
+    return Provider<NewAssignment>(
+      create: (BuildContext context) => NewAssignment(),
+      builder: (BuildContext context, Widget widget) {
+        return SizedBox(
+          height: screenHeightUnit * 80,
+          child: Column(
+            children: <Widget>[
+              EditAssignmentForm(formKey: editAssignmentformKey),
+              Row(
+                children: <Widget>[
+                  const Expanded(
+                    child: EditAssignmentCancelButton(),
+                  ),
+                  _getPrimaryButton(),
+                ],
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -80,3 +83,4 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
     );
   }
 }
+

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_bloc.dart';
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_event.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
+import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
 import 'package:provider/provider.dart';
 
@@ -35,14 +36,22 @@ class EditAssignmentAddButton extends StatelessWidget {
     }
   }
 
+  Timestamp _getDueDate(BuildContext context) {
+    DateTime dueDate = Provider.of<NewAssignment>(context, listen: false).dueDate;
+    TimeOfDay dueTime = Provider.of<NewAssignment>(context, listen: false).dueTime;
+    dueDate.add(Duration(hours: dueTime.hour, minutes: dueTime.minute));
+
+    return Timestamp.fromDate(dueDate);
+  }
+
   Assignment _generateNewAssignment(BuildContext context) {
     return Assignment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       dateCreated: Timestamp.now(),
-      title: Provider.of<Assignment>(context, listen: false).title ?? '',
-      subject: Provider.of<Assignment>(context, listen: false).subject ?? '',
-      dueDate: Provider.of<Assignment>(context, listen: false).dueDate ?? Timestamp(0, 0),
-      priority: Provider.of<Assignment>(context, listen: false).priority ?? '',
+      title: Provider.of<NewAssignment>(context, listen: false).title ?? '',
+      subject: Provider.of<NewAssignment>(context, listen: false).subject ?? '',
+      dueDate: _getDueDate(context),
+      priority: Provider.of<NewAssignment>(context, listen: false).priority ?? '',
       isComplete: false,
     );
   }
