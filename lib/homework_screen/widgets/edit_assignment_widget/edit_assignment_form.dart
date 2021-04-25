@@ -17,10 +17,7 @@ class EditAssignmentForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const EditAssignmentTitleField(
-            labelText: 'Title',
-            hintText: 'Enter a title',
-          ),
+          const EditAssignmentTitleField(),
           EditAssignmentSubjectMenu(),
           Row(
             children: [

@@ -36,7 +36,8 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
   @override
   Widget build(BuildContext context) {
     return Provider<NewAssignment>(
-      create: (BuildContext context) => NewAssignment(formKey),
+      create: (BuildContext context) =>
+          NewAssignment.fromAssignment(widget.assignment, formKey) ?? NewAssignment(formKey),
       builder: (BuildContext context, Widget widget) {
         return SizedBox(
           height: screenHeightUnit * 80,

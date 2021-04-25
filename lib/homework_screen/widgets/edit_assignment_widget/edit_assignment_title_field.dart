@@ -4,13 +4,7 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentTitleField extends StatelessWidget {
-  final String labelText;
-  final String hintText;
-
-  const EditAssignmentTitleField({
-    @required this.labelText,
-    @required this.hintText,
-  });
+  const EditAssignmentTitleField();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class EditAssignmentTitleField extends StatelessWidget {
           },
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            labelText: labelText,
+            labelText: 'Title',
             labelStyle: const TextStyle(color: Colors.black),
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
@@ -37,7 +31,7 @@ class EditAssignmentTitleField extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: hintText,
+            hintText: Provider.of<NewAssignment>(context, listen: false).title ?? 'Enter a title',
           ),
         ),
       ),
