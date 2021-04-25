@@ -10,7 +10,6 @@ import 'package:lachies_life_planner/homework_screen/widgets/assignment_widget.d
 import 'package:lachies_life_planner/homework_screen/widgets/assignments_list_view.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
-
 import '../../utils/device_screen_sizes.dart';
 import '../../utils/mock_firestore_data.dart';
 import '../../utils/widget_tester.dart';
@@ -68,7 +67,7 @@ void main() {
         }
 
         await flushAllMicrotasks(tester);
-        expect(find.byType(AssignmentWidget), findsNWidgets(10));
+        expect(find.byType(AssignmentWidget), findsNWidgets(5));
       });
     });
   });

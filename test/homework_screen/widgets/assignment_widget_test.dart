@@ -9,7 +9,6 @@ import 'package:lachies_life_planner/homework_screen/widgets/assignment_widget.d
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_sheet.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
-
 import '../../utils/device_screen_sizes.dart';
 import '../../utils/mock_firestore_data.dart';
 import '../../utils/repository_operations.dart';

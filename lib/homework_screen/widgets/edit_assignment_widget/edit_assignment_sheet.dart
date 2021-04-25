@@ -40,18 +40,20 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
       builder: (BuildContext context, Widget widget) {
         return SizedBox(
           height: screenHeightUnit * 80,
-          child: Column(
-            children: <Widget>[
-              EditAssignmentForm(formKey: formKey),
-              Row(
-                children: <Widget>[
-                  const Expanded(
-                    child: EditAssignmentCancelButton(),
-                  ),
-                  _getPrimaryButton(),
-                ],
-              )
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                EditAssignmentForm(formKey: formKey),
+                Row(
+                  children: <Widget>[
+                    const Expanded(
+                      child: EditAssignmentCancelButton(),
+                    ),
+                    _getPrimaryButton(),
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },
