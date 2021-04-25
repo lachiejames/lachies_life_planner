@@ -23,6 +23,7 @@ class EditAssignmentTitleField extends StatelessWidget {
       ),
       child: Center(
         child: TextFormField(
+          autofocus: true,
           onSaved: (String enteredTitle) {
             Provider.of<NewAssignment>(context, listen: false).title = enteredTitle;
           },
