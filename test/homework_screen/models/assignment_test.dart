@@ -40,21 +40,6 @@ void main() {
         expect(parsedAssignment.toString(), mockAssignment.toString());
       });
 
-      test('should throw InvalidAssignmentException when incorrectly formatted assignment is passed', () {
-        Map<String, dynamic> invalidJsonAssignment = {
-          'id': '1234567890',
-          'dateCreated': Timestamp(12345, 67890),
-          'name': 'Assignment 1',
-          'subject': 'Science',
-          'dueDate': Timestamp(123456, 0),
-          'priority': 'Low',
-          'isComplete': false
-        };
-
-        // For throwsA() to work, we must wrap the error-throwing function inside a zero-argument function
-        expect(() => Assignment.fromJson(invalidJsonAssignment), throwsA(isA<InvalidAssignmentException>()));
-      });
-
       test('should throw InvalidAssignmentException when incorrect types are passed', () async {
         Map<String, dynamic> invalidJsonAssignment = {
           'id': '1234567890',

@@ -3,6 +3,7 @@ import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignments_repository.dart';
+import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_exception.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
 import '../../utils/mock_firestore_data.dart';
@@ -30,7 +31,7 @@ void main() {
     });
 
     test('getAssignmentByID() throws an error when the assignment does not exist', () async {
-      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<InvalidAssignmentException>()));
     });
 
     test('updateAssignment() updates assignment in Firestore', () async {
@@ -62,7 +63,7 @@ void main() {
       await assignmentsRepository.addAssignment(mockAssignment);
       await assignmentsRepository.deleteAssignment(mockAssignment);
 
-      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<InvalidAssignmentException>()));
     });
 
     test('getAllAssignments() returns all assignments from Firestore', () async {
@@ -86,7 +87,7 @@ void main() {
       await assignmentsRepository.deleteAllAssignments();
 
       for (Assignment assignment in mockAssignmentList) {
-        await expectLater(getAssignmentByID(assignment.id), throwsA(isA<NoSuchMethodError>()));
+        await expectLater(getAssignmentByID(assignment.id), throwsA(isA<InvalidAssignmentException>()));
       }
     });
 
