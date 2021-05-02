@@ -17,19 +17,20 @@ class EditAssignmentTitleField extends StatelessWidget {
       ),
       child: Center(
         child: TextFormField(
+          initialValue: Provider.of<AssignmentForm>(context, listen: false).title ?? '',
           autofocus: true,
           onSaved: (String enteredTitle) => _onSaved(context, enteredTitle),
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Title',
-            labelStyle: const TextStyle(color: Colors.black),
-            focusedBorder: const OutlineInputBorder(
+            labelStyle: TextStyle(color: Colors.black),
+            focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            enabledBorder: const OutlineInputBorder(
+            enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: Provider.of<AssignmentForm>(context, listen: false).title ?? 'Enter a title',
+            hintText: 'Enter a title',
           ),
         ),
       ),

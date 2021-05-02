@@ -3,9 +3,14 @@ import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
-class EditAssignmentTimePicker extends StatelessWidget {
+class EditAssignmentTimePicker extends StatefulWidget {
   const EditAssignmentTimePicker();
 
+  @override
+  _EditAssignmentTimePickerState createState() => _EditAssignmentTimePickerState();
+}
+
+class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,11 +21,9 @@ class EditAssignmentTimePicker extends StatelessWidget {
         screenHeightUnit * 0,
       ),
       child: TextFormField(
-        onSaved: (String timeEntered) => _onSaved(context, timeEntered),
         onTap: () => _selectTimeFromTimePicker(context),
         readOnly: true,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.alarm),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: 'Due Time',
           labelStyle: const TextStyle(color: Colors.black),
@@ -30,30 +33,36 @@ class EditAssignmentTimePicker extends StatelessWidget {
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          hintText: mapTimeToString(Provider.of<AssignmentForm>(context, listen: false).dueTime),
+          hintText: _getHintText(context),
         ),
       ),
     );
   }
 
-  void _onSaved(BuildContext context, String timeEntered) {
-    Provider.of<AssignmentForm>(context, listen: false).dueTime = TimeOfDay.fromDateTime(DateTime.tryParse(timeEntered));
-  }
-
   Future<void> _selectTimeFromTimePicker(BuildContext context) async {
     TimeOfDay selectedTime = await showTimePicker(
       context: context,
-      initialTime: Provider.of<AssignmentForm>(context).dueTime ?? TimeOfDay.now(),
+      initialTime: Provider.of<AssignmentForm>(context, listen: false).dueTime ?? TimeOfDay.now(),
     );
 
-    Provider.of<AssignmentForm>(context, listen: false).dueTime = selectedTime;
+    setState(() {
+      Provider.of<AssignmentForm>(context, listen: false).dueTime = selectedTime;
+    });
   }
 
-  String mapTimeToString(TimeOfDay timeOfDay) {
+  String _getHintText(BuildContext context) {
+    TimeOfDay timeOfDay = Provider.of<AssignmentForm>(context).dueTime;
     if (timeOfDay != null) {
-      return '${timeOfDay.hourOfPeriod}:${timeOfDay.minute} ${timeOfDay.period == DayPeriod.am ? 'AM' : 'PM'}';
+      return _mapTimeToString(timeOfDay);
     } else {
       return 'hh:mm';
     }
+  }
+
+  String _mapTimeToString(TimeOfDay timeOfDay) {
+    String hour = timeOfDay?.hourOfPeriod?.toString()?.padLeft(2, '0');
+    String minute = timeOfDay?.minute?.toString()?.padLeft(2, '0');
+    String period = timeOfDay?.period == DayPeriod.am ? 'AM' : 'PM';
+    return '$hour:$minute $period';
   }
 }

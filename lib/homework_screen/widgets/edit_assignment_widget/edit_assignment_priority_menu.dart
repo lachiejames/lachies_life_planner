@@ -17,7 +17,7 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
       ),
       child: Center(
         child: DropdownButtonFormField(
-          onSaved: (String selectedPriority) => _onSaved(context, selectedPriority),
+          onSaved: (String selectedPriority) => _updateForm(context, selectedPriority),
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Priority',
@@ -31,13 +31,13 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
             hintText: Provider.of<AssignmentForm>(context, listen: false).priority ?? 'Choose a priority',
           ),
           items: _getPriorities(),
-          onChanged: (String _) {},
+          onChanged: (String selectedPriority) => _updateForm(context, selectedPriority),
         ),
       ),
     );
   }
 
-  void _onSaved(BuildContext context, String selectedPriority) {
+  void _updateForm(BuildContext context, String selectedPriority) {
     Provider.of<AssignmentForm>(context, listen: false).priority = selectedPriority;
   }
 

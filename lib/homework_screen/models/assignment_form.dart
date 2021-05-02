@@ -32,9 +32,17 @@ class AssignmentForm {
       dateCreated: dateCreated ?? DateTime.now(),
       title: title,
       subject: subject,
-      dueDate: dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute)),
+      dueDate: _getDueDate(),
       priority: priority,
       isComplete: false,
     );
+  }
+
+  DateTime _getDueDate() {
+    if (dueTime != null) {
+      return dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute));
+    } else {
+      return dueDate;
+    }
   }
 }
