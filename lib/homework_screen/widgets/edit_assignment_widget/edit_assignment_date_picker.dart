@@ -3,28 +3,8 @@ import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
-class EditAssignmentDatePicker extends StatefulWidget {
+class EditAssignmentDatePicker extends StatelessWidget {
   const EditAssignmentDatePicker();
-
-  @override
-  _EditAssignmentDatePickerState createState() => _EditAssignmentDatePickerState();
-}
-
-class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
-  TextEditingController _datePickerTextEditingController;
-  DateTime _currentDateEntered;
-
-  @override
-  void initState() {
-    super.initState();
-    _initTextController();
-  }
-
-  @override
-  void dispose() {
-    _datePickerTextEditingController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +16,9 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
         screenHeightUnit * 0,
       ),
       child: TextFormField(
-        onSaved: (String _) => _onSaved(),
-        onTap: () => _selectDateFromDatePicker(),
+        onSaved: (String dateEntered) => _onSaved(context, dateEntered),
+        onTap: () => _selectDateFromDatePicker(context),
         readOnly: true,
-        controller: _datePickerTextEditingController,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.calendar_today),
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -51,38 +30,29 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          hintText: mapDateToString(Provider.of<AssignmentForm>(context).dueDate),
+          hintText: _getHintText(context),
         ),
       ),
     );
   }
 
-  void _initTextController() {
-    _datePickerTextEditingController = TextEditingController.fromValue(
-      const TextEditingValue(
-        text: '',
-      ),
-    );
+  void _onSaved(BuildContext context, String dateEntered) {
+    Provider.of<AssignmentForm>(context, listen: false).dueDate = DateTime.tryParse(dateEntered);
   }
 
-  void _onSaved() {
-    Provider.of<AssignmentForm>(context, listen: false).dueDate = _currentDateEntered;
-  }
-
-  Future<void> _selectDateFromDatePicker() async {
+  Future<void> _selectDateFromDatePicker(BuildContext context) async {
     DateTime selectedDate = await showDatePicker(
       context: context,
-      initialDate: _currentDateEntered ?? DateTime.now(),
+      initialDate: Provider.of<AssignmentForm>(context, listen: false).dueDate ?? DateTime.now(),
       firstDate: DateTime.utc(1970),
       lastDate: DateTime.utc(2069, 4, 20),
     );
-    if (selectedDate != null) {
-      _currentDateEntered = selectedDate;
-      _datePickerTextEditingController.text = mapDateToString(selectedDate);
-    }
+
+    Provider.of<AssignmentForm>(context, listen: false).dueDate = selectedDate;
   }
 
-  String mapDateToString(DateTime dateTime) {
+  String _getHintText(BuildContext context) {
+    DateTime dateTime = Provider.of<AssignmentForm>(context).dueDate;
     if (dateTime != null) {
       return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
     } else {

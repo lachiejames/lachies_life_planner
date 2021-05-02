@@ -28,7 +28,7 @@ class EditAssignmentSubjectMenu extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: Provider.of<AssignmentForm>(context).subject ?? 'Choose a subject',
+            hintText: Provider.of<AssignmentForm>(context, listen: false).subject ?? 'Choose a subject',
           ),
           items: getSubjects(),
           onChanged: (String _) {},

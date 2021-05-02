@@ -13,7 +13,7 @@ class EditAssignmentForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: Provider.of<AssignmentForm>(context).formKey,
+      key: Provider.of<AssignmentForm>(context, listen: false).formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

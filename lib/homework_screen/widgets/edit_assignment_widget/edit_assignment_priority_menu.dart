@@ -28,7 +28,7 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: Provider.of<AssignmentForm>(context).priority ?? 'Choose a priority',
+            hintText: Provider.of<AssignmentForm>(context, listen: false).priority ?? 'Choose a priority',
           ),
           items: _getPriorities(),
           onChanged: (String _) {},

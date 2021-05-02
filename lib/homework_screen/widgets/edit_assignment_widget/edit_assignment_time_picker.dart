@@ -3,28 +3,8 @@ import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
-class EditAssignmentTimePicker extends StatefulWidget {
+class EditAssignmentTimePicker extends StatelessWidget {
   const EditAssignmentTimePicker();
-
-  @override
-  _EditAssignmentTimePickerState createState() => _EditAssignmentTimePickerState();
-}
-
-class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
-  TextEditingController _timePickerTextEditingController;
-  TimeOfDay _currentTimeEntered;
-
-  @override
-  void initState() {
-    super.initState();
-    _initTextController();
-  }
-
-  @override
-  void dispose() {
-    _timePickerTextEditingController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +16,9 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
         screenHeightUnit * 0,
       ),
       child: TextFormField(
-        onSaved: (String _) => _onSaved(),
-        onTap: () => _selectTimeFromTimePicker(),
+        onSaved: (String timeEntered) => _onSaved(context, timeEntered),
+        onTap: () => _selectTimeFromTimePicker(context),
         readOnly: true,
-        controller: _timePickerTextEditingController,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.alarm),
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -51,37 +30,23 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          hintText: mapTimeToString(Provider.of<AssignmentForm>(context).dueTime),
+          hintText: mapTimeToString(Provider.of<AssignmentForm>(context, listen: false).dueTime),
         ),
       ),
     );
   }
 
-  void _initTextController() {
-    _timePickerTextEditingController = TextEditingController.fromValue(
-      const TextEditingValue(
-        text: '',
-      ),
-    );
+  void _onSaved(BuildContext context, String timeEntered) {
+    Provider.of<AssignmentForm>(context, listen: false).dueTime = TimeOfDay.fromDateTime(DateTime.tryParse(timeEntered));
   }
 
-  void _onSaved() {
-    Provider.of<AssignmentForm>(context, listen: false).dueTime = _currentTimeEntered;
-  }
-
-  Future<void> _selectTimeFromTimePicker() async {
+  Future<void> _selectTimeFromTimePicker(BuildContext context) async {
     TimeOfDay selectedTime = await showTimePicker(
       context: context,
-      initialTime: _currentTimeEntered ?? TimeOfDay.now(),
+      initialTime: Provider.of<AssignmentForm>(context).dueTime ?? TimeOfDay.now(),
     );
-    if (selectedTime != null) {
-      _currentTimeEntered = selectedTime;
-      _timePickerTextEditingController.text = _getTimeString(selectedTime);
-    }
-  }
 
-  String _getTimeString(TimeOfDay selectedTime) {
-    return '${selectedTime.hourOfPeriod}:${selectedTime.minute} ${selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}';
+    Provider.of<AssignmentForm>(context, listen: false).dueTime = selectedTime;
   }
 
   String mapTimeToString(TimeOfDay timeOfDay) {
