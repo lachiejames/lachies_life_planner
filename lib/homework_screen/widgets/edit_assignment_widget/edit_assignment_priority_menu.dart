@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +18,7 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
       child: Center(
         child: DropdownButtonFormField(
           onSaved: (String selectedPriority) {
-            Provider.of<NewAssignment>(context, listen: false).priority = selectedPriority;
+            Provider.of<AssignmentForm>(context, listen: false).priority = selectedPriority;
           },
           decoration: const InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,

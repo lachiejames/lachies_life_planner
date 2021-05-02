@@ -70,13 +70,13 @@ void main() {
       await tap(tester, find.text('Add'));
 
       // Cannot use `getAssignmentByID()` since ID is generated at runtime
-      Assignment newAssignment = (await getAllAssignments())[0];
-      expect(newAssignment.title, 'test assignment');
-      expect(newAssignment.isComplete, false);
+      Assignment assignmentForm = (await getAllAssignments())[0];
+      expect(assignmentForm.title, 'test assignment');
+      expect(assignmentForm.isComplete, false);
 
       // These are randomly generated, so cannot test with an explicit value
-      expect(newAssignment.dateCreated, isNotNull);
-      expect(newAssignment.id, isNotNull);
+      expect(assignmentForm.dateCreated, isNotNull);
+      expect(assignmentForm.id, isNotNull);
     }, skip: true);
 
     testWidgets('tapping "Add" closes the sheet', (WidgetTester tester) async {

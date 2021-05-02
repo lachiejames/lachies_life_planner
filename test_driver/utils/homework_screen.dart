@@ -17,9 +17,9 @@ Future<void> populateAssignmentsList(FlutterDriver driver) async {
   await applyStreamBugWorkAround();
 }
 
-Future<void> updateAssignment(FlutterDriver driver, String oldAssignmentName, String newAssignmentName) async {
+Future<void> updateAssignment(FlutterDriver driver, String oldAssignmentName, String assignmentFormName) async {
   await driver.tap(find.text(oldAssignmentName));
-  await enterText(driver, newAssignmentName);
+  await enterText(driver, assignmentFormName);
   await driver.tap(find.text('Update'));
 }
 

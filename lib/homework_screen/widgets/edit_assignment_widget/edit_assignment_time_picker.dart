@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +37,7 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
       ),
       child: TextFormField(
         onSaved: (String _) {
-          Provider.of<NewAssignment>(context, listen: false).dueTime = _currentTimeEntered;
+          Provider.of<AssignmentForm>(context, listen: false).dueTime = _currentTimeEntered;
         },
         onTap: () => _selectTimeFromTimePicker(),
         readOnly: true,

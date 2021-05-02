@@ -11,7 +11,6 @@ void main() {
       WidgetTestingWrapper(
         screenSize: size,
         widget: EditAssignmentAddButton(
-          formKey: GlobalKey<FormState>(),
           assignmentEditingController: TextEditingController.fromValue(
             const TextEditingValue(text: 'test'),
           ),

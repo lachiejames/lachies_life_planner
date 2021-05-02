@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lachies_life_planner/homework_screen/models/new_assignment.dart';
+import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,7 @@ class EditAssignmentTitleField extends StatelessWidget {
         child: TextFormField(
           autofocus: true,
           onSaved: (String enteredTitle) {
-            Provider.of<NewAssignment>(context, listen: false).title = enteredTitle;
+            Provider.of<AssignmentForm>(context, listen: false).title = enteredTitle;
           },
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -31,7 +31,7 @@ class EditAssignmentTitleField extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: Provider.of<NewAssignment>(context, listen: false).title ?? 'Enter a title',
+            hintText: Provider.of<AssignmentForm>(context, listen: false).title ?? 'Enter a title',
           ),
         ),
       ),
