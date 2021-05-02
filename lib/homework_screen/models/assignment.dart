@@ -24,7 +24,21 @@ class Assignment extends Equatable {
   }
 
   static bool isValidJsonAssignment(Map<String, dynamic> json) {
-    return true;
+    return json.containsKey('id') &&
+        json.containsKey('dateCreated') &&
+        json.containsKey('title') &&
+        json.containsKey('subject') &&
+        json.containsKey('dueDate') &&
+        json.containsKey('priority') &&
+        json.containsKey('isComplete') &&
+        json.keys.length == 7 &&
+        json['id'].runtimeType == String &&
+        json['dateCreated'].runtimeType == Timestamp &&
+        json['title'].runtimeType == String &&
+        json['subject'].runtimeType == String &&
+        json['dueDate'].runtimeType == Timestamp &&
+        json['priority'].runtimeType == String &&
+        json['isComplete'].runtimeType == bool;
   }
 
   static Assignment fromJson(Map<String, dynamic> json) {

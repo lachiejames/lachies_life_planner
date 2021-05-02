@@ -3,7 +3,6 @@ import 'package:test/test.dart';
 
 import 'utils/homework_screen.dart';
 import 'utils/shared.dart';
-import 'utils/tasks_screen.dart';
 
 void main() {
   FlutterDriver driver;

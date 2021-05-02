@@ -4,6 +4,8 @@ import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 
 class NewAssignment {
   final GlobalKey<FormState> formKey;
+  String id;
+  Timestamp dateCreated;
   String title;
   String subject;
   DateTime dueDate;
@@ -15,6 +17,8 @@ class NewAssignment {
   static NewAssignment fromAssignment(Assignment assignment, GlobalKey<FormState> assignedFormKey) {
     DateTime dateTime = assignment.dueDate?.toDate();
     NewAssignment newAssignment = NewAssignment(assignedFormKey);
+    newAssignment.id = assignment.id;
+    newAssignment.dateCreated = assignment.dateCreated;
     newAssignment.title = assignment.title;
     newAssignment.subject = assignment.subject;
     newAssignment.dueDate = dateTime == null ? null : DateTime(dateTime?.year, dateTime?.month, dateTime?.day);
