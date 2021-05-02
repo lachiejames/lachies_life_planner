@@ -36,9 +36,7 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
         screenHeightUnit * 0,
       ),
       child: TextFormField(
-        onSaved: (String _) {
-          Provider.of<AssignmentForm>(context, listen: false).dueDate = _currentDateEntered;
-        },
+        onSaved: (String _) => _onSaved(),
         onTap: () => _selectDateFromDatePicker(),
         readOnly: true,
         controller: _datePickerTextEditingController,
@@ -65,6 +63,10 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
         text: '',
       ),
     );
+  }
+
+  void _onSaved() {
+    Provider.of<AssignmentForm>(context, listen: false).dueDate = _currentDateEntered;
   }
 
   Future<void> _selectDateFromDatePicker() async {

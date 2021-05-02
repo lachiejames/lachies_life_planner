@@ -18,9 +18,7 @@ class EditAssignmentTitleField extends StatelessWidget {
       child: Center(
         child: TextFormField(
           autofocus: true,
-          onSaved: (String enteredTitle) {
-            Provider.of<AssignmentForm>(context, listen: false).title = enteredTitle;
-          },
+          onSaved: (String enteredTitle) => _onSaved(context, enteredTitle),
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Title',
@@ -36,5 +34,9 @@ class EditAssignmentTitleField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onSaved(BuildContext context, String enteredTitle) {
+    Provider.of<AssignmentForm>(context, listen: false).title = enteredTitle;
   }
 }

@@ -36,9 +36,7 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
         screenHeightUnit * 0,
       ),
       child: TextFormField(
-        onSaved: (String _) {
-          Provider.of<AssignmentForm>(context, listen: false).dueTime = _currentTimeEntered;
-        },
+        onSaved: (String _) => _onSaved(),
         onTap: () => _selectTimeFromTimePicker(),
         readOnly: true,
         controller: _timePickerTextEditingController,
@@ -65,6 +63,10 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
         text: '',
       ),
     );
+  }
+
+  void _onSaved() {
+    Provider.of<AssignmentForm>(context, listen: false).dueTime = _currentTimeEntered;
   }
 
   Future<void> _selectTimeFromTimePicker() async {
