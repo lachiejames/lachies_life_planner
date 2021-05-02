@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_exception.dart';
@@ -6,10 +5,10 @@ import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_e
 @immutable
 class Assignment extends Equatable {
   final String id;
-  final Timestamp dateCreated;
+  final DateTime dateCreated;
   final String title;
   final String subject;
-  final Timestamp dueDate;
+  final DateTime dueDate;
   final String priority;
   final bool isComplete;
 
@@ -23,47 +22,29 @@ class Assignment extends Equatable {
     return 'Assignment(${toJson()}';
   }
 
-  static bool isValidJsonAssignment(Map<String, dynamic> json) {
-    return json.containsKey('id') &&
-        json.containsKey('dateCreated') &&
-        json.containsKey('title') &&
-        json.containsKey('subject') &&
-        json.containsKey('dueDate') &&
-        json.containsKey('priority') &&
-        json.containsKey('isComplete') &&
-        json.keys.length == 7 &&
-        json['id'].runtimeType == String &&
-        json['dateCreated'].runtimeType == Timestamp &&
-        json['title'].runtimeType == String &&
-        json['subject'].runtimeType == String &&
-        json['dueDate'].runtimeType == Timestamp &&
-        json['priority'].runtimeType == String &&
-        json['isComplete'].runtimeType == bool;
-  }
-
   static Assignment fromJson(Map<String, dynamic> json) {
     try {
       return Assignment(
         id: json['id'],
-        dateCreated: json['dateCreated'],
+        dateCreated: json['dateCreated'] != null ? DateTime.tryParse(json['dateCreated']) : null,
         title: json['title'],
         subject: json['subject'],
-        dueDate: json['dueDate'],
+        dueDate: json['dueDate'] != null ? DateTime.tryParse(json['dueDate']) : null,
         priority: json['priority'],
         isComplete: json['isComplete'],
       );
     } catch (e) {
-      throw InvalidAssignmentException(json);
+      throw InvalidAssignmentException(e, json);
     }
   }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
-      'dateCreated': dateCreated,
+      'dateCreated': dateCreated.toString(),
       'title': title,
       'subject': subject,
-      'dueDate': dueDate,
+      'dueDate': dueDate.toString(),
       'priority': priority,
       'isComplete': isComplete,
     };
@@ -72,7 +53,7 @@ class Assignment extends Equatable {
   Assignment copyWith({
     String title,
     String subject,
-    Timestamp dueDate,
+    DateTime dueDate,
     String priority,
     bool isComplete,
   }) {

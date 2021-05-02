@@ -42,12 +42,12 @@ void main() {
       Assignment assignmentInRepository = await getAssignmentByID(mockAssignment.id);
       expect(assignmentInRepository.toJson(), {
         'id': '1234567890',
-        'dateCreated': Timestamp(12345, 67890),
+        'dateCreated': '2025-03-11 11:02:00.000',
         'title': 'new assignment title',
         'subject': 'Science',
-        'dueDate': Timestamp(123456, 0),
+        'dueDate': '2025-03-14 11:02:00.000',
         'priority': 'Low',
-        'isComplete': false,
+        'isComplete': false
       });
     });
 

@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 
 class AssignmentForm {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String id;
-  Timestamp dateCreated;
+  DateTime dateCreated;
   String title;
   String subject;
   DateTime dueDate;
@@ -15,7 +14,7 @@ class AssignmentForm {
   AssignmentForm();
 
   static AssignmentForm fromAssignment(Assignment assignment) {
-    DateTime dateTime = assignment.dueDate?.toDate();
+    DateTime dateTime = assignment.dueDate;
     AssignmentForm assignmentForm = AssignmentForm();
     assignmentForm.id = assignment.id;
     assignmentForm.dateCreated = assignment.dateCreated;
@@ -27,23 +26,13 @@ class AssignmentForm {
     return assignmentForm;
   }
 
-  Timestamp _getDueDate() {
-    dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute));
-
-    if (dueDate != null) {
-      return Timestamp.fromDate(dueDate);
-    } else {
-      return null;
-    }
-  }
-
   Assignment toAssignment() {
     return Assignment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      dateCreated: Timestamp.now(),
+      dateCreated: DateTime.now(),
       title: title,
       subject: subject,
-      dueDate: _getDueDate(),
+      dueDate: dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute)),
       priority: priority,
       isComplete: false,
     );
