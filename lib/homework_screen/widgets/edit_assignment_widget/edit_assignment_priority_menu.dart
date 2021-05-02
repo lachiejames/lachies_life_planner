@@ -20,17 +20,17 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
           onSaved: (String selectedPriority) {
             Provider.of<AssignmentForm>(context, listen: false).priority = selectedPriority;
           },
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Priority',
-            labelStyle: TextStyle(color: Colors.black),
-            focusedBorder: OutlineInputBorder(
+            labelStyle: const TextStyle(color: Colors.black),
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: 'Choose a priority',
+            hintText: Provider.of<AssignmentForm>(context).priority ?? 'Choose a priority',
           ),
           items: ['Choose a priority', 'High', 'Medium', 'Low']
               .map((String option) => DropdownMenuItem<String>(

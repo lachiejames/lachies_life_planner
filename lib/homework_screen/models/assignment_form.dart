@@ -28,8 +28,8 @@ class AssignmentForm {
 
   Assignment toAssignment() {
     return Assignment(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      dateCreated: DateTime.now(),
+      id: id ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      dateCreated: dateCreated ?? DateTime.now(),
       title: title,
       subject: subject,
       dueDate: dueDate?.add(Duration(hours: dueTime?.hour, minutes: dueTime?.minute)),

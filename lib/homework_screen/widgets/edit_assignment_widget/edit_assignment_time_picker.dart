@@ -42,18 +42,18 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
         onTap: () => _selectTimeFromTimePicker(),
         readOnly: true,
         controller: _timePickerTextEditingController,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.alarm),
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.alarm),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: 'Due Time',
-          labelStyle: TextStyle(color: Colors.black),
-          focusedBorder: OutlineInputBorder(
+          labelStyle: const TextStyle(color: Colors.black),
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          hintText: 'hh:mm',
+          hintText: mapTimeToString(Provider.of<AssignmentForm>(context).dueTime),
         ),
       ),
     );
@@ -80,5 +80,13 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
 
   String _getTimeString(TimeOfDay selectedTime) {
     return '${selectedTime.hourOfPeriod}:${selectedTime.minute} ${selectedTime.period == DayPeriod.am ? 'AM' : 'PM'}';
+  }
+
+  String mapTimeToString(TimeOfDay timeOfDay) {
+    if (timeOfDay != null) {
+      return '${timeOfDay.hourOfPeriod}:${timeOfDay.minute} ${timeOfDay.period == DayPeriod.am ? 'AM' : 'PM'}';
+    } else {
+      return 'hh:mm';
+    }
   }
 }

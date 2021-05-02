@@ -20,17 +20,17 @@ class EditAssignmentSubjectMenu extends StatelessWidget {
           onSaved: (String selectedSubject) {
             Provider.of<AssignmentForm>(context, listen: false).subject = selectedSubject;
           },
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: 'Subject',
-            labelStyle: TextStyle(color: Colors.black),
-            focusedBorder: OutlineInputBorder(
+            labelStyle: const TextStyle(color: Colors.black),
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: 'Choose a subject',
+            hintText: Provider.of<AssignmentForm>(context).subject ?? 'Choose a subject',
           ),
           items: ['Choose a subject', 'Maths', 'English']
               .map((String option) => DropdownMenuItem<String>(

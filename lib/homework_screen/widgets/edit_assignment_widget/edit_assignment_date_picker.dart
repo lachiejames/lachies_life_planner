@@ -42,18 +42,18 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
         onTap: () => _selectDateFromDatePicker(),
         readOnly: true,
         controller: _datePickerTextEditingController,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.calendar_today),
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.calendar_today),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: 'Due Date',
-          labelStyle: TextStyle(color: Colors.black),
-          focusedBorder: OutlineInputBorder(
+          labelStyle: const TextStyle(color: Colors.black),
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 3.0),
           ),
-          hintText: 'dd/mm/yy',
+          hintText: mapDateToString(Provider.of<AssignmentForm>(context).dueDate),
         ),
       ),
     );
@@ -76,7 +76,15 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
     );
     if (selectedDate != null) {
       _currentDateEntered = selectedDate;
-      _datePickerTextEditingController.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+      _datePickerTextEditingController.text = mapDateToString(selectedDate);
+    }
+  }
+
+  String mapDateToString(DateTime dateTime) {
+    if (dateTime != null) {
+      return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+    } else {
+      return 'dd/mm/yy';
     }
   }
 }

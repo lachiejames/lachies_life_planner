@@ -31,7 +31,7 @@ class EditAssignmentTitleField extends StatelessWidget {
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 3.0),
             ),
-            hintText: Provider.of<AssignmentForm>(context, listen: false).title ?? 'Enter a title',
+            hintText: Provider.of<AssignmentForm>(context).title ?? 'Enter a title',
           ),
         ),
       ),
