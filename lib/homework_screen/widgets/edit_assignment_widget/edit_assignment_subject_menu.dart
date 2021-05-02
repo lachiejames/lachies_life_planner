@@ -4,6 +4,8 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentSubjectMenu extends StatelessWidget {
+  const EditAssignmentSubjectMenu();
+
   @override
   Widget build(BuildContext context) {
     return Container(

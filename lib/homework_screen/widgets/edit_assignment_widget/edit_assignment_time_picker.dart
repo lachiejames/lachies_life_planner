@@ -4,6 +4,8 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentTimePicker extends StatefulWidget {
+  const EditAssignmentTimePicker();
+
   @override
   _EditAssignmentTimePickerState createState() => _EditAssignmentTimePickerState();
 }

@@ -12,10 +12,10 @@ class EditAssignmentAddButton extends StatelessWidget {
 
   final TextEditingController assignmentEditingController;
 
-  EditAssignmentAddButton({
+  const EditAssignmentAddButton({
     @required this.formKey,
     @required this.assignmentEditingController,
-  }) : super(key: UniqueKey());
+  });
 
   @override
   Widget build(BuildContext context) {

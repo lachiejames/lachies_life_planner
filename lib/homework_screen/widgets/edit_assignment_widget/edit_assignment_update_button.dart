@@ -12,11 +12,11 @@ class EditAssignmentUpdateButton extends StatelessWidget {
   final Assignment assignmentToUpdate;
   final TextEditingController assignmentEditingController;
 
-  EditAssignmentUpdateButton({
+  const EditAssignmentUpdateButton({
     @required this.assignmentToUpdate,
     @required this.assignmentEditingController,
     @required this.formKey,
-  }) : super(key: UniqueKey());
+  }) ;
 
   @override
   Widget build(BuildContext context) {

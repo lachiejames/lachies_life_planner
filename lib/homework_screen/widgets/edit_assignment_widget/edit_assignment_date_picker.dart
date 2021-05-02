@@ -4,11 +4,13 @@ import 'package:lachies_life_planner/shared/config/size_config.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentDatePicker extends StatefulWidget {
+  const EditAssignmentDatePicker();
+
   @override
-  _EditAssignmentWidgetState createState() => _EditAssignmentWidgetState();
+  _EditAssignmentDatePickerState createState() => _EditAssignmentDatePickerState();
 }
 
-class _EditAssignmentWidgetState extends State<EditAssignmentDatePicker> {
+class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
   TextEditingController _datePickerTextEditingController;
   DateTime _currentDateEntered;
 

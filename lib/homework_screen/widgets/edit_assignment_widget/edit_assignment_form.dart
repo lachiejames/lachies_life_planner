@@ -18,9 +18,9 @@ class EditAssignmentForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const EditAssignmentTitleField(),
-          EditAssignmentSubjectMenu(),
+          const EditAssignmentSubjectMenu(),
           Row(
-            children: [
+            children: const [
               Expanded(
                 child: EditAssignmentDatePicker(),
               ),
@@ -29,7 +29,7 @@ class EditAssignmentForm extends StatelessWidget {
               ),
             ],
           ),
-          EditAssignmentPriorityMenu(),
+          const EditAssignmentPriorityMenu(),
         ],
       ),
     );
