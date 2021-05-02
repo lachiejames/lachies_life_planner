@@ -68,7 +68,6 @@ class _EditAssignmentWidgetState extends State<EditAssignmentSheet> {
           )
         : Expanded(
             child: EditAssignmentUpdateButton(
-              assignmentToUpdate: widget.assignment,
               assignmentEditingController: _assignmentEditingController,
             ),
           );

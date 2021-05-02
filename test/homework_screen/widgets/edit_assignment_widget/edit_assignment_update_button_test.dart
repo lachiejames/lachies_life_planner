@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_update_button.dart';
 
 import '../../../utils/device_screen_sizes.dart';
-import '../../../utils/mock_firestore_data.dart';
 import '../../../utils/widget_tester.dart';
 
 void main() {
@@ -15,7 +14,6 @@ void main() {
           assignmentEditingController: TextEditingController.fromValue(
             const TextEditingValue(text: 'test'),
           ),
-          assignmentToUpdate: mockAssignment,
         ),
       ),
     );

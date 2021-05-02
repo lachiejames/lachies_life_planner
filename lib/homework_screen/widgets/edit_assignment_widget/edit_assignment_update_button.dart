@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_bloc.dart';
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_event.dart';
-import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/widgets/sheet_text_button.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentUpdateButton extends StatelessWidget {
-  final Assignment assignmentToUpdate;
   final TextEditingController assignmentEditingController;
 
   const EditAssignmentUpdateButton({
-    @required this.assignmentToUpdate,
     @required this.assignmentEditingController,
   });
 
@@ -25,12 +22,10 @@ class EditAssignmentUpdateButton extends StatelessWidget {
   }
 
   void _onPressed(BuildContext context) {
-    GlobalKey<FormState> formKey = Provider.of<AssignmentForm>(context, listen: false).formKey;
-    if (formKey.currentState.validate()) {
-      formKey.currentState.save();
-      BlocProvider.of<AssignmentsBloc>(context).add(
-        AddAssignmentEvent(Provider.of<AssignmentForm>(context, listen: false).toAssignment()),
-      );
+    AssignmentForm assignmentForm = Provider.of<AssignmentForm>(context, listen: false);
+    if (assignmentForm.formKey.currentState.validate()) {
+      assignmentForm.formKey.currentState.save();
+      BlocProvider.of<AssignmentsBloc>(context).add(AddAssignmentEvent(assignmentForm.toAssignment()));
 
       Navigator.pop(context);
     }

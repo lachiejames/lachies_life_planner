@@ -23,12 +23,10 @@ class EditAssignmentAddButton extends StatelessWidget {
   }
 
   void _onPressed(BuildContext context) {
-    GlobalKey<FormState> formKey = Provider.of<AssignmentForm>(context, listen: false).formKey;
-    if (formKey.currentState.validate()) {
-      formKey.currentState.save();
-      BlocProvider.of<AssignmentsBloc>(context).add(
-        AddAssignmentEvent(Provider.of<AssignmentForm>(context, listen: false).toAssignment()),
-      );
+    AssignmentForm assignmentForm = Provider.of<AssignmentForm>(context, listen: false);
+    if (assignmentForm.formKey.currentState.validate()) {
+      assignmentForm.formKey.currentState.save();
+      BlocProvider.of<AssignmentsBloc>(context).add(AddAssignmentEvent(assignmentForm.toAssignment()));
 
       Navigator.pop(context);
     }
