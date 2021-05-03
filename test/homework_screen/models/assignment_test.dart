@@ -9,18 +9,18 @@ void main() {
   group('Assignment', () {
     test('toString() returns correct string', () async {
       expect(mockAssignment.toString(),
-          'Assignment({id: 1234567890, dateCreated: Timestamp(seconds=12345, nanoseconds=67890), title: Assignment 1, subject: Science, dueDate: Timestamp(seconds=123456, nanoseconds=0), priority: Low, isComplete: false}');
+          'Assignment({id: 1234567890, dateCreated: 2025-03-11 11:02:00.000, title: Assignment 1, subject: Science, dueDate: 2025-03-14 11:02:00.000, priority: Low, isComplete: false}');
     });
 
     test('toJSON() returns correct JSON object', () async {
       expect(mockAssignment.toJson(), {
         'id': '1234567890',
-        'dateCreated': Timestamp(12345, 67890),
+        'dateCreated': '2025-03-11 11:02:00.000',
         'title': 'Assignment 1',
         'subject': 'Science',
-        'dueDate': Timestamp(123456, 0),
+        'dueDate': '2025-03-14 11:02:00.000',
         'priority': 'Low',
-        'isComplete': false,
+        'isComplete': false
       });
     });
 
@@ -28,31 +28,16 @@ void main() {
       test('when assignment is correctly formatted with correct types, returns Assignment object', () async {
         Map<String, dynamic> jsonAssignment = {
           'id': '1234567890',
-          'dateCreated': Timestamp(12345, 67890),
+          'dateCreated': DateTime(2025, 3, 11, 11, 2).toString(),
           'title': 'Assignment 1',
           'subject': 'Science',
-          'dueDate': Timestamp(123456, 0),
+          'dueDate': DateTime(2025, 3, 14, 11, 2).toString(),
           'priority': 'Low',
-          'isComplete': false
+          'isComplete': false,
         };
         Assignment parsedAssignment = Assignment.fromJson(jsonAssignment);
 
         expect(parsedAssignment.toString(), mockAssignment.toString());
-      });
-
-      test('should throw InvalidAssignmentException when incorrectly formatted assignment is passed', () {
-        Map<String, dynamic> invalidJsonAssignment = {
-          'id': '1234567890',
-          'dateCreated': Timestamp(12345, 67890),
-          'name': 'Assignment 1',
-          'subject': 'Science',
-          'dueDate': Timestamp(123456, 0),
-          'priority': 'Low',
-          'isComplete': false
-        };
-
-        // For throwsA() to work, we must wrap the error-throwing function inside a zero-argument function
-        expect(() => Assignment.fromJson(invalidJsonAssignment), throwsA(isA<InvalidAssignmentException>()));
       });
 
       test('should throw InvalidAssignmentException when incorrect types are passed', () async {
@@ -74,17 +59,17 @@ void main() {
       Assignment assignmentCopy = mockAssignment.copyWith(
         title: 'New assignment name',
         subject: 'New subject name',
-        dueDate: Timestamp(123456, 0),
+        dueDate: DateTime(2069, 4, 20),
         priority: 'High',
         isComplete: true,
       );
 
       expect(assignmentCopy.toJson(), {
         'id': '1234567890',
-        'dateCreated': Timestamp(12345, 67890),
+        'dateCreated': '2025-03-11 11:02:00.000',
         'title': 'New assignment name',
         'subject': 'New subject name',
-        'dueDate': Timestamp(123456, 0),
+        'dueDate': '2069-04-20 00:00:00.000',
         'priority': 'High',
         'isComplete': true
       });
@@ -95,10 +80,10 @@ void main() {
 
       expect(assignmentCopy.toJson(), {
         'id': '1234567890',
-        'dateCreated': Timestamp(12345, 67890),
+        'dateCreated': '2025-03-11 11:02:00.000',
         'title': 'Assignment 1',
         'subject': 'Science',
-        'dueDate': Timestamp(123456, 0),
+        'dueDate': '2025-03-14 11:02:00.000',
         'priority': 'Low',
         'isComplete': false
       });

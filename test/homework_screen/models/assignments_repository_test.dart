@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore_mocks/cloud_firestore_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignments_repository.dart';
+import 'package:lachies_life_planner/homework_screen/models/invalid_assignment_exception.dart';
 import 'package:lachies_life_planner/shared/config/firebase_config.dart';
 
 import '../../utils/mock_firestore_data.dart';
@@ -30,7 +30,7 @@ void main() {
     });
 
     test('getAssignmentByID() throws an error when the assignment does not exist', () async {
-      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<InvalidAssignmentException>()));
     });
 
     test('updateAssignment() updates assignment in Firestore', () async {
@@ -41,12 +41,12 @@ void main() {
       Assignment assignmentInRepository = await getAssignmentByID(mockAssignment.id);
       expect(assignmentInRepository.toJson(), {
         'id': '1234567890',
-        'dateCreated': Timestamp(12345, 67890),
+        'dateCreated': '2025-03-11 11:02:00.000',
         'title': 'new assignment title',
         'subject': 'Science',
-        'dueDate': Timestamp(123456, 0),
+        'dueDate': '2025-03-14 11:02:00.000',
         'priority': 'Low',
-        'isComplete': false,
+        'isComplete': false
       });
     });
 
@@ -62,7 +62,7 @@ void main() {
       await assignmentsRepository.addAssignment(mockAssignment);
       await assignmentsRepository.deleteAssignment(mockAssignment);
 
-      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<NoSuchMethodError>()));
+      await expectLater(getAssignmentByID(mockAssignment.id), throwsA(isA<InvalidAssignmentException>()));
     });
 
     test('getAllAssignments() returns all assignments from Firestore', () async {
@@ -86,7 +86,7 @@ void main() {
       await assignmentsRepository.deleteAllAssignments();
 
       for (Assignment assignment in mockAssignmentList) {
-        await expectLater(getAssignmentByID(assignment.id), throwsA(isA<NoSuchMethodError>()));
+        await expectLater(getAssignmentByID(assignment.id), throwsA(isA<InvalidAssignmentException>()));
       }
     });
 

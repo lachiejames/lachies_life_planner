@@ -16,7 +16,7 @@ void main() {
 
       expect(
         error.toString(),
-        'AssignmentsRepositoryException:(ERROR: could not delete Assignment({id: 1234567890, dateCreated: Timestamp(seconds=12345, nanoseconds=67890), title: Assignment 1, subject: Science, dueDate: Timestamp(seconds=123456, nanoseconds=0), priority: Low, isComplete: false} from FireStore)',
+        'AssignmentsRepositoryException:(ERROR: could not delete Assignment({id: 1234567890, dateCreated: 2025-03-11 11:02:00.000, title: Assignment 1, subject: Science, dueDate: 2025-03-14 11:02:00.000, priority: Low, isComplete: false} from FireStore)',
       );
     });
   });

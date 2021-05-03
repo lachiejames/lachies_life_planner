@@ -49,5 +49,10 @@ Future<void> navigateTo(FlutterDriver driver, String screenName) async {
   }
 }
 
+Future<void> pressDropDownMenuItem(FlutterDriver driver, String menuItem) async {
+  await driver.tap(find.byType('AppBarOverflowMenu'));
+  await driver.tap(find.text(menuItem));
+}
+
 // Some tests fail unless we add a random async/await call.  Seems to happen when StreamBuilder is used
 Future<void> applyStreamBugWorkAround() => Future.delayed(const Duration(seconds: 1));
