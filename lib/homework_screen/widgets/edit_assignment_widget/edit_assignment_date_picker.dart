@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
+import 'package:lachies_life_planner/shared/utils/date-utils.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentDatePicker extends StatefulWidget {
@@ -55,16 +56,9 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
   String _getHintText(BuildContext context) {
     DateTime dateTime = Provider.of<AssignmentForm>(context).dueDate;
     if (dateTime != null) {
-      return _mapDateToString(dateTime);
+      return mapDateToString(dateTime);
     } else {
       return 'dd/mm/yyyy';
     }
-  }
-
-  String _mapDateToString(DateTime dateTime) {
-    String day = dateTime?.day?.toString()?.padLeft(2, '0');
-    String month = dateTime?.month?.toString()?.padLeft(2, '0');
-    String year = dateTime?.year?.toString();
-    return '$day/$month/$year';
   }
 }

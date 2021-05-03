@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment_form.dart';
 import 'package:lachies_life_planner/shared/config/size_config.dart';
+import 'package:lachies_life_planner/shared/utils/date-utils.dart';
 import 'package:provider/provider.dart';
 
 class EditAssignmentTimePicker extends StatefulWidget {
@@ -53,16 +54,9 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
   String _getHintText(BuildContext context) {
     TimeOfDay timeOfDay = Provider.of<AssignmentForm>(context).dueTime;
     if (timeOfDay != null) {
-      return _mapTimeToString(timeOfDay);
+      return mapTimeToString(timeOfDay);
     } else {
       return 'hh:mm';
     }
-  }
-
-  String _mapTimeToString(TimeOfDay timeOfDay) {
-    String hour = timeOfDay?.hourOfPeriod?.toString()?.padLeft(2, '0');
-    String minute = timeOfDay?.minute?.toString()?.padLeft(2, '0');
-    String period = timeOfDay?.period == DayPeriod.am ? 'AM' : 'PM';
-    return '$hour:$minute $period';
   }
 }

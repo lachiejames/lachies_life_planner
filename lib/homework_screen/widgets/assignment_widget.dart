@@ -4,7 +4,10 @@ import 'package:lachies_life_planner/homework_screen/bloc/assignments_bloc.dart'
 import 'package:lachies_life_planner/homework_screen/bloc/assignments_event.dart';
 import 'package:lachies_life_planner/homework_screen/models/assignment.dart';
 import 'package:lachies_life_planner/homework_screen/widgets/edit_assignment_widget/edit_assignment_sheet.dart';
+import 'package:lachies_life_planner/shared/utils/date-utils.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+const Color greyColor = Color.fromARGB(120, 0, 0, 0);
 
 @immutable
 class AssignmentWidget extends StatelessWidget {
@@ -19,10 +22,31 @@ class AssignmentWidget extends StatelessWidget {
       child: Card(
         child: ListTile(
           onTap: () => _onListTileTapped(context),
-          title: Text(assignment.title),
-          leading: Checkbox(
-            value: assignment.isComplete,
-            onChanged: (bool isChecked) => _onCheckboxTapped(isChecked, context),
+          title: Text(assignment?.title ?? ''),
+          subtitle: Text(
+            assignment?.subject ?? '',
+            style: const TextStyle(color: greyColor),
+          ),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                mapDateToString(assignment?.dueDate) ?? '',
+                style: const TextStyle(color: greyColor),
+              ),
+              Text(
+                mapDateToTimeString(assignment?.dueDate) ?? '',
+                style: const TextStyle(color: greyColor),
+              )
+            ],
+          ),
+          leading: Transform.scale(
+            scale: 1.5,
+            child: Checkbox(
+              value: assignment.isComplete,
+              onChanged: (bool isChecked) => _onCheckboxTapped(isChecked, context),
+            ),
           ),
         ),
       ),

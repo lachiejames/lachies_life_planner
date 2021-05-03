@@ -17,6 +17,7 @@ class EditAssignmentSubjectMenu extends StatelessWidget {
       ),
       child: Center(
         child: DropdownButtonFormField(
+          value: Provider.of<AssignmentForm>(context, listen: false).subject,
           onSaved: (String selectedSubject) => _updateForm(context, selectedSubject),
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -31,13 +32,14 @@ class EditAssignmentSubjectMenu extends StatelessWidget {
             hintText: Provider.of<AssignmentForm>(context, listen: false).subject ?? 'Choose a subject',
           ),
           items: getSubjects(),
-          onChanged: (String selectedSubject) => _updateForm(context, selectedSubject),
+          onChanged: (String selectedSubject) {_updateForm(context, selectedSubject);print('onchanged');} ,
         ),
       ),
     );
   }
 
   void _updateForm(BuildContext context, String selectedSubject) {
+    print('xxx - $selectedSubject');
     Provider.of<AssignmentForm>(context, listen: false).subject = selectedSubject;
   }
 

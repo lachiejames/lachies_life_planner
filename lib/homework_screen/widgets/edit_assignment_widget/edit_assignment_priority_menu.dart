@@ -17,6 +17,7 @@ class EditAssignmentPriorityMenu extends StatelessWidget {
       ),
       child: Center(
         child: DropdownButtonFormField(
+          value: Provider.of<AssignmentForm>(context, listen: false).priority,
           onSaved: (String selectedPriority) => _updateForm(context, selectedPriority),
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
