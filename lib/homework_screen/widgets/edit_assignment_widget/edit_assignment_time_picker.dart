@@ -47,7 +47,9 @@ class _EditAssignmentTimePickerState extends State<EditAssignmentTimePicker> {
     );
 
     setState(() {
-      Provider.of<AssignmentForm>(context, listen: false).dueTime = selectedTime;
+      if (selectedTime != null) {
+        Provider.of<AssignmentForm>(context, listen: false).dueTime = selectedTime;
+      }
     });
   }
 

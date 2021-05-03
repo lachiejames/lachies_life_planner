@@ -49,7 +49,9 @@ class _EditAssignmentDatePickerState extends State<EditAssignmentDatePicker> {
     );
 
     setState(() {
-      Provider.of<AssignmentForm>(context, listen: false).dueDate = selectedDate;
+      if (selectedDate != null) {
+        Provider.of<AssignmentForm>(context, listen: false).dueDate = selectedDate;
+      }
     });
   }
 

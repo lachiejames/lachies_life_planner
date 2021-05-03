@@ -20,8 +20,12 @@ class AssignmentForm {
     assignmentForm.dateCreated = assignment.dateCreated;
     assignmentForm.title = assignment.title;
     assignmentForm.subject = assignment.subject;
-    assignmentForm.dueDate = dateTime == null ? null : DateTime(dateTime?.year, dateTime?.month, dateTime?.day);
-    assignmentForm.dueTime = dateTime == null ? null : TimeOfDay(hour: dateTime?.hour, minute: dateTime?.minute);
+    assignmentForm.dueDate = dateTime == null || dateTime.year == null || dateTime.month == null || dateTime.day == null
+        ? null
+        : DateTime(dateTime.year, dateTime.month, dateTime.day);
+    assignmentForm.dueTime = dateTime == null || dateTime.hour == null || dateTime.minute == null
+        ? null
+        : TimeOfDay(hour: dateTime.hour, minute: dateTime.minute);
     assignmentForm.priority = assignment.priority;
     return assignmentForm;
   }
